@@ -11,6 +11,7 @@ Portfolio web personal de Mireia Gutiérrez Águila (QA Tester | Product Manager
 - Responder siempre en español y explicar brevemente cada cambio (la usuaria está aprendiendo).
 - Proponer un plan antes de programar y esperar aprobación.
 - Escribe los comentarios del código en español
+- Antes de pedir permiso para ejecutar un comando, explica en español y en lenguaje sencillo qué va a hacer, y si modifica o no algún archivo, poner el simbolo 🌀 al inicio de la explicación.
 - Construir sección a sección y esperar revisión antes de pasar a la siguiente.
 - Antes de aplicar colores, extraer los tonos de `images/paleta_colores_{1,2,3}.jpeg` y proponerlos (los hex de Portfolio.md §7 son aproximados).
 
@@ -18,7 +19,7 @@ Portfolio web personal de Mireia Gutiérrez Águila (QA Tester | Product Manager
 Al informar de lo que encuentres o hagas, marca cada punto según su tipo:
 - 🔴 **Problema:** algo que está mal o rompe un requisito y hay que corregir (p. ej. un vídeo que supera los 5 MB, un error de JS, falta de contraste).
 - 🟡 **Aviso:** algo que funciona pero conviene revisar o puede dar problemas (p. ej. compatibilidad con algún navegador, una decisión de diseño discutible).
-- 📌 **Pendiente:** tarea o información que falta y queda para más adelante (p. ej. el CV en PDF, textos provisionales, datos que hay que confirmar).
+- 📌 **Pendiente:** tarea o información que falta y queda para más adelante (p. ej. textos provisionales, datos que hay que confirmar).
 
 ## Stack y comandos
 Web estática pura: HTML + CSS + JS vanilla, sin backend, sin build, sin dependencias. Despliegue previsto en hosting gratuito (GitHub Pages / Netlify).
@@ -34,6 +35,6 @@ Web estática pura: HTML + CSS + JS vanilla, sin backend, sin build, sin depende
 - Nada de CSS/JS en línea en el HTML. Imágenes en `images/` (subcarpetas `logos/`, `proyectos/`), vídeos en `videos/`.
 
 ## Restricciones no obvias
-- Vídeos loop de tarjetas: autoplay, muted, loop, sin controles, con poster; solo reproducir cuando la tarjeta es visible (IntersectionObserver) o en hover en escritorio. Objetivo <5 MB, ≤720p, H.264 sin audio — los actuales (`ecos` ~16 MB, `mitocat` ~11 MB, `feminist` ~8 MB) y `foto_mireia_principal.png` (~5,6 MB) superan esto y necesitan optimización.
+- Vídeos loop de tarjetas: autoplay, muted, loop, sin controles, con poster; solo reproducir cuando la tarjeta es visible (IntersectionObserver) o en hover en escritorio. Objetivo <5 MB, ≤720p, H.264 sin audio, con `faststart` (los actuales ya cumplen: ~4,4 MB; comprimidos con ffmpeg en dos pasadas a 800k). La foto de perfil está en AVIF (900 px de ancho, con transparencia) porque el Mac no puede generar WebP.
 - Estética sci-fi/HUD oscura (sin modo claro); neón solo como acento, el texto siempre con buen contraste. Accesibilidad: alt en imágenes, navegable con teclado.
-- No publicar teléfono ni datos de referencias. CV enlazado como `/cv-mireia-gutierrez.pdf` (aún no está en el repo).
+- No publicar teléfono ni datos de referencias. CV en la raíz como `cv-mireia-gutierrez.pdf` (versión pública, ya sin teléfono ni referencias). Si se sustituye, comprobar que no esté dañado: varias exportaciones de Canva salieron corruptas y se veían en blanco fuera de Vista Previa.
