@@ -37,7 +37,7 @@ La web debe:
 ├── js/
 │   └── main.js
 ├── images/
-│   ├── foto_mireia_principal.png
+│   ├── foto_mireia_principal.avif
 └── videos/
 ```
 
@@ -64,7 +64,7 @@ La web debe:
 - Botones de llamada a la acción: "Ver proyectos" y "Contacto".
 
 ### 5.2 Sobre mí
-- Foto de perfil (`/images/foto_mireia_principal.png`).
+- Foto de perfil (`/images/foto_mireia_principal.avif`).
 - Texto de presentación (se puede pulir, pero la idea es esta):
 
   > Me interesan los proyectos que combinan pensamiento conceptual y analítico. Me gusta involucrarme y me considero sociable y colaborativa.
@@ -238,7 +238,7 @@ Añade un efecto de estela al cursor (cursor trail) usando canvas:
 
 ## 8. Contenido disponible
 
-- Foto de perfil: `images/foto_mireia_principal.png`
+- Foto de perfil: `images/foto_mireia_principal.avif`
 - Logos de tecnologías:  usar iconos libres adaptdos al diseño.
 - Imágenes de proyectos: usar info e imagenes de itch.io de cada proyecto (especificadas en apartado proyectos)
 - Vídeos:  `/videos` o youtube(especificados en el apartado videos)
