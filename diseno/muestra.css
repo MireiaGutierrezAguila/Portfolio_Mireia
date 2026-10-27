@@ -1,0 +1,508 @@
+/* ==========================================================
+   Muestra de estilo del portfolio (fase 1)
+   Mobile-first: los estilos base son para móvil y se amplían
+   con media queries a partir de 768 px y 1024 px.
+   ========================================================== */
+
+/* ---------- Tokens: paleta aprobada y tipografía ---------- */
+:root {
+  --fondo: #08070D;
+  --tarjeta: #15111D;
+  --texto: #EDEAF5;
+  --texto-2: #A9A4BF;
+  --magenta: #940054;        /* solo rellenos */
+  --magenta-claro: #EB4BA6;  /* texto y líneas sobre fondo oscuro */
+  --cian: #12DCF0;
+  --turquesa: #2BD9A8;
+  --violeta: #8B5CF6;        /* solo degradados y bordes */
+  --ambar: #FF9F4A;
+  --linea: rgba(169, 164, 191, 0.18);
+
+  --fuente-texto: "Atkinson Hyperlegible Next", system-ui, sans-serif;
+  --fuente-titulos: "Tektur", "Atkinson Hyperlegible Next", sans-serif;
+
+  /* Escala tipográfica (proporción ~1.25, fluida entre móvil y escritorio) */
+  --t-pequeno: 0.875rem;
+  --t-base: 1.0625rem;
+  --t-medio: 1.375rem;
+  --t-titulo: clamp(1.75rem, 1.3rem + 2vw, 2.5rem);
+  --t-nombre: clamp(2.6rem, 1.4rem + 6vw, 5.5rem);
+
+  --hueco: clamp(4rem, 3rem + 5vw, 8rem);
+
+  /* Margen lateral: 16 px en móvil y nunca más ancho de 63rem de contenido */
+  --margen: 1rem;
+  --lateral: max(var(--margen), (100% - 63rem) / 2);
+}
+
+/* Opción B: cambia solo la fuente de titulares */
+[data-tipografia="b"] {
+  --fuente-titulos: "Chakra Petch", "Atkinson Hyperlegible Next", sans-serif;
+}
+
+/* ---------- Base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--fondo);
+  color: var(--texto);
+  font-family: var(--fuente-texto);
+  font-size: var(--t-base);
+  line-height: 1.6;
+}
+
+img,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: var(--cian);
+  text-underline-offset: 0.2em;
+}
+
+/* Foco visible para navegación con teclado */
+:focus-visible {
+  outline: 2px solid var(--cian);
+  outline-offset: 3px;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--fuente-titulos);
+  line-height: 1.1;
+  margin: 0;
+}
+
+
+/* ---------- Selector de opción tipográfica ---------- */
+.selector {
+  position: fixed;
+  z-index: 10;
+  right: 1rem;
+  bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background: rgba(21, 17, 29, 0.92);
+  border: 1px solid var(--linea);
+  border-radius: 0.5rem;
+  font-size: var(--t-pequeno);
+}
+
+.selector__titulo {
+  color: var(--texto-2);
+  padding: 0 0.25rem;
+}
+
+.selector__boton {
+  font: inherit;
+  color: var(--texto-2);
+  background: transparent;
+  border: 1px solid var(--linea);
+  border-radius: 0.35rem;
+  padding: 0.35rem 0.6rem;
+  cursor: pointer;
+}
+
+.selector__boton[aria-pressed="true"] {
+  color: var(--texto);
+  background: var(--magenta);
+  border-color: var(--magenta);
+}
+
+/* ---------- Portada ---------- */
+.portada {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.25rem;
+  /* Ocupa todo el ancho para que los anillos no se corten; el texto respeta el margen */
+  padding: 4rem var(--lateral);
+  overflow: hidden;
+}
+
+/* Anillos HUD de fondo, muy tenues */
+.portada__anillos {
+  position: absolute;
+  inset: 50% auto auto 70%;
+  width: 140vmax;
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  background:
+    radial-gradient(circle, rgba(148, 0, 84, 0.28) 0, transparent 22%),
+    repeating-radial-gradient(circle, transparent 0 11.5%, rgba(139, 92, 246, 0.16) 11.5% 11.6%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.portada__nombre {
+  display: flex;
+  flex-direction: column;
+  font-size: var(--t-nombre);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  /* El único momento animado: el nombre se despliega en anchura al cargar */
+  font-stretch: 100%;
+  animation: desplegar 1.4s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.portada__nombre span:last-child {
+  color: var(--magenta-claro);
+}
+
+@keyframes desplegar {
+  from {
+    font-stretch: 75%;
+    opacity: 0;
+    letter-spacing: 0.08em;
+  }
+  to {
+    font-stretch: 100%;
+    opacity: 1;
+    letter-spacing: -0.01em;
+  }
+}
+
+.portada__rol {
+  margin: 0;
+  max-width: 30ch;
+  font-size: var(--t-medio);
+  line-height: 1.35;
+}
+
+.portada__lema {
+  margin: 0;
+  color: var(--turquesa);
+  font-family: var(--fuente-titulos);
+  font-size: var(--t-base);
+}
+
+.portada__acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+/* ---------- Botones ---------- */
+.boton {
+  display: inline-block;
+  padding: 0.8rem 1.4rem;
+  font-family: var(--fuente-titulos);
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 0.35rem;
+  transition: box-shadow 0.2s, background-color 0.2s;
+}
+
+.boton--relleno {
+  color: var(--texto);
+  background: var(--magenta);
+  box-shadow: 0 0 0 1px rgba(235, 75, 166, 0.45);
+}
+
+.boton--relleno:hover {
+  background: #A8005F;
+  box-shadow: 0 0 0 1px var(--magenta-claro), 0 0 24px rgba(235, 75, 166, 0.35);
+}
+
+.boton--linea {
+  color: var(--cian);
+  border: 1px solid var(--cian);
+}
+
+.boton--linea:hover {
+  box-shadow: 0 0 20px rgba(18, 220, 240, 0.25);
+}
+
+/* ---------- Bloques genéricos ---------- */
+.bloque {
+  padding: 0 var(--lateral) var(--hueco);
+}
+
+.titulo {
+  font-size: var(--t-titulo);
+  font-weight: 600;
+  margin-bottom: 2rem;
+}
+
+/* ---------- Paleta ---------- */
+.paleta {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.muestra {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 6.5rem;
+  padding: 0.75rem;
+  border: 1px solid var(--linea);
+  border-radius: 0.35rem;
+  background: var(--c);
+  font-size: var(--t-pequeno);
+}
+
+.muestra code {
+  opacity: 0.85;
+}
+
+/* Cada muestra fija su color y un texto legible encima */
+.muestra--fondo { --c: var(--fondo); }
+.muestra--tarjeta { --c: var(--tarjeta); }
+.muestra--magenta { --c: var(--magenta); }
+.muestra--violeta { --c: var(--violeta); }
+.muestra--magenta-claro { --c: var(--magenta-claro); color: var(--fondo); }
+.muestra--cian { --c: var(--cian); color: var(--fondo); }
+.muestra--turquesa { --c: var(--turquesa); color: var(--fondo); }
+.muestra--ambar { --c: var(--ambar); color: var(--fondo); }
+
+/* ---------- Sobre mí ---------- */
+.sobre-mi {
+  display: grid;
+  gap: 2rem;
+}
+
+.sobre-mi__foto {
+  width: min(18rem, 70%);
+  filter: drop-shadow(0 0 40px rgba(148, 0, 84, 0.45));
+}
+
+.texto {
+  max-width: 65ch;
+}
+
+.texto p {
+  margin: 0 0 1em;
+}
+
+/* ---------- Línea de tiempo ---------- */
+.linea-tiempo {
+  position: relative;
+  margin: 0;
+  padding: 0 0 0 1.75rem;
+  list-style: none;
+  max-width: 65ch;
+}
+
+/* Línea vertical con degradado magenta → violeta → cian */
+.linea-tiempo::before {
+  content: "";
+  position: absolute;
+  left: 0.3rem;
+  top: 0.4rem;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(var(--magenta-claro), var(--violeta), var(--cian));
+}
+
+.hito {
+  position: relative;
+  padding-bottom: 2.5rem;
+}
+
+/* Nodo en forma de rombo */
+.hito::before {
+  content: "";
+  position: absolute;
+  left: -1.75rem;
+  top: 0.45rem;
+  width: 0.65rem;
+  height: 0.65rem;
+  rotate: 45deg;
+  background: var(--fondo);
+  border: 1px solid var(--magenta-claro);
+  box-shadow: 0 0 10px rgba(235, 75, 166, 0.6);
+}
+
+.hito p {
+  margin: 0;
+}
+
+.hito__fecha {
+  color: var(--turquesa);
+  font-size: var(--t-pequeno);
+}
+
+.hito__puesto {
+  font-size: var(--t-medio);
+  font-weight: 600;
+  margin: 0.25rem 0 0.5rem;
+}
+
+.hito__empresa {
+  color: var(--texto-2);
+  font-weight: 400;
+}
+
+/* ---------- Tarjeta de juego ---------- */
+.tarjeta {
+  position: relative;
+  max-width: 26rem;
+  /* Borde con degradado: el fondo interior tapa el degradado salvo en 1 px */
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+  background:
+    linear-gradient(var(--tarjeta), var(--tarjeta)) padding-box,
+    linear-gradient(135deg, var(--magenta-claro), var(--violeta), var(--cian)) border-box;
+  box-shadow: 0 0 32px rgba(148, 0, 84, 0.25);
+}
+
+/* Esquinas tipo HUD */
+.tarjeta::before,
+.tarjeta::after {
+  content: "";
+  position: absolute;
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 2px solid var(--cian);
+  pointer-events: none;
+}
+
+.tarjeta::before {
+  top: -6px;
+  left: -6px;
+  border-right: 0;
+  border-bottom: 0;
+}
+
+.tarjeta::after {
+  right: -6px;
+  bottom: -6px;
+  border-left: 0;
+  border-top: 0;
+}
+
+.tarjeta__video {
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 0.5rem 0.5rem 0 0;
+  background: #000;
+}
+
+.tarjeta__video video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tarjeta__cuerpo {
+  display: grid;
+  gap: 0.9rem;
+  padding: 1.25rem;
+}
+
+.tarjeta__cuerpo p {
+  margin: 0;
+}
+
+.tarjeta__titulo {
+  font-size: var(--t-medio);
+  font-weight: 700;
+}
+
+.tarjeta__fechas {
+  color: var(--texto-2);
+  font-size: var(--t-pequeno);
+}
+
+.tarjeta .boton {
+  justify-self: start;
+}
+
+.datos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.dato {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.2rem 0.6rem;
+  font-size: var(--t-pequeno);
+  color: var(--texto-2);
+  border: 1px solid var(--linea);
+  border-radius: 0.35rem;
+}
+
+.dato--motor {
+  color: var(--magenta-claro);
+  border-color: rgba(235, 75, 166, 0.5);
+}
+
+.icono {
+  width: 1em;
+  height: 1em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+}
+
+/* ---------- Tablet (≥ 768 px) ---------- */
+@media (min-width: 768px) {
+  :root {
+    --margen: 2.5rem;
+  }
+
+  .paleta {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .sobre-mi {
+    grid-template-columns: 16rem 1fr;
+    align-items: start;
+  }
+
+  .sobre-mi__foto {
+    width: 100%;
+  }
+}
+
+/* ---------- Escritorio (≥ 1024 px) ---------- */
+@media (min-width: 1024px) {
+  .sobre-mi {
+    grid-template-columns: 20rem 1fr;
+    gap: 4rem;
+  }
+}
+
+/* ---------- Movimiento reducido ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .portada__nombre {
+    animation: none;
+  }
+
+  .boton {
+    transition: none;
+  }
+}

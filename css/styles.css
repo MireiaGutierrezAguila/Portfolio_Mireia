@@ -1,0 +1,385 @@
+/* ==========================================================
+   Portfolio de Mireia Gutiérrez Águila
+   Mobile-first: los estilos base son para móvil y se amplían
+   con media queries a partir de 768 px y 1200 px.
+   Paleta y tipografía aprobadas: ver CLAUDE.md y diseno/muestra.html
+   ========================================================== */
+
+/* ---------- Tokens ---------- */
+:root {
+  /* Colores */
+  --fondo: #08070D;
+  --tarjeta: #15111D;
+  --texto: #EDEAF5;
+  --texto-2: #A9A4BF;
+  --magenta: #940054;        /* solo rellenos */
+  --magenta-claro: #EB4BA6;  /* texto y líneas sobre fondo oscuro */
+  --cian: #12DCF0;
+  --turquesa: #2BD9A8;
+  --violeta: #8B5CF6;        /* solo degradados y bordes */
+  --ambar: #FF9F4A;
+  --linea: rgba(169, 164, 191, 0.18);
+
+  /* Tipografía */
+  --fuente-texto: "Atkinson Hyperlegible Next", system-ui, sans-serif;
+  --fuente-titulos: "Tektur", "Atkinson Hyperlegible Next", sans-serif;
+  --t-pequeno: 0.875rem;
+  --t-base: 1.0625rem;
+  --t-medio: 1.375rem;
+  --t-titulo: clamp(1.75rem, 1.3rem + 2vw, 2.5rem);
+  /* El segundo término evita que los apellidos (unas 8 veces el tamaño de letra de ancho)
+     se salgan de la pantalla en móviles estrechos */
+  --t-nombre: clamp(2.2rem, min(1.4rem + 6vw, (100vw - 2rem) / 8), 5.5rem);
+
+  /* Espaciado y medidas */
+  --alto-cabecera: 4rem;
+  --hueco: clamp(4rem, 3rem + 5vw, 8rem);
+  --margen: 1rem;                                   /* 16 px en móvil */
+  --lateral: max(var(--margen), (100% - 63rem) / 2); /* contenido de 63rem como máximo */
+}
+
+/* ---------- Base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--fondo);
+  color: var(--texto);
+  font-family: var(--fuente-texto);
+  font-size: var(--t-base);
+  line-height: 1.6;
+}
+
+img,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: var(--cian);
+  text-underline-offset: 0.2em;
+}
+
+/* Foco visible para navegación con teclado */
+:focus-visible {
+  outline: 2px solid var(--cian);
+  outline-offset: 3px;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--fuente-titulos);
+  line-height: 1.1;
+  margin: 0;
+}
+
+/* ---------- Enlace "Saltar al contenido" ---------- */
+.saltar {
+  position: absolute;
+  z-index: 100;
+  top: 0.5rem;
+  left: 0.5rem;
+  padding: 0.6rem 1rem;
+  color: var(--texto);
+  background: var(--magenta);
+  border-radius: 0.35rem;
+  translate: 0 -200%;
+}
+
+.saltar:focus {
+  translate: 0 0;
+}
+
+/* ---------- Cabecera fija ---------- */
+.cabecera {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--alto-cabecera);
+  padding: 0 var(--lateral);
+  border-bottom: 1px solid var(--linea);
+}
+
+/* Fondo translúcido con desenfoque en una capa aparte: si el desenfoque estuviera
+   en la propia cabecera, el panel del menú móvil (position: fixed) quedaría
+   encerrado dentro de ella en lugar de ocupar la pantalla */
+.cabecera::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: rgba(8, 7, 13, 0.85);
+  backdrop-filter: blur(10px);
+}
+
+.cabecera__marca {
+  white-space: nowrap;
+  font-family: var(--fuente-titulos);
+  font-weight: 700;
+  font-size: 1.125rem;
+  color: var(--texto);
+  text-decoration: none;
+}
+
+/* Botón hamburguesa: tres líneas que se convierten en una X al abrir */
+.cabecera__menu {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  background: transparent;
+  border: 1px solid var(--linea);
+  border-radius: 0.35rem;
+  cursor: pointer;
+}
+
+.hamburguesa,
+.hamburguesa::before,
+.hamburguesa::after {
+  display: block;
+  width: 1.25rem;
+  height: 2px;
+  background: var(--texto);
+  transition: rotate 0.2s, translate 0.2s, opacity 0.2s;
+}
+
+.hamburguesa {
+  position: relative;
+}
+
+.hamburguesa::before,
+.hamburguesa::after {
+  content: "";
+  position: absolute;
+  left: 0;
+}
+
+.hamburguesa::before {
+  translate: 0 -6px;
+}
+
+.hamburguesa::after {
+  translate: 0 6px;
+}
+
+.cabecera__menu[aria-expanded="true"] .hamburguesa {
+  background: transparent;
+}
+
+.cabecera__menu[aria-expanded="true"] .hamburguesa::before {
+  translate: 0 0;
+  rotate: 45deg;
+}
+
+.cabecera__menu[aria-expanded="true"] .hamburguesa::after {
+  translate: 0 0;
+  rotate: -45deg;
+}
+
+/* ---------- Navegación: panel desplegable en móvil y tablet ---------- */
+.nav {
+  display: none;
+  position: fixed;
+  inset: var(--alto-cabecera) 0 0 0;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem var(--lateral);
+  background: var(--fondo);
+  overflow-y: auto;
+}
+
+.menu-abierto .nav {
+  display: flex;
+}
+
+/* Con el menú abierto, la página de detrás no se desplaza */
+.menu-abierto {
+  overflow: hidden;
+}
+
+.nav__lista {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav__enlace {
+  display: block;
+  padding: 0.6rem 0;
+  font-family: var(--fuente-titulos);
+  font-size: var(--t-medio);
+  color: var(--texto);
+  text-decoration: none;
+}
+
+.nav__enlace:hover {
+  color: var(--magenta-claro);
+}
+
+/* ---------- Selector de idioma ---------- */
+.idiomas {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.idiomas__boton {
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  padding: 0 0.5rem;
+  font-family: var(--fuente-titulos);
+  font-size: var(--t-pequeno);
+  color: var(--texto-2);
+  background: transparent;
+  border: 1px solid var(--linea);
+  border-radius: 0.35rem;
+  cursor: pointer;
+}
+
+.idiomas__boton:hover {
+  color: var(--texto);
+}
+
+.idiomas__boton[aria-pressed="true"] {
+  color: var(--texto);
+  background: var(--magenta);
+  border-color: var(--magenta);
+}
+
+/* ---------- Secciones ---------- */
+.seccion {
+  /* Al saltar a una sección, la cabecera fija no tapa su título */
+  scroll-margin-top: var(--alto-cabecera);
+  min-height: 60vh; /* provisional: hasta que cada sección tenga contenido (fase 3) */
+  padding: var(--hueco) var(--lateral) 0;
+}
+
+.seccion__titulo {
+  font-size: var(--t-titulo);
+  font-weight: 600;
+}
+
+/* ---------- Portada (provisional, se completa en la fase 3) ---------- */
+.seccion--portada {
+  display: flex;
+  align-items: center;
+  min-height: calc(100svh - var(--alto-cabecera));
+  padding-top: 0;
+}
+
+.portada__nombre {
+  font-size: var(--t-nombre);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* Los apellidos van siempre juntos: si el nombre no cabe en una línea,
+   se parte entre "Mireia" y los apellidos, nunca dentro de los apellidos */
+.portada__apellidos {
+  white-space: nowrap;
+}
+
+/* ---------- Pie de página ---------- */
+.pie {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: var(--hueco);
+  padding: 2rem var(--lateral);
+  color: var(--texto-2);
+  font-size: var(--t-pequeno);
+  border-top: 1px solid var(--linea);
+}
+
+.pie p {
+  margin: 0;
+}
+
+/* ---------- Tablet (≥ 768 px) ---------- */
+@media (min-width: 768px) {
+  :root {
+    --margen: 2.5rem;
+  }
+}
+
+/* ---------- Escritorio (≥ 1200 px): menú en línea, sin hamburguesa ----------
+   Con 8 secciones, el menú completo no cabe en una línea por debajo de 1200 px */
+@media (min-width: 1200px) {
+  /* La cabecera usa todo el ancho (con margen) para que quepan las 8 secciones */
+  .cabecera {
+    padding: 0 var(--margen);
+  }
+
+  .cabecera__menu {
+    display: none;
+  }
+
+  .nav,
+  .menu-abierto .nav {
+    display: flex;
+    position: static;
+    flex-direction: row;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 0;
+    background: transparent;
+    overflow: visible;
+  }
+
+  .menu-abierto {
+    overflow: visible;
+  }
+
+  .nav__lista {
+    flex-direction: row;
+    gap: 1.25rem;
+  }
+
+  .nav__enlace {
+    white-space: nowrap;
+    padding: 0.25rem 0;
+    font-size: var(--t-pequeno);
+    color: var(--texto-2);
+  }
+
+  .nav__enlace:hover {
+    color: var(--texto);
+  }
+
+  .idiomas__boton {
+    min-width: 2.25rem;
+    min-height: 2.25rem;
+  }
+}
+
+/* ---------- Movimiento reducido ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .hamburguesa,
+  .hamburguesa::before,
+  .hamburguesa::after {
+    transition: none;
+  }
+}

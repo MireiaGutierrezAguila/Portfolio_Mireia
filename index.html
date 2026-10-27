@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-i18n="meta.titulo">Mireia Gutiérrez Águila · QA Tester y Product Manager</title>
+  <meta name="description" data-i18n-content="meta.descripcion" content="Portfolio de Mireia Gutiérrez Águila: QA Tester, Product Manager y desarrolladora de videojuegos.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,600;0,700;1,400&family=Tektur:wdth,wght@75..100,400..900&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Enlace para saltar el menú con el teclado (visible solo al recibir el foco) -->
+  <a class="saltar" href="#contenido" data-i18n="nav.saltar">Saltar al contenido</a>
+
+  <!-- ========== Cabecera fija ========== -->
+  <header class="cabecera">
+    <a class="cabecera__marca" href="#inicio">Mireia Gutiérrez</a>
+
+    <button class="cabecera__menu" type="button" aria-expanded="false" aria-controls="navegacion"
+            data-i18n-aria="nav.abrir" aria-label="Abrir menú">
+      <span class="hamburguesa" aria-hidden="true"></span>
+    </button>
+
+    <nav id="navegacion" class="nav" data-i18n-aria="nav.etiqueta" aria-label="Secciones">
+      <ul class="nav__lista">
+        <li><a class="nav__enlace" href="#inicio" data-i18n="nav.inicio">Inicio</a></li>
+        <li><a class="nav__enlace" href="#sobre-mi" data-i18n="nav.sobreMi">Sobre mí</a></li>
+        <li><a class="nav__enlace" href="#experiencia" data-i18n="nav.experiencia">Experiencia</a></li>
+        <li><a class="nav__enlace" href="#formacion" data-i18n="nav.formacion">Formación</a></li>
+        <li><a class="nav__enlace" href="#habilidades" data-i18n="nav.habilidades">Habilidades</a></li>
+        <li><a class="nav__enlace" href="#proyectos" data-i18n="nav.proyectos">Proyectos</a></li>
+        <li><a class="nav__enlace" href="#como-la-hice" data-i18n="nav.comoLaHice">Cómo hice esta web</a></li>
+        <li><a class="nav__enlace" href="#contacto" data-i18n="nav.contacto">Contacto</a></li>
+      </ul>
+
+      <!-- Selector de idioma -->
+      <div class="idiomas" role="group" data-i18n-aria="nav.idioma" aria-label="Idioma">
+        <button class="idiomas__boton" type="button" data-idioma="es" lang="es" aria-pressed="true" aria-label="Español">ES</button>
+        <button class="idiomas__boton" type="button" data-idioma="ca" lang="ca" aria-pressed="false" aria-label="Català">CA</button>
+        <button class="idiomas__boton" type="button" data-idioma="en" lang="en" aria-pressed="false" aria-label="English">EN</button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ========== Contenido ========== -->
+  <main id="contenido">
+
+    <section id="inicio" class="seccion seccion--portada" aria-labelledby="titulo-inicio">
+      <h1 id="titulo-inicio" class="portada__nombre">Mireia <span class="portada__apellidos">Gutiérrez Águila</span></h1>
+    </section>
+
+    <section id="sobre-mi" class="seccion" aria-labelledby="titulo-sobre-mi">
+      <h2 id="titulo-sobre-mi" class="seccion__titulo" data-i18n="nav.sobreMi">Sobre mí</h2>
+    </section>
+
+    <section id="experiencia" class="seccion" aria-labelledby="titulo-experiencia">
+      <h2 id="titulo-experiencia" class="seccion__titulo" data-i18n="nav.experiencia">Experiencia</h2>
+    </section>
+
+    <section id="formacion" class="seccion" aria-labelledby="titulo-formacion">
+      <h2 id="titulo-formacion" class="seccion__titulo" data-i18n="nav.formacion">Formación</h2>
+    </section>
+
+    <section id="habilidades" class="seccion" aria-labelledby="titulo-habilidades">
+      <h2 id="titulo-habilidades" class="seccion__titulo" data-i18n="nav.habilidades">Habilidades</h2>
+    </section>
+
+    <section id="proyectos" class="seccion" aria-labelledby="titulo-proyectos">
+      <h2 id="titulo-proyectos" class="seccion__titulo" data-i18n="nav.proyectos">Proyectos</h2>
+    </section>
+
+    <section id="como-la-hice" class="seccion" aria-labelledby="titulo-como-la-hice">
+      <h2 id="titulo-como-la-hice" class="seccion__titulo" data-i18n="nav.comoLaHice">Cómo hice esta web</h2>
+    </section>
+
+    <section id="contacto" class="seccion" aria-labelledby="titulo-contacto">
+      <h2 id="titulo-contacto" class="seccion__titulo" data-i18n="nav.contacto">Contacto</h2>
+    </section>
+
+  </main>
+
+  <!-- ========== Pie de página ========== -->
+  <footer class="pie">
+    <p>© <span class="pie__anio">2026</span> Mireia Gutiérrez Águila</p>
+    <a class="pie__arriba" href="#inicio" data-i18n="pie.arriba">Volver arriba</a>
+  </footer>
+
+  <script src="js/traducciones.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

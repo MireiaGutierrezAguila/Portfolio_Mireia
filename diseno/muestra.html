@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es" data-tipografia="a">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Muestra de estilo · Portfolio Mireia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,600;0,700;1,400&family=Chakra+Petch:wght@400;600;700&family=Tektur:wdth,wght@75..100,400..900&display=swap">
+  <link rel="stylesheet" href="muestra.css">
+</head>
+<body>
+
+  <!-- Selector de opción tipográfica (solo existe en esta muestra) -->
+  <div class="selector" role="group" aria-label="Opción tipográfica">
+    <span class="selector__titulo">Tipografía</span>
+    <button type="button" class="selector__boton" data-opcion="a" aria-pressed="true">A · Tektur</button>
+    <button type="button" class="selector__boton" data-opcion="b" aria-pressed="false">B · Chakra Petch</button>
+  </div>
+
+  <main>
+
+    <!-- Portada -->
+    <section class="portada" aria-labelledby="nombre">
+      <div class="portada__anillos" aria-hidden="true"></div>
+      <h1 id="nombre" class="portada__nombre">
+        <span>Mireia</span>
+        <span>Gutiérrez Águila</span>
+      </h1>
+      <p class="portada__rol">QA Tester y Product Manager que también crea videojuegos</p>
+      <p class="portada__lema">Evolution = growth + perpetual learning</p>
+      <div class="portada__acciones">
+        <a class="boton boton--relleno" href="#proyecto">Ver proyectos</a>
+        <a class="boton boton--linea" href="#sobre-mi">Contacto</a>
+      </div>
+    </section>
+
+    <!-- Paleta aprobada -->
+    <section class="bloque" aria-labelledby="titulo-paleta">
+      <h2 id="titulo-paleta" class="titulo">Paleta</h2>
+      <ul class="paleta">
+        <li class="muestra muestra--fondo"><span>Fondo</span><code>#08070D</code></li>
+        <li class="muestra muestra--tarjeta"><span>Tarjetas</span><code>#15111D</code></li>
+        <li class="muestra muestra--magenta"><span>Magenta base</span><code>#940054</code></li>
+        <li class="muestra muestra--magenta-claro"><span>Magenta claro</span><code>#EB4BA6</code></li>
+        <li class="muestra muestra--cian"><span>Cian</span><code>#12DCF0</code></li>
+        <li class="muestra muestra--turquesa"><span>Turquesa</span><code>#2BD9A8</code></li>
+        <li class="muestra muestra--violeta"><span>Violeta</span><code>#8B5CF6</code></li>
+        <li class="muestra muestra--ambar"><span>Ámbar</span><code>#FF9F4A</code></li>
+      </ul>
+    </section>
+
+    <!-- Sobre mí: prueba de texto largo -->
+    <section id="sobre-mi" class="bloque" aria-labelledby="titulo-sobre-mi">
+      <h2 id="titulo-sobre-mi" class="titulo">Sobre mí</h2>
+      <div class="sobre-mi">
+        <img class="sobre-mi__foto" src="../images/foto_mireia_principal.avif" alt="Retrato de Mireia Gutiérrez sonriendo" width="900" height="1436">
+        <div class="texto">
+          <p>Me interesan los proyectos que combinan pensamiento conceptual y analítico. Me gusta involucrarme y me considero sociable y colaborativa.</p>
+          <p>Empecé en el mundo de la tecnología estudiando programación en PHP, lo que me abrió las puertas para trabajar como QA Tester. Tras dos años en The Knot Worldwide, continué mi carrera como QA en Zitro, donde actualmente compagino este rol con el de Product Manager.</p>
+          <p>En el último año me he iniciado en la programación de videojuegos, formándome en Godot, Unity y Unreal, y he creado <a href="#proyecto">algunos videojuegos propios</a>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Línea de tiempo: un tramo de ejemplo -->
+    <section class="bloque" aria-labelledby="titulo-experiencia">
+      <h2 id="titulo-experiencia" class="titulo">Experiencia</h2>
+      <ol class="linea-tiempo">
+        <li class="hito">
+          <p class="hito__fecha">2025 – actualidad</p>
+          <h3 class="hito__puesto">Product Manager <span class="hito__empresa">Zitro</span></h3>
+          <p>Creación y gestión de la documentación de una web interna de backoffice, coordinando requerimientos con diseño, operaciones y desarrollo.</p>
+        </li>
+        <li class="hito">
+          <p class="hito__fecha">2022 – actualidad</p>
+          <h3 class="hito__puesto">QA Tester <span class="hito__empresa">Zitro</span></h3>
+          <p>Diseño y ejecución de planes de prueba en Backend, Frontend y Backoffice, estableciendo prioridades y analizando el impacto de los cambios.</p>
+        </li>
+      </ol>
+    </section>
+
+    <!-- Tarjeta de juego -->
+    <section id="proyecto" class="bloque" aria-labelledby="titulo-proyectos">
+      <h2 id="titulo-proyectos" class="titulo">Proyectos</h2>
+      <article class="tarjeta">
+        <div class="tarjeta__video">
+          <video src="../videos/ecos_video_corto_loop.mp4" muted loop playsinline preload="metadata" aria-label="Fragmento de juego de Ecos de un futuro pasado"></video>
+        </div>
+        <div class="tarjeta__cuerpo">
+          <h3 class="tarjeta__titulo">Ecos de un futuro pasado</h3>
+          <ul class="datos">
+            <li class="dato dato--motor">Godot</li>
+            <li class="dato">Android</li>
+            <li class="dato">
+              <svg class="icono" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+              6 días
+            </li>
+          </ul>
+          <p class="tarjeta__fechas"><time datetime="2025-11-03">3 nov 2025</time> – <time datetime="2025-11-09">9 nov 2025</time></p>
+          <p>Creado con Godot durante una jam de 6 días. Una chica quiere descubrir quién es en realidad.</p>
+          <a class="boton boton--relleno" href="#proyecto">Ver detalle</a>
+        </div>
+      </article>
+    </section>
+
+  </main>
+
+  <script src="muestra.js"></script>
+</body>
+</html>
