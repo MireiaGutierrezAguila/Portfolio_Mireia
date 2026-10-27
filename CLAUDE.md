@@ -13,7 +13,22 @@ Portfolio web personal de Mireia Gutiérrez Águila (QA Tester | Product Manager
 - Escribe los comentarios del código en español
 - Antes de pedir permiso para ejecutar un comando, explica en español y en lenguaje sencillo qué va a hacer, y si modifica o no algún archivo, poner el simbolo 🌀 al inicio de la explicación.
 - Construir sección a sección y esperar revisión antes de pasar a la siguiente.
-- Antes de aplicar colores, extraer los tonos de `images/paleta_colores_{1,2,3}.jpeg` y proponerlos (los hex de Portfolio.md §7 son aproximados).
+- La gestión de git (commits, ramas, merges) la hace Mireia; el agente solo sugiere qué incluir.
+
+## Paleta aprobada (sustituye a los hex aproximados de Portfolio.md §7)
+Extraída de `images/paleta_colores_{1,2,3}.jpeg` y aprobada por Mireia el 2026-10-26:
+- Fondo `#08070D` · tarjetas `#15111D` · texto `#EDEAF5` · texto secundario `#A9A4BF`
+- Magenta base `#940054`: solo rellenos (botones con texto claro, insignias, degradados, brillos). No usar como texto ni línea fina sobre fondo oscuro (contraste 2,3).
+- Magenta claro `#EB4BA6`: mismo tono, para textos, bordes e iconos sobre fondo oscuro.
+- Cian `#12DCF0` (enlaces) · verde turquesa `#2BD9A8` (acentos) · ámbar `#FF9F4A` (detalles puntuales)
+- Violeta `#8B5CF6`: solo degradados y bordes, nunca texto (contraste 4,4).
+- Sin coral (descartado expresamente).
+
+## Tipografía aprobada (2026-10-27)
+- Titulares y nombre: **Tektur** (Google Fonts, variable: `wdth` 75–100, `wght` 400–900). Único momento animado de la web: el nombre de la portada se despliega de estrecho a ancho al cargar (desactivado con `prefers-reduced-motion`).
+- Texto de lectura: **Atkinson Hyperlegible Next** (Google Fonts).
+- Solo estas dos familias; sin tercera fuente monoespaciada. Evitar etiquetas en MAYÚSCULAS espaciadas y numeración "01/02" salvo en contenido que sea una secuencia real (línea de tiempo, pasos de "Cómo hice esta web").
+- Referencia visual: `diseno/muestra.html` (paleta, botones, línea de tiempo, tarjeta de juego).
 
 ## Marcadores en las respuestas
 Al informar de lo que encuentres o hagas, marca cada punto según su tipo:
