@@ -82,11 +82,32 @@
   <main id="contenido">
 
     <section id="inicio" class="seccion seccion--portada" aria-labelledby="titulo-inicio">
+      <div class="portada__anillos" aria-hidden="true"></div>
+
       <h1 id="titulo-inicio" class="portada__nombre">Mireia <span class="portada__apellidos">Gutiérrez Águila</span></h1>
+      <p class="portada__rol" data-i18n="inicio.rol">QA Tester y Product Manager de día, desarrolladora de videojuegos en mis ratos libres.</p>
+      <!-- El lema es el mismo en los tres idiomas; lang="en" hace que los lectores de pantalla lo lean en inglés -->
+      <p class="portada__lema" lang="en">Evolution = growth + perpetual learning</p>
+
+      <div class="portada__acciones">
+        <a class="boton boton--relleno" href="#proyectos" data-i18n="inicio.verProyectos">Ver proyectos</a>
+        <a class="boton boton--linea" href="#contacto" data-i18n="inicio.contacto">Contacto</a>
+      </div>
     </section>
 
     <section id="sobre-mi" class="seccion" aria-labelledby="titulo-sobre-mi">
       <h2 id="titulo-sobre-mi" class="seccion__titulo" data-i18n="nav.sobreMi">Sobre mí</h2>
+      <div class="sobre-mi">
+        <figure class="sobre-mi__foto">
+          <img src="images/foto_mireia_principal.avif" width="900" height="1436" loading="lazy"
+               alt="Retrato de Mireia Gutiérrez Águila" data-i18n-alt="sobre.alt">
+        </figure>
+        <div class="sobre-mi__texto">
+          <p data-i18n="sobre.p1">Me interesan los proyectos que combinan pensamiento conceptual y analítico. Me gusta involucrarme y me considero sociable y colaborativa.</p>
+          <p data-i18n="sobre.p2">Empecé en el mundo de la tecnología estudiando programación en PHP, lo que me abrió las puertas para trabajar como QA Tester. Tras dos años en The Knot Worldwide, continué mi carrera como QA en Zitro, donde actualmente compagino este rol con el de Product Manager.</p>
+          <p data-i18n="sobre.p3">En el último año me he iniciado en la programación de videojuegos, formándome en Godot, Unity y Unreal, y he creado algunos videojuegos propios.</p>
+        </div>
+      </div>
     </section>
 
     <section id="experiencia" class="seccion" aria-labelledby="titulo-experiencia">

@@ -80,6 +80,9 @@ function aplicarIdioma(idioma) {
   document.querySelectorAll('[data-i18n-aria]').forEach((elemento) => {
     elemento.setAttribute('aria-label', t(elemento.dataset.i18nAria));
   });
+  document.querySelectorAll('[data-i18n-alt]').forEach((elemento) => {
+    elemento.setAttribute('alt', t(elemento.dataset.i18nAlt));
+  });
   document.querySelectorAll('[data-i18n-content]').forEach((elemento) => {
     elemento.setAttribute('content', t(elemento.dataset.i18nContent));
   });

@@ -276,24 +276,113 @@ h3 {
   font-weight: 600;
 }
 
-/* ---------- Portada (provisional, se completa en la fase 3) ---------- */
+/* ---------- Portada ---------- */
 .seccion--portada {
+  position: relative;
+  isolation: isolate; /* los anillos de fondo se quedan dentro de la portada */
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 1.25rem;
   min-height: calc(100svh - var(--alto-cabecera));
-  padding-top: 0;
+  padding: 3rem var(--lateral);
+  overflow: hidden;
+}
+
+/* Anillos de fondo, muy tenues: un brillo magenta y círculos concéntricos de línea fina */
+.portada__anillos {
+  position: absolute;
+  inset: 50% auto auto 70%;
+  z-index: -1;
+  width: 140vmax;
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  background:
+    radial-gradient(circle, rgba(148, 0, 84, 0.28) 0, transparent 22%),
+    repeating-radial-gradient(circle, transparent 0 11.5%, rgba(139, 92, 246, 0.16) 11.5% 11.6%);
+  pointer-events: none;
 }
 
 .portada__nombre {
   font-size: var(--t-nombre);
   font-weight: 700;
   letter-spacing: -0.01em;
+  /* Único momento animado de la web: el nombre se despliega de estrecho a ancho al cargar */
+  font-stretch: 100%;
+  animation: desplegar 1.4s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@keyframes desplegar {
+  from {
+    font-stretch: 75%;
+    letter-spacing: 0.08em;
+    opacity: 0;
+  }
+
+  to {
+    font-stretch: 100%;
+    letter-spacing: -0.01em;
+    opacity: 1;
+  }
 }
 
 /* Los apellidos van siempre juntos: si el nombre no cabe en una línea,
    se parte entre "Mireia" y los apellidos, nunca dentro de los apellidos */
 .portada__apellidos {
   white-space: nowrap;
+  color: var(--magenta-claro);
+}
+
+.portada__rol {
+  margin: 0;
+  max-width: 36ch;
+  font-size: var(--t-medio);
+  line-height: 1.35;
+}
+
+.portada__lema {
+  margin: 0;
+  color: var(--turquesa);
+  font-family: var(--fuente-titulos);
+}
+
+.portada__acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+/* ---------- Botones ---------- */
+.boton {
+  display: inline-block;
+  padding: 0.8rem 1.4rem;
+  font-family: var(--fuente-titulos);
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 0.35rem;
+  transition: box-shadow 0.2s, background-color 0.2s;
+}
+
+.boton--relleno {
+  color: var(--texto);
+  background: var(--magenta);
+  box-shadow: 0 0 0 1px rgba(235, 75, 166, 0.45);
+}
+
+.boton--relleno:hover {
+  background: #A8005F;
+  box-shadow: 0 0 0 1px var(--magenta-claro), 0 0 24px rgba(235, 75, 166, 0.35);
+}
+
+.boton--linea {
+  color: var(--cian);
+  border: 1px solid var(--cian);
+}
+
+.boton--linea:hover {
+  box-shadow: 0 0 20px rgba(18, 220, 240, 0.25);
 }
 
 /* ---------- Paneles de Habilidades: versión vertical ----------
@@ -376,6 +465,64 @@ h3 {
   width: 3rem;
   height: 3rem;
   fill: var(--acento);
+}
+
+/* ---------- Sobre mí ----------
+   Móvil: foto arriba y texto debajo. Desde 768 px: dos columnas (ver más abajo) */
+.sobre-mi {
+  display: grid;
+  gap: 2rem;
+  margin-top: 2rem;
+  align-items: center;
+}
+
+/* Halo magenta detrás de la foto (que tiene fondo transparente) y esquinas cian de HUD */
+.sobre-mi__foto {
+  position: relative;
+  justify-self: center;
+  width: min(100%, 17rem);
+  margin: 0;
+  background: radial-gradient(ellipse at 50% 60%, rgba(148, 0, 84, 0.55), transparent 70%);
+}
+
+.sobre-mi__foto::before,
+.sobre-mi__foto::after {
+  content: "";
+  position: absolute;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 2px solid var(--cian);
+  pointer-events: none;
+}
+
+.sobre-mi__foto::before {
+  top: -6px;
+  left: -6px;
+  border-right: 0;
+  border-bottom: 0;
+}
+
+.sobre-mi__foto::after {
+  right: -6px;
+  bottom: -6px;
+  border-left: 0;
+  border-top: 0;
+}
+
+.sobre-mi__foto img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.sobre-mi__texto {
+  max-width: 40rem;
+  font-size: var(--t-medio);
+  line-height: 1.6;
+}
+
+.sobre-mi__texto p {
+  margin: 0 0 1.25rem;
 }
 
 /* ---------- Vídeo final de Habilidades ----------
@@ -555,6 +702,15 @@ h3 {
   :root {
     --margen: 2.5rem;
   }
+
+  .sobre-mi {
+    grid-template-columns: minmax(0, 20rem) minmax(0, 1fr);
+    gap: 3rem;
+  }
+
+  .sobre-mi__foto {
+    width: 100%;
+  }
 }
 
 /* ---------- Escritorio (≥ 1200 px): menú en línea, sin hamburguesa ----------
@@ -615,7 +771,12 @@ h3 {
 
   .hamburguesa,
   .hamburguesa::before,
-  .hamburguesa::after {
+  .hamburguesa::after,
+  .boton {
     transition: none;
+  }
+
+  .portada__nombre {
+    animation: none;
   }
 }
