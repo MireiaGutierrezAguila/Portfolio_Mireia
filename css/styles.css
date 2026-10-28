@@ -525,6 +525,127 @@ h3 {
   margin: 0 0 1.25rem;
 }
 
+/* ---------- Experiencia: línea de tiempo vertical ----------
+   La línea va a la izquierda en todos los tamaños; cada puesto es una tarjeta con su nodo */
+.linea-tiempo {
+  --color-hito: var(--cian);
+  position: relative;
+  display: grid;
+  gap: 1.75rem;
+  margin: 2rem 0 0;
+  padding: 0 0 0 2rem;
+  list-style: none;
+}
+
+.linea-tiempo::before {
+  content: "";
+  position: absolute;
+  top: 0.5rem;
+  bottom: 0.5rem;
+  left: 0.4375rem;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--turquesa), var(--cian) 25%, var(--magenta-claro));
+}
+
+.hito {
+  position: relative;
+}
+
+/* Nodo de la línea de tiempo */
+.hito::before {
+  content: "";
+  position: absolute;
+  top: 1.5rem;
+  left: -2rem;
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid var(--color-hito);
+  border-radius: 50%;
+  background: var(--fondo);
+}
+
+/* La entrada de afición (Game Developer) se distingue en turquesa */
+.hito--aficion {
+  --color-hito: var(--turquesa);
+}
+
+.hito__tarjeta {
+  max-width: 46rem;
+  padding: 1.25rem 1.25rem 1rem;
+  border: 1px solid var(--linea);
+  border-left: 3px solid var(--color-hito);
+  background: var(--tarjeta);
+}
+
+.hito__puesto {
+  margin: 0;
+  font-size: var(--t-medio);
+  font-weight: 600;
+}
+
+.hito__empresa {
+  margin: 0.25rem 0 0;
+  color: var(--texto-2);
+}
+
+.hito--aficion .hito__empresa {
+  color: var(--turquesa);
+}
+
+.hito__periodo {
+  margin: 0.25rem 0 0;
+  font-size: var(--t-pequeno);
+  color: var(--magenta-claro);
+}
+
+.hito__resumen {
+  margin: 0.75rem 0 0;
+}
+
+/* Botón «Ver más / Ver menos»: <details> nativo, funciona con teclado y sin JavaScript */
+.hito__mas {
+  margin-top: 0.5rem;
+}
+
+.hito__mas summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  color: var(--cian);
+  cursor: pointer;
+  list-style: none;
+}
+
+.hito__mas summary::-webkit-details-marker {
+  display: none;
+}
+
+.hito__mas summary::after {
+  content: "";
+  width: 0.5rem;
+  height: 0.5rem;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  rotate: 45deg;
+  translate: 0 -2px;
+}
+
+.hito__mas[open] summary::after {
+  rotate: -135deg;
+  translate: 0 2px;
+}
+
+.hito__mas:not([open]) .hito__mas-cerrar,
+.hito__mas[open] .hito__mas-abrir {
+  display: none;
+}
+
+.hito__detalle p {
+  margin: 0.75rem 0 0;
+  color: var(--texto-2);
+}
+
 /* ---------- Vídeo final de Habilidades ----------
    Es el último momento de la sección: en la versión con scroll horizontal las tarjetas se
    desvanecen y queda solo el título con este vídeo grande. En vertical va bajo las tarjetas */
