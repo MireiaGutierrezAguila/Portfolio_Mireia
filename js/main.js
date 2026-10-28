@@ -111,6 +111,31 @@ document.querySelectorAll('.idiomas__boton').forEach((boton) => {
 
 aplicarIdioma(idiomaInicial());
 
+// ---------- Vídeos ----------
+
+// Los vídeos con data-reproducir-visible solo se reproducen mientras se ven en pantalla,
+// para no gastar batería ni datos. Con movimiento reducido no se reproducen: queda el póster.
+const prefiereMenosMovimiento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+if ('IntersectionObserver' in window && !prefiereMenosMovimiento) {
+  const observadorVideos = new IntersectionObserver((entradas) => {
+    entradas.forEach((entrada) => {
+      // Con el scroll horizontal activo, js/scroll-horizontal.js decide cuándo se reproduce
+      if (entrada.target.closest('.horizontal-activo')) return;
+
+      if (entrada.isIntersecting) {
+        entrada.target.play().catch(() => {}); // el navegador puede bloquearlo; no es un error
+      } else {
+        entrada.target.pause();
+      }
+    });
+  }, { threshold: 0.4 });
+
+  document.querySelectorAll('video[data-reproducir-visible]').forEach((video) => {
+    observadorVideos.observe(video);
+  });
+}
+
 // ---------- Pie de página ----------
 
 // El año del copyright se actualiza solo
