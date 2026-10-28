@@ -296,6 +296,242 @@ h3 {
   white-space: nowrap;
 }
 
+/* ---------- Paneles de Habilidades: versión vertical ----------
+   Es la de móvil, la de movimiento reducido y la de reserva si no carga JavaScript */
+.horizontal__carril {
+  display: grid;
+  gap: 1.25rem;
+  margin: 2rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.horizontal__progreso {
+  display: none;
+}
+
+.panel {
+  --acento: var(--cian);
+  padding: 1.5rem;
+  background: var(--tarjeta);
+  border: 1px solid var(--linea);
+  border-top: 3px solid var(--acento);
+  border-radius: 0.5rem;
+}
+
+.panel--cian { --acento: var(--cian); }
+.panel--magenta { --acento: var(--magenta-claro); }
+.panel--turquesa { --acento: var(--turquesa); }
+.panel--ambar { --acento: var(--ambar); }
+.panel--violeta { --acento: var(--violeta); } /* solo en bordes, nunca en texto */
+
+.panel__titulo {
+  margin-bottom: 1.25rem;
+  font-size: var(--t-medio);
+  font-weight: 600;
+}
+
+/* Bloque con los dibujos de los logos (ver index.html): no ocupa espacio ni se ve */
+.sprite {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.panel__logos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(5.5rem, 1fr));
+  gap: 1.5rem 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Variante para la tarjeta con textos más largos (habilidades personales):
+   2 por fila en la tarjeta ancha y 1 por fila en móvil */
+.panel__logos--dos {
+  grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+}
+
+.logo-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+  line-height: 1.3;
+  text-align: center;
+  color: var(--texto-2);
+}
+
+/* Detalle bajo el nombre (p. ej. "Backend, Frontend y Backoffice" bajo "Testing manual") */
+.logo-item small {
+  font-size: 0.75rem;
+  line-height: 1.3;
+}
+
+/* Logos e iconos monocromos pintados con el color de acento de cada panel */
+.logo {
+  width: 3rem;
+  height: 3rem;
+  fill: var(--acento);
+}
+
+/* ---------- Vídeo final de Habilidades ----------
+   Es el último momento de la sección: en la versión con scroll horizontal las tarjetas se
+   desvanecen y queda solo el título con este vídeo grande. En vertical va bajo las tarjetas */
+.video-final {
+  margin: 2rem 0 0;
+}
+
+/* Marco de HUD: borde magenta claro, brillo magenta y esquinas cian */
+.video-final__marco {
+  position: relative;
+  width: 100%;
+  max-width: 64rem;
+  aspect-ratio: 16 / 9;
+  border: 1px solid rgba(235, 75, 166, 0.45);
+  box-shadow: 0 0 48px rgba(148, 0, 84, 0.45);
+}
+
+.video-final__marco::before,
+.video-final__marco::after {
+  content: "";
+  position: absolute;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 2px solid var(--cian);
+  pointer-events: none;
+}
+
+.video-final__marco::before {
+  top: -6px;
+  left: -6px;
+  border-right: 0;
+  border-bottom: 0;
+}
+
+.video-final__marco::after {
+  right: -6px;
+  bottom: -6px;
+  border-left: 0;
+  border-top: 0;
+}
+
+/* El recorte del borde blanco lo hace esta caja, que mide lo mismo que el vídeo. Si lo hiciera
+   otra más grande, el borde inferior seguiría viéndose */
+.video-final__pantalla {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.video-final__video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #000;
+  /* El vídeo original trae un borde blanco de 12 px a los lados y 2 px arriba y abajo.
+     Al ampliarlo un 3 % se recorta unos 19 px por lado, y la caja oculta lo que sobra */
+  scale: 1.03;
+}
+
+/* ---------- Paneles de Habilidades: versión con scroll horizontal ----------
+   Solo se aplica cuando js/scroll-horizontal.js añade la clase .horizontal-activo */
+.seccion--horizontal.horizontal-activo {
+  min-height: 0;
+  padding: 0;
+  /* Alto de una pantalla más todo lo que se desplaza: llegar al último panel, sacar las
+     tarjetas y una pausa con el vídeo a la vista (lo calcula js/scroll-horizontal.js) */
+  height: calc(100svh - var(--alto-cabecera) + var(--alto-extra, 0px));
+}
+
+.horizontal-activo .horizontal__marco {
+  position: sticky;
+  top: var(--alto-cabecera);
+  display: flex;
+  flex-direction: column;
+  height: calc(100svh - var(--alto-cabecera));
+  padding-top: 2.5rem;
+  overflow: hidden;
+  overflow: clip; /* donde se admite, impide que el foco desplace el contenido */
+}
+
+.horizontal-activo .seccion__titulo {
+  padding: 0 var(--lateral);
+}
+
+.horizontal-activo .horizontal__carril {
+  display: flex;
+  align-items: stretch; /* todos los paneles con la misma altura y los bordes alineados */
+  gap: 2rem;
+  width: max-content;
+  margin: auto 0; /* centrado en vertical entre el título y el indicador */
+  padding: 0 var(--lateral);
+  /* --x: píxeles desplazados; --salida: de 0 a 1, las tarjetas se desvanecen al final */
+  translate: calc(var(--x, 0px) * -1) 0;
+  opacity: calc(1 - var(--salida, 0));
+  will-change: translate, opacity;
+}
+
+.horizontal-activo .panel {
+  flex: 0 0 min(34rem, 85vw);
+  padding: 2rem;
+}
+
+/* El vídeo se coloca en el hueco bajo el título, centrado, y aparece al final (--video: de 0 a 1) */
+.horizontal-activo .video-final {
+  position: absolute;
+  inset: 6.5rem var(--lateral) 2rem;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  opacity: var(--video, 0);
+  scale: calc(0.94 + 0.06 * var(--video, 0));
+  pointer-events: none;
+}
+
+/* Todo lo grande que quepa: hasta 64 rem de ancho y sin pasar de la altura del hueco
+   (pantalla útil menos 6,5 rem de arriba y 2 rem de abajo) */
+.horizontal-activo .video-final__marco {
+  width: min(100%, 64rem, calc((100svh - var(--alto-cabecera) - 8.5rem) * 16 / 9));
+}
+
+/* Indicador de avance: barra con degradado y contador de panel */
+.horizontal-activo .horizontal__progreso {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 var(--lateral) 2rem;
+  opacity: calc(1 - var(--salida, 0));
+}
+
+.horizontal__barra {
+  position: relative;
+  flex: 1;
+  height: 2px;
+  background: var(--linea);
+  overflow: hidden;
+}
+
+.horizontal__barra::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, var(--magenta-claro), var(--cian));
+  transform-origin: left;
+  scale: var(--progreso, 0) 1;
+}
+
+.horizontal__contador {
+  min-width: 4ch;
+  font-family: var(--fuente-titulos);
+  font-size: var(--t-pequeno);
+  color: var(--texto-2);
+  text-align: right;
+}
+
 /* ---------- Pie de página ---------- */
 .pie {
   display: flex;

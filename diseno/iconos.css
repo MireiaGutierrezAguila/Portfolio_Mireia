@@ -1,0 +1,70 @@
+/* Página de trabajo: vista previa de los iconos nuevos (no forma parte de la web final).
+   Usa los estilos de la web (../css/styles.css); aquí solo va lo propio de esta vista previa */
+
+.vista {
+  padding: 3rem var(--lateral) 6rem;
+}
+
+.vista__titulo {
+  margin-bottom: 0.5rem;
+  font-size: var(--t-titulo);
+}
+
+.vista__nota {
+  margin: 0 0 1rem;
+  color: var(--texto-2);
+}
+
+.vista h2 {
+  margin: 3rem 0 1.5rem;
+  font-size: var(--t-medio);
+  font-weight: 600;
+}
+
+.vista__rejilla {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+  gap: 1.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.vista__icono {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1.5rem 1rem;
+  text-align: center;
+  color: var(--texto-2);
+  background: var(--tarjeta);
+  border: 1px solid var(--linea);
+  border-radius: 0.5rem;
+}
+
+.vista__icono svg {
+  width: 6rem;
+  height: 6rem;
+  margin-bottom: 0.5rem;
+  fill: var(--acento);
+}
+
+.vista__icono strong {
+  color: var(--texto);
+}
+
+.acento-cian { --acento: var(--cian); }
+.acento-ambar { --acento: var(--ambar); }
+.acento-turquesa { --acento: var(--turquesa); }
+.acento-violeta { --acento: var(--violeta); }
+
+.vista__paneles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 30rem), 1fr));
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
