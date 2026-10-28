@@ -646,6 +646,242 @@ h3 {
   color: var(--texto-2);
 }
 
+/* ---------- Formación: cuadrícula de tarjetas ----------
+   1 columna en móvil, 2 en tablet y 3 en escritorio (ver los @media del final) */
+.formacion {
+  display: grid;
+  gap: 1rem;
+  margin: 2rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Con JS la lista se sustituye por el mapa; `display: grid` anularía el atributo hidden */
+.formacion[hidden] {
+  display: none;
+}
+
+.estudio {
+  padding: 1.25rem;
+  border: 1px solid var(--linea);
+  border-left: 3px solid var(--cian);
+  background: var(--tarjeta);
+}
+
+.estudio__anio {
+  margin: 0;
+  font-family: var(--fuente-titulos);
+  font-size: var(--t-titulo);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--magenta-claro);
+}
+
+.estudio__titulo {
+  margin: 0.5rem 0 0;
+  font-size: var(--t-base);
+  font-weight: 600;
+}
+
+.estudio__centro {
+  margin: 0.375rem 0 0;
+  font-size: var(--t-pequeno);
+  color: var(--texto-2);
+}
+
+/* ---------- Formación: mapa de habilidades (lo crea js/mapa-formacion.js) ----------
+   Móvil: camino vertical con el panel bajo el nodo elegido. Escritorio (≥ 1024 px): camino
+   horizontal en zigzag con el panel debajo. Sin JS solo se ve la lista de tarjetas de arriba */
+.solo-lectores {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.mapa {
+  margin-top: 2rem;
+}
+
+.mapa__camino {
+  position: relative;
+  display: grid;
+  gap: 1.25rem;
+}
+
+.mapa__trazado {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.mapa__linea {
+  fill: none;
+  stroke: var(--linea);
+  stroke-width: 2;
+}
+
+/* Tramo ya "recorrido": se enciende hasta el nodo elegido */
+.mapa__linea--activa {
+  stroke: var(--cian);
+  filter: drop-shadow(0 0 4px rgba(18, 220, 240, 0.6));
+  transition: stroke-dasharray 0.45s ease;
+}
+
+.mapa__nodo {
+  --cerca: 0; /* 0 a 1: lo pone el JS según lo cerca que esté el cursor */
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-height: 3.5rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--texto-2);
+  font: inherit;
+  cursor: pointer;
+}
+
+.mapa__circulo {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border: 2px solid var(--linea);
+  border-radius: 50%;
+  background: var(--tarjeta);
+  /* El brillo crece con la cercanía del cursor */
+  box-shadow: 0 0 calc(var(--cerca) * 1.5rem) rgba(18, 220, 240, calc(var(--cerca) * 0.7));
+  border-color: color-mix(in srgb, var(--cian) calc(var(--cerca) * 100%), rgba(169, 164, 191, 0.35));
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.mapa__icono {
+  width: 1.75rem;
+  height: 1.75rem;
+  fill: var(--texto-2);
+  transition: fill 0.25s ease;
+}
+
+.mapa__anio {
+  font-family: var(--fuente-titulos);
+  font-size: var(--t-medio);
+  font-weight: 600;
+}
+
+/* Estados: pendiente (apagado), alcanzado (cian) y activo (cian grande con brillo) */
+.mapa__nodo[data-estado="alcanzado"] .mapa__circulo {
+  border-color: rgba(18, 220, 240, 0.55);
+}
+
+.mapa__nodo[data-estado="alcanzado"] .mapa__icono {
+  fill: var(--cian);
+}
+
+.mapa__nodo[data-estado="activo"] {
+  color: var(--texto);
+}
+
+.mapa__nodo[data-estado="activo"] .mapa__circulo {
+  transform: scale(1.12);
+  border-color: var(--cian);
+  box-shadow: 0 0 1.5rem rgba(18, 220, 240, 0.55);
+}
+
+.mapa__nodo[data-estado="activo"] .mapa__icono {
+  fill: var(--cian);
+}
+
+/* Panel de detalle: borde fino y esquinas cian de HUD (como el vídeo de Habilidades y la foto),
+   para que no se parezca a las tarjetas de Experiencia, que llevan una franja lateral */
+.mapa__panel {
+  position: relative;
+  min-height: 10rem;
+  padding: 1.5rem;
+  border: 1px solid rgba(235, 75, 166, 0.3);
+  background: radial-gradient(ellipse at 0% 0%, rgba(148, 0, 84, 0.22), transparent 60%), var(--tarjeta);
+}
+
+.mapa__panel::before,
+.mapa__panel::after {
+  content: "";
+  position: absolute;
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 2px solid var(--cian);
+  pointer-events: none;
+}
+
+.mapa__panel::before {
+  top: -6px;
+  left: -6px;
+  border-right: 0;
+  border-bottom: 0;
+}
+
+.mapa__panel::after {
+  right: -6px;
+  bottom: -6px;
+  border-left: 0;
+  border-top: 0;
+}
+
+.mapa__panel-anio {
+  margin: 0;
+  font-family: var(--fuente-titulos);
+  font-size: var(--t-titulo);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--magenta-claro);
+}
+
+.mapa__panel-titulo {
+  margin: 0.5rem 0 0;
+  font-size: var(--t-medio);
+  font-weight: 600;
+}
+
+.mapa__panel-centro {
+  margin: 0.375rem 0 0;
+  color: var(--texto-2);
+}
+
+.mapa__panel-logos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.mapa__panel-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.8125rem;
+  color: var(--texto-2);
+}
+
+.mapa__panel-logo .logo {
+  --acento: var(--cian);
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+/* Móvil: el panel cuelga bajo su nodo, a la derecha de la línea vertical */
+.mapa__item > .mapa__panel {
+  margin: 0.75rem 0 0.5rem 4.5rem;
+}
+
 /* ---------- Vídeo final de Habilidades ----------
    Es el último momento de la sección: en la versión con scroll horizontal las tarjetas se
    desvanecen y queda solo el título con este vídeo grande. En vertical va bajo las tarjetas */
@@ -832,6 +1068,39 @@ h3 {
   .sobre-mi__foto {
     width: 100%;
   }
+
+  .formacion {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .formacion {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  /* Mapa en horizontal: seis nodos repartidos, los pares un poco más abajo (zigzag) */
+  .mapa__camino {
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0;
+    padding-bottom: 3rem;
+  }
+
+  .mapa__nodo {
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+  }
+
+  /* nth-of-type y no nth-child: el SVG de la línea también es hijo del camino */
+  .mapa__item:nth-of-type(even) {
+    margin-top: 3rem;
+  }
+
+  /* El panel ocupa todo el ancho del camino */
+  .mapa__panel {
+    margin-top: 1rem;
+  }
 }
 
 /* ---------- Escritorio (≥ 1200 px): menú en línea, sin hamburguesa ----------
@@ -899,5 +1168,16 @@ h3 {
 
   .portada__nombre {
     animation: none;
+  }
+
+  /* El mapa de Formación cambia de estado al instante y sin brillo por cercanía */
+  .mapa__linea--activa,
+  .mapa__circulo,
+  .mapa__icono {
+    transition: none;
+  }
+
+  .mapa__nodo {
+    --cerca: 0 !important;
   }
 }
