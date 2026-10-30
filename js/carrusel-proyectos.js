@@ -13,7 +13,8 @@
   const videos = juegos.map((juego) => juego.querySelector('video'));
   const movimientoReducido = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-  let actual = 0;
+  // La tarjeta en primer plano al cargar es la que lleva data-inicial en el HTML (la primera si ninguna)
+  let actual = Math.max(0, juegos.findIndex((juego) => juego.hasAttribute('data-inicial')));
   let visible = false; // si el carrusel está en pantalla
   // Con "reducir movimiento" los vídeos arrancan en pausa: se ve el póster y se reproduce a petición
   const pausadoPorUsuario = juegos.map(() => movimientoReducido.matches);
