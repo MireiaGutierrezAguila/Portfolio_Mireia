@@ -511,105 +511,187 @@
 
     <section id="como-la-hice" class="seccion" aria-labelledby="titulo-como-la-hice">
       <h2 id="titulo-como-la-hice" class="seccion__titulo" data-i18n="nav.comoLaHice">Cómo hice esta web</h2>
-      <p class="como__intro" data-i18n="como.intro">Esta web la he construido en la terminal con Claude Code, dirigiendo a un agente de IA. El agente escribe el código; yo planifico, decido, pruebo y apruebo cada paso. El proceso también forma parte del producto: está todo en el repositorio.</p>
-      <ol class="pasos">
-          <li class="paso">
-            <span class="paso__numero" aria-hidden="true">1</span>
-            <h3 class="paso__titulo" data-i18n="como.p1.t">Planificar</h3>
-            <p class="paso__texto" data-i18n="como.p1.d">Escribí Portfolio.md: secciones, textos, enlaces, requisitos y tono. Es la especificación que el agente consulta antes de construir cualquier cosa, y la que manda si algo se contradice.</p>
-          </li>
-          <li class="paso">
-            <span class="paso__numero" aria-hidden="true">2</span>
-            <h3 class="paso__titulo" data-i18n="como.p2.t">Dar instrucciones al agente</h3>
-            <p class="paso__texto" data-i18n="como.p2.d">CLAUDE.md es la memoria del proyecto: Claude Code lo carga al empezar cada sesión. Ahí fijé cómo trabajar (plan antes de código, una sección cada vez, comentarios en español, explicar cada comando), la paleta, la tipografía y las restricciones no obvias.</p>
-          </li>
-          <li class="paso">
-            <span class="paso__numero" aria-hidden="true">3</span>
-            <h3 class="paso__titulo" data-i18n="como.p3.t">Dar herramientas</h3>
-            <p class="paso__texto" data-i18n="como.p3.d">Instalé dos skills de anthropics/skills: frontend-design, para buscar una dirección visual con intención en vez de una plantilla, y webapp-testing, que permite probar la web con Playwright. Sus versiones quedan fijadas en skills-lock.json.</p>
-          </li>
-          <li class="paso">
-            <span class="paso__numero" aria-hidden="true">4</span>
-            <h3 class="paso__titulo" data-i18n="como.p4.t">Diseñar antes de construir</h3>
-            <p class="paso__texto" data-i18n="como.p4.d">Antes de programar, el agente me presentó una página de muestra con la paleta y dos opciones de tipografía. Elegí yo, y lo decidido se guardó en CLAUDE.md para que no se perdiera entre sesiones.</p>
-          </li>
-          <li class="paso">
-            <span class="paso__numero" aria-hidden="true">5</span>
-            <h3 class="paso__titulo" data-i18n="como.p5.t">Construir sección a sección</h3>
-            <p class="paso__texto" data-i18n="como.p5.d">Para cada sección: el agente propone un plan, yo lo apruebo o lo cambio, él lo construye y lo prueba, y yo lo reviso antes de pasar a la siguiente. Trabajamos con una rama de Git por fase y Pull Request.</p>
-          </li>
-          <li class="paso">
-            <span class="paso__numero" aria-hidden="true">6</span>
-            <h3 class="paso__titulo" data-i18n="como.p6.t">Probar y publicar</h3>
-            <p class="paso__texto" data-i18n="como.p6.d">Cada sección se comprueba con scripts de Playwright en Chromium, WebKit (Safari) y Firefox, en varios anchos: contraste calculado, teclado, movimiento reducido, sin JavaScript e idiomas. Los commits, los Pull Requests y los merges los hago yo; el agente solo me sugiere qué incluir.</p>
-          </li>
-      </ol>
-      <div class="como__qa">
-        <h3 class="como__subtitulo" data-i18n="como.qa.titulo">Mi papel como QA</h3>
-        <p data-i18n="como.qa.intro">El agente es rápido, pero no infalible, y revisar su trabajo es mi trabajo. Algunos ejemplos reales de este proyecto:</p>
-        <ul class="como__lista">
-            <li><strong data-i18n="como.qa.b1.l">Safari.</strong> <span data-i18n="como.qa.b1.t">Probé el scroll horizontal de Habilidades en Safari y el recorrido se pasaba de largo, dejando la pantalla vacía. Lo reproduje con Playwright en WebKit y Firefox: calculaban el ancho del carril con unos 1700 px de más. Se arregló midiendo desde el borde del último panel.</span></li>
-            <li><strong data-i18n="como.qa.b2.l">Pruebas que pueden fallar.</strong> <span data-i18n="como.qa.b2.t">Pedí que cada prueba automática demuestre que es capaz de fallar. El agente había escrito comprobaciones que siempre pasaban; ahora cada una lleva un control negativo.</span></li>
-            <li><strong data-i18n="como.qa.b3.l">Comandos claros.</strong> <span data-i18n="como.qa.b3.t">Cancelé comandos que no entendía hasta que el agente los explicó en lenguaje sencillo. Ahora cada uno se explica antes de ejecutarse.</span></li>
-            <li><strong data-i18n="como.qa.b4.l">Git, solo mío.</strong> <span data-i18n="como.qa.b4.t">Los commits, las ramas y los merges los hago yo. El agente puede leer el historial, pero no cambiarlo.</span></li>
-            <li><strong data-i18n="como.qa.b5.l">Diseño con criterio.</strong> <span data-i18n="como.qa.b5.t">Descarté el coral de la paleta, pedí el nombre de la portada en dos líneas, un scroll horizontal inspirado en otra web y un mapa de habilidades en lugar de tarjetas para Formación.</span></li>
-            <li><strong data-i18n="como.qa.b6.l">Datos y detalles.</strong> <span data-i18n="como.qa.b6.t">Comprobé que no se publicara mi teléfono ni mis referencias, que el CV no estuviera dañado y que el agente no inventara datos: lo que no está en Portfolio.md me lo tiene que preguntar.</span></li>
-        </ul>
-      </div>
-      <h3 class="como__subtitulo" data-i18n="como.pie.titulo">Las piezas que he usado</h3>
-      <ul class="piezas">
-          <li class="pieza">
-            <h4 class="pieza__nombre">CLAUDE.md</h4>
-            <p class="pieza__estado" data-i18n="como.estadoUsado">Usado en este proyecto</p>
-            <p class="pieza__que" data-i18n="como.c1.q">Fichero de instrucciones que el agente lee al empezar cada sesión.</p>
-            <p class="pieza__aqui" data-i18n="como.c1.a">En esta web: normas de trabajo, paleta, tipografía y arquitectura. Está en el repositorio.</p>
-          </li>
-          <li class="pieza">
-            <h4 class="pieza__nombre">Skills</h4>
-            <p class="pieza__estado" data-i18n="como.estadoUsado">Usado en este proyecto</p>
-            <p class="pieza__que" data-i18n="como.c2.q">Paquetes de instrucciones y scripts que el agente carga solo cuando la tarea lo pide.</p>
-            <p class="pieza__aqui" data-i18n="como.c2.a">En esta web: frontend-design y webapp-testing, instaladas en .claude/skills.</p>
-          </li>
-          <li class="pieza pieza--no">
-            <h4 class="pieza__nombre">MCP</h4>
-            <p class="pieza__estado" data-i18n="como.estadoNo">No necesario aquí</p>
-            <p class="pieza__que" data-i18n="como.c3.q">Model Context Protocol: estándar para conectar al agente con herramientas y servicios externos, como diseño, documentos o bases de datos.</p>
-            <p class="pieza__aqui" data-i18n="como.c3.a">En esta web no ha hecho falta: es estática y todo el contenido vive en Portfolio.md. Lo usaría, por ejemplo, para leer un diseño de Figma o Canva directamente.</p>
-          </li>
-          <li class="pieza">
-            <h4 class="pieza__nombre" data-i18n="como.c4.n">Modo plan y permisos</h4>
-            <p class="pieza__estado" data-i18n="como.estadoUsado">Usado en este proyecto</p>
-            <p class="pieza__que" data-i18n="como.c4.q">El agente propone antes de actuar, y cada comando de terminal necesita mi permiso.</p>
-            <p class="pieza__aqui" data-i18n="como.c4.a">En esta web: un plan aprobado antes de cada sección y cada comando explicado antes de ejecutarlo.</p>
-          </li>
-          <li class="pieza">
-            <h4 class="pieza__nombre" data-i18n="como.c5.n">Memoria y contexto</h4>
-            <p class="pieza__estado" data-i18n="como.estadoUsado">Usado en este proyecto</p>
-            <p class="pieza__que" data-i18n="como.c5.q">El agente guarda notas entre sesiones, y el contexto de la conversación se puede consultar y compactar (/context, /compact).</p>
-            <p class="pieza__aqui" data-i18n="como.c5.a">En esta web: el estado del proyecto y mis preferencias sobreviven aunque la conversación se resuma.</p>
-          </li>
-          <li class="pieza">
-            <h4 class="pieza__nombre" data-i18n="como.c6.n">Git con ramas y Pull Request</h4>
-            <p class="pieza__estado" data-i18n="como.estadoUsado">Usado en este proyecto</p>
-            <p class="pieza__que" data-i18n="como.c6.q">Una rama por tarea y un Pull Request para revisar antes de fusionar.</p>
-            <p class="pieza__aqui" data-i18n="como.c6.a">En esta web: una rama por fase, y los merges los hago yo en GitHub.</p>
-          </li>
-          <li class="pieza">
-            <h4 class="pieza__nombre">Playwright</h4>
-            <p class="pieza__estado" data-i18n="como.estadoUsado">Usado en este proyecto</p>
-            <p class="pieza__que" data-i18n="como.c7.q">Automatiza navegadores reales para probar una web como lo haría una persona.</p>
-            <p class="pieza__aqui" data-i18n="como.c7.a">En esta web: Chromium, WebKit y Firefox, con capturas para revisar el diseño. Y ffmpeg para optimizar los vídeos.</p>
-          </li>
+      <p class="como__intro" data-i18n="como.intro">Esta web la he construido en la terminal con Claude Code, dirigiendo a un agente de IA. Yo decido, pruebo y apruebo; el agente construye. Pasa el ratón (o toca) cada paso para ver qué hice y qué pieza de Claude Code intervino.</p>
+
+      <ul class="flujo__leyenda" aria-label="Leyenda" data-i18n-aria="flujo.leyenda">
+        <li><span class="flujo__pt flujo__pt--yo" aria-hidden="true"></span><span data-i18n="flujo.yo">Lo hago yo</span></li>
+        <li><span class="flujo__pt flujo__pt--ia" aria-hidden="true"></span><span data-i18n="flujo.agente">Lo hace el agente</span></li>
+        <li><span class="flujo__qa">QA</span><span data-i18n="flujo.qa">Aquí hice testing</span></li>
+        <li><span data-i18n="flujo.rep">Línea discontinua: se repite</span></li>
       </ul>
-      <div class="como__repo">
-        <h3 class="como__subtitulo" data-i18n="como.repo.titulo">El código, a la vista</h3>
-        <p data-i18n="como.repo.texto">Todo el proyecto está en GitHub: el código, CLAUDE.md, Portfolio.md y las skills. Se puede ver cómo he dirigido al agente.</p>
-        <p class="como__botones">
-          <a class="boton boton--relleno" href="https://github.com/MireiaGutierrezAguila/Portfolio_Mireia" target="_blank" rel="noopener noreferrer" data-i18n="como.repo.boton">Ver el código en GitHub</a>
-          <a class="boton boton--linea" href="https://github.com/MireiaGutierrezAguila/Portfolio_Mireia/blob/main/CLAUDE.md" target="_blank" rel="noopener noreferrer">CLAUDE.md</a>
-          <a class="boton boton--linea" href="https://github.com/MireiaGutierrezAguila/Portfolio_Mireia/blob/main/Portfolio.md" target="_blank" rel="noopener noreferrer">Portfolio.md</a>
-        </p>
+
+      <div class="flujo" role="group" aria-label="Flujo de trabajo del proyecto, de la planificación a la publicación" data-i18n-aria="flujo.aria">
+        <!-- Fondo del diagrama: zonas y flechas. Es decorativo; el orden real está en las cartas -->
+        <svg class="flujo__fondo" viewBox="0 0 1400 900" aria-hidden="true" focusable="false">
+          <defs>
+            <marker id="flujo-ok" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0L10,5L0,10Z" fill="#2BD9A8"/></marker>
+            <marker id="flujo-no" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0L10,5L0,10Z" fill="#EB4BA6"/></marker>
+            <marker id="flujo-rep" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0L10,5L0,10Z" fill="#12DCF0"/></marker>
+          </defs>
+          <rect class="flujo__caja-zona" x="20" y="20" width="310" height="860" rx="18"/>
+          <rect class="flujo__caja-zona" x="350" y="20" width="650" height="860" rx="18"/>
+          <rect class="flujo__caja-zona" x="1020" y="20" width="360" height="860" rx="18"/>
+          <g class="flujo__f flujo__f--ok">
+          <path d="M175,197V245" marker-end="url(#flujo-ok)"/>
+          <path d="M175,357V405" marker-end="url(#flujo-ok)"/>
+          <path d="M300,461H340V141H640" marker-end="url(#flujo-ok)"/>
+          <path d="M765,197V227" marker-end="url(#flujo-ok)"/>
+          <path d="M765,303V330H510V360" marker-end="url(#flujo-ok)"/>
+          <path d="M450,472V566H515" marker-end="url(#flujo-ok)"/>
+          <path d="M640,622V649" marker-end="url(#flujo-ok)"/>
+          <path d="M640,731V765" marker-end="url(#flujo-ok)"/>
+          <path d="M765,835H1000V131H1055" marker-end="url(#flujo-ok)"/>
+          <path d="M1200,177V215" marker-end="url(#flujo-ok)"/>
+          <path d="M1200,327V385" marker-end="url(#flujo-ok)"/>
+          <path d="M1200,439V485" marker-end="url(#flujo-ok)"/>
+          </g>
+          <g class="flujo__f flujo__f--no">
+          <path d="M690,265H605" marker-end="url(#flujo-no)"/>
+          <path class="flujo__rep" d="M495,230V175H640" marker-end="url(#flujo-no)"/>
+          <path d="M730,690H800V456" marker-end="url(#flujo-no)"/>
+          <path class="flujo__rep" d="M700,418H635" marker-end="url(#flujo-no)"/>
+          </g>
+          <g class="flujo__f flujo__f--rep">
+          <path class="flujo__rep" d="M765,800H975V141H890" marker-end="url(#flujo-rep)"/>
+          </g>
+          <text class="flujo__et flujo__et--no" x="642" y="255" data-i18n="flujo.no">no</text>
+          <text class="flujo__et flujo__et--ok" x="773" y="322" data-i18n="flujo.si">sí</text>
+          <text class="flujo__et flujo__et--no" x="738" y="680" data-i18n="flujo.no">no</text>
+          <text class="flujo__et flujo__et--ok" x="648" y="754" data-i18n="flujo.si">sí</text>
+          <text class="flujo__et flujo__et--ok" x="775" y="853" data-i18n="flujo.final">sección final</text>
+          <text class="flujo__et flujo__et--rep" transform="translate(968,520) rotate(-90)" data-i18n="flujo.sig">siguiente sección ↺</text>
+        </svg>
+
+        <div class="flujo__zona" role="group" aria-labelledby="flujo-z1">
+          <h3 id="flujo-z1" class="flujo__zona-titulo" data-i18n="flujo.f1" style="--x:36;--y:34">Fase 1 · Preparar</h3>
+        <article class="flujo__carta flujo__carta--yo" data-forma="doc" data-lado="der" style="--x:50;--y:85;--w:250;--h:112">
+          <svg class="flujo__forma" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0,7Q0,0 3,0H97Q100,0 100,7V86C75,108 65,74 50,86S25,100 0,86Z"/></svg>
+          <span class="flujo__num" aria-hidden="true">1</span>
+          <h4 class="flujo__titulo" id="flujo-t-1"><span class="solo-lectores">1. </span><span data-i18n="flujo.1.t">Planificar</span></h4>
+          <span class="flujo__pieza">Portfolio.md</span>
+          <p class="flujo__txt" data-i18n="flujo.1.x">Una especificación antes de programar</p>
+          <div class="flujo__detalle" id="flujo-d-1">
+            <p data-i18n="flujo.1.d">Escribí Portfolio.md: secciones, textos, enlaces, requisitos y tono. Es lo que el agente consulta antes de construir cualquier cosa, y manda si algo se contradice.</p>
+          </div>
+        </article>
+        <article class="flujo__carta flujo__carta--yo" data-forma="doc" data-lado="der" style="--x:50;--y:245;--w:250;--h:112">
+          <svg class="flujo__forma" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0,7Q0,0 3,0H97Q100,0 100,7V86C75,108 65,74 50,86S25,100 0,86Z"/></svg>
+          <span class="flujo__num" aria-hidden="true">2</span>
+          <h4 class="flujo__titulo" id="flujo-t-2"><span class="solo-lectores">2. </span><span data-i18n="flujo.2.t">Instruir</span></h4>
+          <span class="flujo__pieza" data-i18n="flujo.2.p">CLAUDE.md · memoria</span>
+          <p class="flujo__txt" data-i18n="flujo.2.x">Las normas del agente en cada sesión</p>
+          <div class="flujo__detalle" id="flujo-d-2">
+            <p data-i18n="flujo.2.d">En CLAUDE.md fijé cómo trabajar: plan antes de código, una sección cada vez, comentarios en español y cada comando explicado, además de la paleta y la tipografía. Claude Code lo carga al empezar cada sesión, y su memoria guarda el estado del proyecto entre sesiones.</p>
+          </div>
+        </article>
+        <article class="flujo__carta flujo__carta--yo" data-lado="der" style="--x:50;--y:405;--w:250;--h:112">
+          <span class="flujo__num" aria-hidden="true">3</span>
+          <h4 class="flujo__titulo" id="flujo-t-3"><span class="solo-lectores">3. </span><span data-i18n="flujo.3.t">Equipar</span></h4>
+          <span class="flujo__pieza">Skills</span>
+          <p class="flujo__txt" data-i18n="flujo.3.x">Diseño y pruebas, dos herramientas</p>
+          <div class="flujo__detalle" id="flujo-d-3">
+            <p data-i18n="flujo.3.d">Instalé dos skills de anthropics/skills: frontend-design, para buscar una dirección visual con intención en vez de una plantilla, y webapp-testing, para probar con Playwright. Sus versiones quedan fijadas en skills-lock.json. El estándar MCP no ha hecho falta: la web es estática.</p>
+          </div>
+        </article>
+        </div>
+
+        <div class="flujo__zona" role="group" aria-labelledby="flujo-z2">
+          <h3 id="flujo-z2" class="flujo__zona-titulo" data-i18n="flujo.f2" style="--x:366;--y:34">Fase 2 · Construir, sección a sección</h3>
+        <article class="flujo__carta flujo__carta--ia" data-lado="der" style="--x:640;--y:85;--w:250;--h:112">
+          <span class="flujo__num" aria-hidden="true">4</span>
+          <h4 class="flujo__titulo" id="flujo-t-4"><span class="solo-lectores">4. </span><span data-i18n="flujo.4.t">Diseñar</span></h4>
+          <span class="flujo__pieza" data-i18n="flujo.4.p">Modo plan</span>
+          <p class="flujo__txt" data-i18n="flujo.4.x">El agente propone opciones</p>
+          <div class="flujo__detalle" id="flujo-d-4">
+            <p data-i18n="flujo.4.d">Antes de programar, el agente me presenta opciones: una muestra con paleta y tipografías, o varias maquetas de la sección. Yo elijo, y lo decidido se guarda en CLAUDE.md para que no se pierda entre sesiones.</p>
+          </div>
+        </article>
+        <div class="flujo__rombo" style="--x:690;--y:227;--w:150;--h:76"><svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M50,1L99,50L50,99L1,50Z"/></svg><span data-i18n="flujo.q1">¿Me gusta?</span></div>
+        <article class="flujo__carta flujo__carta--yo flujo__carta--caja" data-lado="abajo" style="--x:385;--y:230;--w:220;--h:72">
+          <span class="flujo__si-no" data-i18n="flujo.sino">Si no →</span>
+          <h4 class="flujo__titulo" id="flujo-t-alt"><span data-i18n="flujo.alt.t">Propongo alternativa</span></h4>
+          <p class="flujo__txt" data-i18n="flujo.alt.x">Pido otra opción hasta que me convence</p>
+          <div class="flujo__detalle" id="flujo-d-alt">
+            <p data-i18n="flujo.alt.d">Si no me convence, pido otra opción con mis cambios: colores, orden, textos o forma. Se repite hasta que me gusta, igual que en la conversación con el agente para diseñar este mismo diagrama.</p>
+          </div>
+        </article>
+        <article class="flujo__carta flujo__carta--ia" data-lado="der" style="--x:385;--y:360;--w:250;--h:112">
+          <span class="flujo__num" aria-hidden="true">5</span>
+          <span class="flujo__qa">QA</span>
+          <h4 class="flujo__titulo" id="flujo-t-5"><span class="solo-lectores">5. </span><span data-i18n="flujo.5.t">Construir</span></h4>
+          <span class="flujo__pieza" data-i18n="flujo.5.p">Permisos</span>
+          <p class="flujo__txt" data-i18n="flujo.5.x">Plan aprobado por mí antes de programar</p>
+          <div class="flujo__detalle" id="flujo-d-5">
+            <p data-i18n="flujo.5.d">El agente propone un plan para la sección y yo lo apruebo o lo cambio antes de que programe. Cada comando de terminal se explica antes de ejecutarse y necesita mi permiso.</p>
+            <p class="flujo__qabox"><b>QA · </b><span data-i18n="flujo.5.q">Compruebo que no invente datos (lo que no está en Portfolio.md me lo tiene que preguntar) y que no publique mi teléfono ni mis referencias.</span></p>
+          </div>
+        </article>
+        <article class="flujo__carta flujo__carta--yo flujo__carta--caja" data-lado="der" style="--x:700;--y:380;--w:205;--h:76">
+          <span class="flujo__qa">QA</span>
+          <span class="flujo__si-no" data-i18n="flujo.sino">Si no →</span>
+          <h4 class="flujo__titulo" id="flujo-t-rep"><span data-i18n="flujo.rep.t">Reporto el fallo</span></h4>
+          <p class="flujo__txt" data-i18n="flujo.rep.x">Lo reproduzco y exijo pruebas que puedan fallar</p>
+          <div class="flujo__detalle" id="flujo-d-rep">
+            <p data-i18n="flujo.rep.d">Si algo falla, lo reproduzco y pido al agente que lo arregle. Después exijo una prueba que habría detectado el fallo y que demuestre que puede fallar.</p>
+            <p class="flujo__qabox"><b>QA · </b><span data-i18n="flujo.rep.q">Ejemplo real: el scroll horizontal de Habilidades se pasaba de largo en Safari. WebKit y Firefox medían unos 1700 px de más.</span></p>
+          </div>
+        </article>
+        <article class="flujo__carta flujo__carta--ia" data-lado="der-abajo" style="--x:515;--y:510;--w:250;--h:112">
+          <span class="flujo__num" aria-hidden="true">6</span>
+          <span class="flujo__qa">QA</span>
+          <h4 class="flujo__titulo" id="flujo-t-6"><span class="solo-lectores">6. </span><span data-i18n="flujo.6.t">Probar</span></h4>
+          <span class="flujo__pieza">Playwright</span>
+          <p class="flujo__txt" data-i18n="flujo.6.x">Chromium, Safari y Firefox</p>
+          <div class="flujo__detalle" id="flujo-d-6">
+            <p data-i18n="flujo.6.d">Scripts de Playwright en Chromium, WebKit (Safari) y Firefox, en varios anchos: contraste, teclado, movimiento reducido, sin JavaScript e idiomas.</p>
+            <p class="flujo__qabox"><b>QA · </b><span data-i18n="flujo.6.q">Pido que cada prueba demuestre que puede fallar: el agente había escrito comprobaciones que siempre pasaban, y ahora cada una lleva un control negativo.</span></p>
+          </div>
+        </article>
+        <div class="flujo__rombo flujo__rombo--amb" style="--x:550;--y:649;--w:180;--h:82"><svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M50,1L99,50L50,99L1,50Z"/></svg><span data-i18n="flujo.q2">¿Pasa las pruebas?</span></div>
+        <article class="flujo__carta flujo__carta--yo flujo__carta--caja" data-lado="der-abajo" style="--x:515;--y:765;--w:250;--h:92">
+          <span class="flujo__qa">QA</span>
+          <h4 class="flujo__titulo" id="flujo-t-rev"><span data-i18n="flujo.rev.t">Reviso y apruebo</span></h4>
+          <p class="flujo__txt" data-i18n="flujo.rev.x">La sección en mi navegador o pido ajustes</p>
+          <div class="flujo__detalle" id="flujo-d-rev">
+            <p data-i18n="flujo.rev.d">Miro la sección en mi navegador: diseño, textos, traducciones y accesibilidad. Si algo no me convence, pido ajustes; si está bien, la apruebo y pasamos a la siguiente.</p>
+            <p class="flujo__qabox"><b>QA · </b><span data-i18n="flujo.rev.q">Cuando quedan secciones, el ciclo vuelve a Diseñar. Cuando ya no quedan, sigue hacia la revisión de código.</span></p>
+          </div>
+        </article>
+        </div>
+
+        <div class="flujo__zona" role="group" aria-labelledby="flujo-z3">
+          <h3 id="flujo-z3" class="flujo__zona-titulo" data-i18n="flujo.f3" style="--x:1036;--y:34">Fase 3 · Entregar</h3>
+        <article class="flujo__carta flujo__carta--yo flujo__carta--caja" data-lado="izq" style="--x:1055;--y:85;--w:290;--h:92">
+          <span class="flujo__qa">QA</span>
+          <h4 class="flujo__titulo" id="flujo-t-rc"><span data-i18n="flujo.rc.t">Revisión de código</span></h4>
+          <p class="flujo__txt" data-i18n="flujo.rc.x">Repaso cada cambio y compruebo que no se haya borrado nada importante de Portfolio.md ni CLAUDE.md</p>
+          <div class="flujo__detalle" id="flujo-d-rc">
+            <p data-i18n="flujo.rc.d">Antes de publicar repaso los cambios (el diff) y compruebo que no se haya borrado nada importante de Portfolio.md ni de CLAUDE.md. También vigilo que no se haya colado ningún dato privado.</p>
+          </div>
+        </article>
+        <article class="flujo__carta flujo__carta--yo" data-forma="term" data-lado="izq" style="--x:1075;--y:215;--w:250;--h:112">
+          <span class="flujo__num" aria-hidden="true">7</span>
+          <h4 class="flujo__titulo" id="flujo-t-7"><span class="solo-lectores">7. </span><span data-i18n="flujo.7.t">Publicar</span></h4>
+          <span class="flujo__pieza">Git · Pull Request</span>
+          <p class="flujo__txt" data-i18n="flujo.7.x">Una rama por fase, merges míos</p>
+          <div class="flujo__detalle" id="flujo-d-7">
+            <p data-i18n="flujo.7.d">Una rama de Git por fase y un Pull Request para revisar antes de fusionar. Los commits, las ramas y los merges los hago yo; el agente solo me sugiere qué incluir.</p>
+          </div>
+        </article>
+        <div class="flujo__fin" style="--x:1110;--y:385;--w:180;--h:54"><span data-i18n="flujo.web">Web publicada</span></div>
+        <div class="flujo__carta flujo__carta--vio flujo__carta--info" data-forma="doc" style="--x:1085;--y:485;--w:230;--h:100">
+          <svg class="flujo__forma" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0,7Q0,0 3,0H97Q100,0 100,7V86C75,108 65,74 50,86S25,100 0,86Z"/></svg>
+          <p class="flujo__titulo" data-i18n="flujo.gh.t">Todo en GitHub</p>
+          <p class="flujo__txt" data-i18n="flujo.gh.d">Código, CLAUDE.md y Portfolio.md</p>
+        </div>
+        </div>
       </div>
+
+      <p class="como__botones">
+        <a class="boton boton--relleno" href="https://github.com/MireiaGutierrezAguila/Portfolio_Mireia" target="_blank" rel="noopener noreferrer" data-i18n="como.repo.boton">Ver el código en GitHub</a>
+        <a class="boton boton--linea" href="https://github.com/MireiaGutierrezAguila/Portfolio_Mireia/blob/main/CLAUDE.md" target="_blank" rel="noopener noreferrer">CLAUDE.md</a>
+        <a class="boton boton--linea" href="https://github.com/MireiaGutierrezAguila/Portfolio_Mireia/blob/main/Portfolio.md" target="_blank" rel="noopener noreferrer">Portfolio.md</a>
+      </p>
     </section>
 
     <section id="contacto" class="seccion" aria-labelledby="titulo-contacto">
@@ -621,6 +703,7 @@
           <span data-i18n="contacto.escribir">Escríbeme</span>
         </a>
         <!-- El botón de copiar solo sirve con JavaScript: js/contacto.js lo muestra -->
+  <script src="js/workflow.js"></script>
         <button class="boton boton--linea contacto__boton contacto__copiar" type="button" hidden>
           <svg class="contacto__icono" aria-hidden="true" focusable="false"><use href="#icono-copiar"/></svg>
           <span data-i18n="contacto.copiar">Copiar email</span>

@@ -1301,8 +1301,11 @@ button.boton--linea {
 }
 
 /* ---------- Cómo hice esta web ----------
-   Pasos numerados (aquí sí es una secuencia real), bloque destacado de QA, glosario de piezas
-   y tarjeta del repositorio */
+   Flujo de trabajo del proyecto en tres fases. Base (sin JavaScript y en pantallas estrechas):
+   lista vertical por fases con todo el texto visible. Con JavaScript se añade .flujo--activo: en
+   móvil los detalles se abren al tocar y desde 1100 px el flujo pasa a ser un diagrama.
+   El diagrama se dibuja sobre un lienzo de 1400 × 900 que se escala: cada elemento lleva sus
+   medidas en --x, --y, --w y --h (en esas unidades) y las flechas son un SVG con el mismo viewBox. */
 .como__intro {
   max-width: 46rem;
   margin: 1.5rem 0 0;
@@ -1310,208 +1313,536 @@ button.boton--linea {
   line-height: 1.6;
 }
 
-.como__subtitulo {
-  margin: 3.5rem 0 0.75rem;
-  font-size: var(--t-medio);
-  font-weight: 600;
-}
-
-.pasos {
-  display: grid;
-  gap: 2rem 1.5rem;
-  margin: 2.5rem 0 0;
-  padding: 0;
-  list-style: none;
-}
-
-.paso {
-  position: relative;
-  padding-top: 1rem;
-  border-top: 1px solid var(--linea);
-}
-
-/* Trazo cian sobre la línea, como un marcador de HUD */
-.paso::before {
-  content: "";
-  position: absolute;
-  top: -1px;
-  left: 0;
-  width: 3rem;
-  height: 2px;
-  background: var(--cian);
-}
-
-.paso__numero {
-  display: block;
-  font-family: var(--fuente-titulos);
-  font-size: var(--t-titulo);
-  font-weight: 700;
-  line-height: 1;
-  color: var(--magenta-claro);
-}
-
-.paso__titulo {
-  margin: 0.75rem 0 0.5rem;
-  font-size: var(--t-medio);
-  font-weight: 600;
-}
-
-.paso__texto {
-  margin: 0;
-  color: var(--texto-2);
-}
-
-/* Bloque de QA: borde fino magenta y esquinas cian, como el panel del mapa de Formación */
-.como__qa {
-  position: relative;
-  margin-top: 3.5rem;
-  padding: 1.5rem;
-  border: 1px solid rgba(235, 75, 166, 0.3);
-  background: radial-gradient(ellipse at 0% 0%, rgba(148, 0, 84, 0.22), transparent 60%), var(--tarjeta);
-}
-
-.como__qa::before,
-.como__qa::after {
-  content: "";
-  position: absolute;
-  width: 1.5rem;
-  height: 1.5rem;
-  border: 2px solid var(--cian);
-  pointer-events: none;
-}
-
-.como__qa::before {
-  top: -6px;
-  left: -6px;
-  border-right: 0;
-  border-bottom: 0;
-}
-
-.como__qa::after {
-  right: -6px;
-  bottom: -6px;
-  border-left: 0;
-  border-top: 0;
-}
-
-.como__qa .como__subtitulo {
-  margin-top: 0;
-}
-
-.como__qa > p {
-  max-width: 46rem;
-  margin: 0;
-}
-
-.como__lista {
-  display: grid;
-  gap: 1rem;
-  margin: 1.25rem 0 0;
-  padding: 0;
-  list-style: none;
-}
-
-.como__lista strong {
-  color: var(--turquesa);
-}
-
-/* Glosario de piezas (CLAUDE.md, skills, MCP...) */
-.piezas {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
-  gap: 1rem;
-  margin: 1rem 0 0;
-  padding: 0;
-  list-style: none;
-}
-
-.pieza {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  padding: 1.25rem;
-  border: 1px solid var(--linea);
-  background: var(--tarjeta);
-}
-
-.pieza__nombre {
-  margin: 0;
-  font-size: var(--t-base);
-  font-weight: 600;
-  color: var(--cian);
-}
-
-.pieza__estado {
-  align-self: flex-start;
-  margin: 0;
-  padding: 0.125rem 0.5rem;
-  border: 1px solid currentColor;
-  border-radius: 999px;
-  font-size: 0.75rem;
-  color: var(--turquesa);
-}
-
-/* Lo que no ha hecho falta se marca en ámbar, para que no parezca que se usó */
-.pieza--no .pieza__estado {
-  color: var(--ambar);
-}
-
-.pieza__que {
-  margin: 0;
-  color: var(--texto-2);
-}
-
-.pieza__aqui {
-  margin: auto 0 0;
-  padding-top: 0.75rem;
-  border-top: 1px solid var(--linea);
-  font-size: var(--t-pequeno);
-}
-
-/* Tarjeta del repositorio */
-.como__repo {
-  max-width: 46rem;
-  margin: 3.5rem auto 0;
-  padding: 2rem 1.5rem;
-  border: 1px solid color-mix(in srgb, var(--cian) 30%, transparent);
-  background: var(--tarjeta);
-  text-align: center;
-}
-
-.como__repo .como__subtitulo {
-  margin-top: 0;
-}
-
-.como__repo p {
-  margin: 0;
-}
-
-.como__repo .como__botones {
+.como__botones {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
   justify-content: center;
-  margin-top: 1.5rem;
+  margin: 2.5rem 0 0;
 }
 
-@media (min-width: 768px) {
-  .pasos {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+.flujo {
+  margin-top: 2rem;
+}
+
+.flujo__leyenda {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  margin: 2rem 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--t-pequeno);
+  color: var(--texto-2);
+}
+
+.flujo__leyenda li {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.flujo__pt {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+}
+
+.flujo__pt--yo { background: var(--magenta-claro); }
+.flujo__pt--ia { background: var(--cian); }
+
+.flujo__qa {
+  padding: 0.125rem 0.55rem;
+  border-radius: 999px;
+  background: var(--ambar);
+  color: #1A0F00;
+  font-family: var(--fuente-titulos);
+  font-size: 0.7rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+/* ---- Lista vertical (base) ---- */
+.flujo__fondo {
+  display: none;
+}
+
+.flujo__zona {
+  position: relative;
+  margin-bottom: 1.25rem;
+  padding: 1rem 0.9rem 0.25rem 1.4rem;
+  border: 1.6px dashed rgba(139, 92, 246, 0.75);
+  border-radius: 1.1rem;
+  background: rgba(139, 92, 246, 0.05);
+}
+
+.flujo__zona-titulo {
+  display: inline-block;
+  margin: 0 0 1.1rem -0.5rem;
+  padding: 0.375rem 0.75rem;
+  border: 1px solid var(--violeta);
+  border-radius: 0.5rem;
+  background: #1D1530;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.flujo__carta {
+  --c: var(--magenta-claro);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin: 0 0 1rem;
+  padding: 0.9rem 1rem;
+  border: 1.8px solid var(--c);
+  border-radius: 10px;
+  background: linear-gradient(160deg, #1B1526, #110D19);
+}
+
+.flujo__carta--ia { --c: var(--cian); }
+.flujo__carta--vio { --c: var(--violeta); }
+
+.flujo__carta--caja {
+  background: color-mix(in srgb, var(--c) 10%, var(--tarjeta));
+}
+
+.flujo__forma {
+  display: none;
+}
+
+.flujo__titulo {
+  margin: 0;
+  padding-right: 2.75rem;
+  font-family: var(--fuente-titulos);
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--texto);
+}
+
+.flujo__carta--caja .flujo__titulo {
+  font-size: 1.05rem;
+}
+
+/* Con JavaScript el título es un botón que ocupa toda la carta */
+.flujo__titulo button {
+  all: unset;
+  cursor: pointer;
+}
+
+.flujo__titulo button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+}
+
+.flujo__titulo button:focus-visible {
+  outline: none;
+}
+
+.flujo__carta:has(button:focus-visible) {
+  outline: 2px solid var(--texto);
+  outline-offset: 4px;
+}
+
+.flujo__pieza {
+  align-self: flex-start;
+  padding: 0.125rem 0.7rem;
+  border: 1px solid color-mix(in srgb, var(--c) 65%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--c) 15%, transparent);
+  font-family: var(--fuente-titulos);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--texto);
+}
+
+.flujo__txt {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.35;
+  color: var(--texto-2);
+}
+
+.flujo__num {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 4;
+  display: grid;
+  place-items: center;
+  width: 1.9rem;
+  height: 1.9rem;
+  border: 2.5px solid var(--c);
+  border-radius: 50%;
+  background: var(--fondo);
+  font-family: var(--fuente-titulos);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--c);
+  transform: translate(-45%, -45%);
+}
+
+.flujo__carta > .flujo__qa {
+  position: absolute;
+  top: 0.7rem;
+  right: 0.8rem;
+  z-index: 4;
+}
+
+/* "Si no →": solo en la lista vertical, donde no hay flechas que lo indiquen */
+.flujo__si-no {
+  font-family: var(--fuente-titulos);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--c);
+}
+
+.flujo__detalle {
+  margin-top: 0.35rem;
+  padding: 0.8rem 1rem;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.28);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--texto);
+}
+
+.flujo__detalle[hidden] {
+  display: none;
+}
+
+.flujo__detalle p {
+  margin: 0 0 0.6em;
+}
+
+.flujo__detalle p:last-child {
+  margin-bottom: 0;
+}
+
+.flujo__qabox {
+  padding: 0.5rem 0.7rem;
+  border: 1px dashed var(--ambar);
+  border-radius: 10px;
+  font-size: 0.9rem;
+}
+
+.flujo__qabox b {
+  color: var(--ambar);
+}
+
+/* Decisiones: en la lista son una etiqueta; en el diagrama, un rombo */
+.flujo__rombo {
+  display: inline-block;
+  margin: 0 0 1rem 0.5rem;
+  padding: 0.5rem 1.25rem;
+  border: 2px solid var(--violeta);
+  border-radius: 999px;
+  background: #1B1230;
+  font-family: var(--fuente-titulos);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.flujo__rombo--amb {
+  border-color: var(--ambar);
+}
+
+.flujo__rombo svg {
+  display: none;
+}
+
+.flujo__fin {
+  display: inline-block;
+  margin: 0 0 1rem;
+  padding: 0.7rem 1.5rem;
+  border: 2.4px solid var(--turquesa);
+  border-radius: 999px;
+  background: #102A26;
+  font-family: var(--fuente-titulos);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--turquesa);
+}
+
+/* ---- Diagrama (JavaScript activo y pantalla ancha) ---- */
+@media (min-width: 1100px) {
+  .flujo--activo {
+    position: relative;
+    container-type: inline-size;
+    /* Se sale de la columna de 63 rem: un diagrama de este tamaño no cabe en ella */
+    width: min(87.5rem, 100vw - 2rem);
+    margin-inline: calc(50% - min(87.5rem, 100vw - 2rem) / 2);
+    aspect-ratio: 1400 / 900;
   }
 
-  .como__qa {
-    padding: 2rem;
+  .flujo--activo .flujo__fondo {
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
   }
 
-  .como__lista {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1.25rem 2rem;
+  .flujo--activo .flujo__zona {
+    display: contents;
+  }
+
+  .flujo__caja-zona {
+    fill: rgba(139, 92, 246, 0.05);
+    stroke: var(--violeta);
+    stroke-width: 1.6;
+    stroke-dasharray: 8 7;
+    opacity: 0.85;
+  }
+
+  .flujo__f path {
+    fill: none;
+    stroke-width: 2.6;
+  }
+
+  .flujo__f--ok { filter: drop-shadow(0 0 4px rgba(43, 217, 168, 0.55)); }
+  .flujo__f--ok path { stroke: var(--turquesa); }
+  .flujo__f--no { filter: drop-shadow(0 0 4px rgba(235, 75, 166, 0.55)); }
+  .flujo__f--no path { stroke: var(--magenta-claro); }
+  .flujo__f--rep { filter: drop-shadow(0 0 4px rgba(18, 220, 240, 0.55)); }
+  .flujo__f--rep path { stroke: var(--cian); }
+  .flujo__f .flujo__rep { stroke-dasharray: 6 5; }
+
+  .flujo__et {
+    font-family: var(--fuente-titulos);
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  .flujo__et--ok { fill: var(--turquesa); }
+  .flujo__et--no { fill: var(--magenta-claro); }
+  .flujo__et--rep { fill: var(--cian); }
+
+  .flujo--activo .flujo__zona-titulo {
+    position: absolute;
+    z-index: 2;
+    left: calc(var(--x) / 14 * 1%);
+    top: calc(var(--y) / 9 * 1%);
+    margin: 0;
+    padding: 0.45cqw 0.9cqw;
+    font-size: max(11px, 1cqw);
+  }
+
+  .flujo--activo .flujo__carta,
+  .flujo--activo .flujo__rombo,
+  .flujo--activo .flujo__fin {
+    position: absolute;
+    z-index: 2;
+    left: calc(var(--x) / 14 * 1%);
+    top: calc(var(--y) / 9 * 1%);
+    width: calc(var(--w) / 14 * 1%);
+    height: calc(var(--h) / 9 * 1%);
+    margin: 0;
+  }
+
+  .flujo--activo .flujo__carta {
+    isolation: isolate;
+    justify-content: center;
+    gap: 0.28cqw;
+    padding: max(8px, 0.9cqw) max(12px, 1.3cqw);
+    transition: box-shadow 0.25s, transform 0.25s;
+  }
+
+  .flujo--activo .flujo__carta[data-forma="doc"] {
+    border: 0;
+    background: none;
+  }
+
+  .flujo--activo .flujo__carta[data-forma="term"] {
+    padding-left: max(30px, 3cqw);
+    border-radius: 999px;
+  }
+
+  .flujo--activo .flujo__carta--caja {
+    gap: 0.15cqw;
+    padding: max(6px, 0.6cqw) max(10px, 1.1cqw);
+  }
+
+  .flujo--activo .flujo__forma {
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  .flujo__forma path {
+    fill: var(--tarjeta);
+    stroke: var(--c);
+    stroke-width: 1.8;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .flujo--activo .flujo__titulo {
+    padding-right: 0;
+    font-size: max(13px, 1.5cqw);
+  }
+
+  .flujo--activo .flujo__carta--caja .flujo__titulo {
+    font-size: max(12.5px, 1.2cqw);
+  }
+
+  .flujo--activo .flujo__pieza {
+    padding: 0.15cqw 0.8cqw;
+    font-size: max(10px, 0.86cqw);
+  }
+
+  .flujo--activo .flujo__txt {
+    font-size: max(11px, 0.96cqw);
+  }
+
+  .flujo--activo .flujo__carta--caja .flujo__txt {
+    font-size: max(10.5px, 0.92cqw);
+  }
+
+  .flujo--activo .flujo__num {
+    width: max(26px, 2.4cqw);
+    height: max(26px, 2.4cqw);
+    font-size: max(13px, 1.15cqw);
+    transform: translate(-50%, -50%);
+  }
+
+  /* La insignia QA asoma por la esquina superior derecha, como el número por la izquierda:
+     así nunca se pega al título, sea cual sea el idioma */
+  .flujo--activo .flujo__carta > .flujo__qa {
+    top: 0;
+    right: 0;
+    font-size: max(10px, 0.86cqw);
+    transform: translate(28%, -50%);
+  }
+
+  .flujo--activo .flujo__si-no {
+    display: none;
+  }
+
+  /* Esquinas cian tipo HUD */
+  .flujo--activo .flujo__carta:not(.flujo__carta--caja):not(.flujo__carta--vio)::before,
+  .flujo--activo .flujo__carta:not(.flujo__carta--caja):not(.flujo__carta--vio):not([data-forma="doc"]):not([data-forma="term"])::after {
+    content: "";
+    position: absolute;
+    z-index: 4;
+    width: max(14px, 1.57cqw);
+    height: max(14px, 1.57cqw);
+    border: 3px solid var(--cian);
+    pointer-events: none;
+  }
+
+  .flujo--activo .flujo__carta:not(.flujo__carta--caja):not(.flujo__carta--vio)::before {
+    top: -3px;
+    left: -3px;
+    border-right: 0;
+    border-bottom: 0;
+    border-top-left-radius: 10px;
+  }
+
+  .flujo--activo .flujo__carta:not(.flujo__carta--caja):not(.flujo__carta--vio):not([data-forma="doc"]):not([data-forma="term"])::after {
+    right: -3px;
+    bottom: -3px;
+    border-left: 0;
+    border-top: 0;
+    border-bottom-right-radius: 10px;
+  }
+
+  .flujo--activo .flujo__carta[data-forma="term"]::before {
+    display: none;
+  }
+
+  .flujo--activo .flujo__carta:hover,
+  .flujo--activo .flujo__carta:focus-within,
+  .flujo--activo .flujo__carta--abierta {
+    z-index: 30;
+    transform: translateY(-3px);
+    box-shadow: 0 0 0 1px var(--c), 0 0 30px color-mix(in srgb, var(--c) 40%, transparent);
+  }
+
+  .flujo--activo .flujo__carta[data-forma="doc"]:hover,
+  .flujo--activo .flujo__carta[data-forma="doc"]:focus-within,
+  .flujo--activo .flujo__carta[data-forma="doc"].flujo__carta--abierta {
+    box-shadow: none;
+    filter: drop-shadow(0 0 12px color-mix(in srgb, var(--c) 55%, transparent));
+  }
+
+  /* Panel de detalle: flota junto a la carta sin mover nada del diagrama */
+  .flujo--activo .flujo__detalle {
+    position: absolute;
+    z-index: 40;
+    width: min(340px, 86vw);
+    margin: 0;
+    padding: 14px 16px;
+    border: 1px solid var(--c);
+    background: var(--tarjeta);
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.65), 0 0 24px color-mix(in srgb, var(--c) 35%, transparent);
+    font-size: 15px;
+    cursor: default;
+  }
+
+  .flujo--activo [data-lado="der"] .flujo__detalle { left: calc(100% + 14px); top: 0; }
+  .flujo--activo [data-lado="der-abajo"] .flujo__detalle { left: calc(100% + 14px); bottom: 0; }
+  .flujo--activo [data-lado="izq"] .flujo__detalle { right: calc(100% + 14px); top: 0; }
+  .flujo--activo [data-lado="abajo"] .flujo__detalle { left: 0; top: calc(100% + 12px); }
+
+  .flujo--activo .flujo__rombo {
+    display: grid;
+    place-items: center;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: none;
+    text-align: center;
+    font-size: max(11px, 1cqw);
+    line-height: 1.15;
+  }
+
+  .flujo--activo .flujo__rombo span {
+    max-width: 68%;
+  }
+
+  .flujo--activo .flujo__rombo svg {
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+  }
+
+  .flujo__rombo path {
+    fill: #1B1230;
+    stroke: var(--violeta);
+    stroke-width: 2.4;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .flujo__rombo--amb path {
+    stroke: var(--ambar);
+  }
+
+  .flujo--activo .flujo__fin {
+    display: grid;
+    place-items: center;
+    padding: 0;
+    font-size: max(13px, 1.14cqw);
+  }
+
+  .flujo--activo .flujo__carta--info .flujo__titulo {
+    font-size: max(13px, 1.2cqw);
   }
 }
 
-@media (min-width: 1024px) {
-  .pasos {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+@media (prefers-reduced-motion: reduce) {
+  .flujo--activo .flujo__carta {
+    transition: none;
   }
 }
 
