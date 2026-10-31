@@ -1,0 +1,447 @@
+/* ==========================================================
+   Páginas de detalle de los juegos (juegos/*.html)
+   Se carga después de styles.css y reutiliza sus colores, fuentes y piezas
+   (.boton, .logo, la ficha .juego__datos de las tarjetas...).
+   Cada juego tiene su color de acento (--acento), igual que en el carrusel.
+   ========================================================== */
+.pagina-juego {
+  --acento: var(--cian);
+}
+
+.pagina-juego--mitocat {
+  --acento: var(--ambar);
+}
+
+.pagina-juego--feminist {
+  --acento: var(--magenta-claro);
+}
+
+.jp {
+  padding: calc(var(--alto-cabecera) + 2rem) var(--lateral) var(--hueco);
+}
+
+.jp-bloque {
+  margin-top: clamp(3rem, 2rem + 4vw, 5rem);
+  scroll-margin-top: calc(var(--alto-cabecera) + 1rem);
+}
+
+.jp-bloque > h2 {
+  margin: 0 0 1.25rem;
+  font-size: var(--t-titulo);
+  font-weight: 600;
+}
+
+/* ---------- Portada de la página: título, datos y carátula ---------- */
+.jp-hero {
+  display: grid;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.jp-volver {
+  display: inline-block;
+  font-size: var(--t-pequeno);
+  color: var(--acento);
+}
+
+.jp-hero__titulo {
+  margin: 0.75rem 0 0.75rem;
+  font-size: clamp(2.75rem, 2rem + 5vw, 5rem);
+  font-weight: 700;
+  line-height: 1.05;
+}
+
+.jp-estado {
+  display: inline-block;
+  margin: 0 0 1rem;
+  padding: 0.125rem 0.8rem;
+  border: 1px solid var(--acento);
+  border-radius: 999px;
+  font-family: var(--fuente-titulos);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--acento);
+}
+
+.jp-hero__lema {
+  max-width: 34rem;
+  margin: 0;
+  font-size: var(--t-medio);
+  line-height: 1.5;
+}
+
+.jp-hero .juego__datos {
+  max-width: 32rem;
+  margin-top: 1.75rem;
+}
+
+.jp-botones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 1.75rem 0 0;
+}
+
+/* Carátula con halo y esquinas de HUD del color del juego */
+.jp-portada {
+  position: relative;
+  justify-self: center;
+  width: min(100%, 24rem);
+  margin: 0;
+  background: radial-gradient(ellipse at 50% 55%, color-mix(in srgb, var(--acento) 38%, transparent), transparent 70%);
+}
+
+.jp-portada::before,
+.jp-portada::after,
+.gameplay::before,
+.gameplay::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 2px solid var(--acento);
+  pointer-events: none;
+}
+
+.jp-portada::before,
+.gameplay::before {
+  top: -6px;
+  left: -6px;
+  border-right: 0;
+  border-bottom: 0;
+}
+
+.jp-portada::after,
+.gameplay::after {
+  right: -6px;
+  bottom: -6px;
+  border-left: 0;
+  border-top: 0;
+}
+
+.jp-portada img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ---------- Texto del juego y nota sobre la IA ---------- */
+.jp-texto {
+  max-width: 46rem;
+  line-height: 1.7;
+}
+
+.jp-texto p {
+  margin: 0 0 1.25rem;
+}
+
+.jp-nota {
+  max-width: 46rem;
+  margin-top: 2rem;
+  padding: 1rem 1.25rem;
+  border-left: 3px solid var(--acento);
+  background: color-mix(in srgb, var(--acento) 7%, var(--tarjeta));
+  font-size: var(--t-pequeno);
+  line-height: 1.6;
+}
+
+.jp-nota h3 {
+  margin: 0 0 0.375rem;
+  font-size: var(--t-base);
+  font-weight: 600;
+  color: var(--acento);
+}
+
+.jp-nota p {
+  margin: 0;
+}
+
+/* ---------- Gameplay de YouTube: miniatura con play; el iframe solo se crea al pulsar ---------- */
+.gameplay {
+  position: relative;
+  max-width: 60rem;
+  border: 1px solid color-mix(in srgb, var(--acento) 45%, transparent);
+  background: #000;
+  box-shadow: 0 0 2.5rem color-mix(in srgb, var(--acento) 14%, transparent);
+}
+
+.gameplay__enlace {
+  display: block;
+}
+
+.gameplay__enlace img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.gameplay__play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  place-items: center;
+  width: 4.5rem;
+  height: 4.5rem;
+  border: 2px solid var(--acento);
+  border-radius: 50%;
+  background: var(--magenta); /* relleno: aquí el magenta base sí vale, el símbolo es claro */
+  box-shadow: 0 0 1.5rem color-mix(in srgb, var(--acento) 55%, transparent);
+  translate: -50% -50%;
+  transition: scale 0.2s;
+}
+
+.gameplay__play svg {
+  width: 1.75rem;
+  height: 1.75rem;
+  margin-left: 0.2rem;
+  fill: #fff;
+}
+
+.gameplay__enlace:hover .gameplay__play,
+.gameplay__enlace:focus-visible .gameplay__play {
+  scale: 1.1;
+}
+
+/* Al pulsar play la miniatura desaparece y el iframe va en absoluto: la caja necesita su propia altura (16:9) */
+.gameplay--activo {
+  aspect-ratio: 16 / 9;
+}
+
+.gameplay iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.gameplay__aviso {
+  max-width: 60rem;
+  margin: 0.75rem 0 0;
+  font-size: var(--t-pequeno);
+  color: var(--texto-2);
+}
+
+/* ---------- Galería de capturas ---------- */
+.galeria {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Con 10 capturas, filas completas: 2 columnas en móvil y tablet, 5 en escritorio */
+.galeria--decena {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (min-width: 1024px) {
+  .galeria--decena {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+
+.galeria__enlace {
+  display: block;
+  overflow: hidden;
+  border: 1px solid var(--linea);
+  background: var(--tarjeta);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.galeria__enlace img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: scale 0.3s;
+}
+
+.galeria__enlace:hover,
+.galeria__enlace:focus-visible {
+  border-color: var(--acento);
+  box-shadow: 0 0 1.25rem color-mix(in srgb, var(--acento) 35%, transparent);
+}
+
+.galeria__enlace:hover img {
+  scale: 1.04;
+}
+
+/* Visor: ventana modal nativa (<dialog>) que crea js/juego.js */
+.visor {
+  width: min(96vw, 80rem);
+  max-height: 94vh;
+  padding: 0;
+  border: 1px solid var(--acento);
+  background: #0B0910;
+  color: var(--texto);
+  overflow: hidden;
+}
+
+.visor::backdrop {
+  background: rgba(8, 7, 13, 0.9);
+}
+
+.visor__img {
+  display: block;
+  width: 100%;
+  max-height: calc(94vh - 4.5rem);
+  background: #000;
+  object-fit: contain;
+}
+
+.visor__barra {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+}
+
+.visor__contador {
+  margin-right: auto;
+  font-size: var(--t-pequeno);
+  color: var(--texto-2);
+}
+
+.visor__boton {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border: 1px solid var(--linea);
+  border-radius: 0.5rem;
+  background: transparent;
+  color: var(--texto);
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+.visor__boton:hover {
+  border-color: var(--acento);
+}
+
+.visor-abierto {
+  overflow: hidden;
+}
+
+/* ---------- Descarga ---------- */
+.descarga {
+  max-width: 46rem;
+  padding: 1.5rem;
+  border: 1px solid color-mix(in srgb, var(--acento) 30%, transparent);
+  background: var(--tarjeta);
+}
+
+.descarga > p {
+  margin: 0 0 1rem;
+  color: var(--texto-2);
+}
+
+.descarga__lista {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0 0 1.5rem;
+  padding: 0;
+  list-style: none;
+}
+
+.descarga__lista li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--linea);
+}
+
+.descarga__archivo {
+  font-size: var(--t-pequeno);
+  color: var(--texto-2);
+}
+
+.descarga__peso {
+  margin-left: auto;
+  font-weight: 600;
+}
+
+/* ---------- Anterior / siguiente juego ---------- */
+.jp-vecinos {
+  display: grid;
+  gap: 1rem;
+}
+
+.jp-vecino {
+  --acento: var(--cian);
+  display: block;
+  padding: 1.25rem;
+  border: 1px solid var(--linea);
+  border-left: 3px solid var(--acento);
+  background: var(--tarjeta);
+  color: var(--texto);
+  text-decoration: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.jp-vecino--mitocat { --acento: var(--ambar); }
+.jp-vecino--feminist { --acento: var(--magenta-claro); }
+
+.jp-vecino:hover,
+.jp-vecino:focus-visible {
+  border-color: var(--acento);
+  box-shadow: 0 0 1.25rem color-mix(in srgb, var(--acento) 30%, transparent);
+}
+
+.jp-vecino small {
+  display: block;
+  font-size: var(--t-pequeno);
+  color: var(--texto-2);
+}
+
+.jp-vecino strong {
+  font-family: var(--fuente-titulos);
+  font-size: var(--t-medio);
+  font-weight: 600;
+  color: var(--acento);
+}
+
+.jp-vecino--sig {
+  text-align: right;
+  border-left-width: 1px;
+  border-right: 3px solid var(--acento);
+}
+
+@media (min-width: 768px) {
+  .jp-vecinos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .juego__datos .juego__dato {
+    grid-template-columns: 7rem 1fr;
+  }
+}
+
+@media (min-width: 900px) {
+  .jp-hero {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 24rem);
+    gap: 4rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gameplay__play,
+  .galeria__enlace,
+  .galeria__enlace img,
+  .jp-vecino {
+    transition: none;
+  }
+
+  .galeria__enlace:hover img,
+  .gameplay__enlace:hover .gameplay__play,
+  .gameplay__enlace:focus-visible .gameplay__play {
+    scale: 1;
+  }
+}
