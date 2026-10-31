@@ -2229,3 +2229,13 @@ button.boton--linea {
     transition: none;
   }
 }
+
+/* Estela del cursor (js/cursor-trail.js): canvas a pantalla completa que nunca recibe clics */
+.estela {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
