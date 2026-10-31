@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-i18n="mitocat.meta.titulo">MitoCat · Mireia Gutiérrez Águila</title>
+  <meta name="description" data-i18n-content="mitocat.meta.desc" content="MitoCat: diez minijuegos basados en leyendas de la mitología catalana, para Windows, macOS y Linux, creado con Unity por Mireia Gutiérrez Águila.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,600;0,700;1,400&family=Tektur:wdth,wght@75..100,400..900&display=swap">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/juego.css">
+</head>
+<body class="pagina-juego pagina-juego--mitocat">
+  <svg class="sprite" aria-hidden="true" focusable="false">
+    <symbol id="logo-unrealengine" viewBox="0 0 24 24"><path d="M12 0a12 12 0 1012 12A12 12 0 0012 0zm0 23.52A11.52 11.52 0 1123.52 12 11.52 11.52 0 0112 23.52zm7.13-9.791c-.206.997-1.126 3.557-4.06 4.942l-1.179-1.325-1.988 2a7.338 7.338 0 01-5.804-2.978 2.859 2.859 0 00.65.123c.326.006.678-.114.678-.66v-5.394a.89.89 0 00-1.116-.89c-.92.212-1.656 2.509-1.656 2.509a7.304 7.304 0 012.528-5.597 7.408 7.408 0 013.73-1.721c-1.006.573-1.57 1.507-1.57 2.29 0 1.262.76 1.109.984.923v7.28a1.157 1.157 0 00.148.256 1.075 1.075 0 00.88.445c.76 0 1.747-.868 1.747-.868V9.172c0-.6-.452-1.324-.905-1.572 0 0 .838-.149 1.484.346a5.537 5.537 0 01.387-.425c1.508-1.48 2.929-1.902 4.112-2.112 0 0-2.151 1.69-2.151 3.96 0 1.687.043 5.801.043 5.801.799.771 1.986-.342 3.059-1.441Z"/></symbol>
+    <symbol id="logo-godotengine" viewBox="0 0 24 24"><path d="M9.5598.683c-1.096.244-2.1812.5831-3.1983 1.0951.023.8981.081 1.7582.199 2.6323-.395.253-.81.47-1.178.766-.375.288-.7581.564-1.0971.9011-.6781-.448-1.3962-.869-2.1352-1.2411C1.3532 5.6934.608 6.6186 0 7.6546c.458.7411.936 1.4352 1.4521 2.0942h.014v6.3565c.012 0 .023 0 .035.003l3.8963.376c.204.02.364.184.378.3891l.12 1.7201 3.3994.242.234-1.587c.03-.206.207-.358.415-.358h4.1114c.208 0 .385.152.415.358l.234 1.587 3.3993-.242.12-1.72a.4196.4196 0 01.378-.3891l3.8954-.376c.012 0 .023-.003.035-.003v-.5071h.002V9.7498h.014c.516-.659.994-1.3531 1.4521-2.0942-.608-1.036-1.3541-1.9611-2.1512-2.8192-.739.372-1.4571.793-2.1352 1.2411-.339-.337-.721-.613-1.096-.901-.369-.296-.7841-.5131-1.1781-.7661.117-.8741.175-1.7342.199-2.6323-1.0171-.512-2.1012-.851-3.1983-1.095-.438.736-.838 1.533-1.1871 2.3121-.414-.069-.829-.094-1.2461-.099h-.016c-.417.005-.832.03-1.2461.099-.349-.779-.749-1.576-1.1881-2.3121l.001-.001zM6.4765 9.9889c1.2971 0 2.3492 1.0511 2.3492 2.3482s-1.052 2.3482-2.3492 2.3482c-1.296 0-2.3482-1.051-2.3482-2.3482 0-1.297 1.0511-2.3482 2.3482-2.3482zm11.049 0c1.296 0 2.3482 1.0511 2.3482 2.3482s-1.0511 2.3482-2.3482 2.3482-2.3492-1.051-2.3492-2.3482c0-1.297 1.051-2.3482 2.3492-2.3482zm-10.824.9301c-.861 0-1.559.698-1.559 1.5591s.698 1.5582 1.559 1.5582c.8611 0 1.5592-.698 1.5592-1.5582 0-.86-.697-1.559-1.5591-1.559zm10.598 0c-.8611 0-1.5582.698-1.5582 1.5591s.697 1.5582 1.5581 1.5582c.8611 0 1.5592-.698 1.5592-1.5582 0-.86-.697-1.559-1.5592-1.559zm-5.2985.453c.417 0 .757.308.757.6871v2.1622c0 .379-.339.687-.757.687s-.756-.308-.756-.687V12.059c0-.379.339-.687.756-.687zM1.4601 16.9464c.002.377.006.789.006.871 0 3.7014 4.6944 5.4795 10.5269 5.5005h.014c5.8325-.02 10.5259-1.7991 10.5259-5.5004 0-.084.005-.495.007-.871l-3.5023.338-.121 1.729a.421.421 0 01-.389.3901l-4.1814.296a.4203.4203 0 01-.415-.358l-.238-1.6141h-3.3863l-.238 1.6141a.4192.4192 0 01-.4451.357l-4.1513-.296c-.208-.015-.375-.181-.389-.389l-.12-1.7292-3.5044-.337z"/></symbol>
+    <symbol id="logo-unity" viewBox="0 0 24 24"><path d="m12.9288 4.2939 3.7997 2.1929c.1366.077.1415.2905 0 .3675l-4.515 2.6076a.4192.4192 0 0 1-.4246 0L7.274 6.8543c-.139-.0745-.1415-.293 0-.3675l3.7972-2.193V0L1.3758 5.5977V16.793l3.7177-2.1456v-4.3858c-.0025-.1565.1813-.2682.318-.1838l4.5148 2.6076a.4252.4252 0 0 1 .2136.3676v5.2127c.0025.1565-.1813.2682-.3179.1838l-3.7996-2.1929-3.7178 2.1457L12 24l9.6954-5.5977-3.7178-2.1457-3.7996 2.1929c-.1341.082-.3229-.0248-.3179-.1838V13.053c0-.1565.087-.2956.2136-.3676l4.5149-2.6076c.134-.082.3228.0224.3179.1838v4.3858l3.7177 2.1456V5.5977L12.9288 0Z"/></symbol>
+    <symbol id="logo-android" viewBox="0 0 24 24"><path d="M18.4395 5.5586c-.675 1.1664-1.352 2.3318-2.0274 3.498-.0366-.0155-.0742-.0286-.1113-.043-1.8249-.6957-3.484-.8-4.42-.787-1.8551.0185-3.3544.4643-4.2597.8203-.084-.1494-1.7526-3.021-2.0215-3.4864a1.1451 1.1451 0 0 0-.1406-.1914c-.3312-.364-.9054-.4859-1.379-.203-.475.282-.7136.9361-.3886 1.5019 1.9466 3.3696-.0966-.2158 1.9473 3.3593.0172.031-.4946.2642-1.3926 1.0177C2.8987 12.176.452 14.772 0 18.9902h24c-.119-1.1108-.3686-2.099-.7461-3.0683-.7438-1.9118-1.8435-3.2928-2.7402-4.1836a12.1048 12.1048 0 0 0-2.1309-1.6875c.6594-1.122 1.312-2.2559 1.9649-3.3848.2077-.3615.1886-.7956-.0079-1.1191a1.1001 1.1001 0 0 0-.8515-.5332c-.5225-.0536-.9392.3128-1.0488.5449zm-.0391 8.461c.3944.5926.324 1.3306-.1563 1.6503-.4799.3197-1.188.0985-1.582-.4941-.3944-.5927-.324-1.3307.1563-1.6504.4727-.315 1.1812-.1086 1.582.4941zM7.207 13.5273c.4803.3197.5506 1.0577.1563 1.6504-.394.5926-1.1038.8138-1.584.4941-.48-.3197-.5503-1.0577-.1563-1.6504.4008-.6021 1.1087-.8106 1.584-.4941z"/></symbol>
+    <symbol id="logo-apple" viewBox="0 0 24 24"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></symbol>
+    <symbol id="logo-windows" viewBox="0 0 24 24"><path d="M0,0H11.377V11.372H0ZM12.623,0H24V11.372H12.623ZM0,12.623H11.377V24H0Zm12.623,0H24V24H12.623"/></symbol>
+    <symbol id="logo-linux" viewBox="0 0 24 24"><path d="M12.504 0c-.155 0-.315.008-.48.021-4.226.333-3.105 4.807-3.17 6.298-.076 1.092-.3 1.953-1.05 3.02-.885 1.051-2.127 2.75-2.716 4.521-.278.832-.41 1.684-.287 2.489a.424.424 0 00-.11.135c-.26.268-.45.6-.663.839-.199.199-.485.267-.797.4-.313.136-.658.269-.864.68-.09.189-.136.394-.132.602 0 .199.027.4.055.536.058.399.116.728.04.97-.249.68-.28 1.145-.106 1.484.174.334.535.47.94.601.81.2 1.91.135 2.774.6.926.466 1.866.67 2.616.47.526-.116.97-.464 1.208-.946.587-.003 1.23-.269 2.26-.334.699-.058 1.574.267 2.577.2.025.134.063.198.114.333l.003.003c.391.778 1.113 1.132 1.884 1.071.771-.06 1.592-.536 2.257-1.306.631-.765 1.683-1.084 2.378-1.503.348-.199.629-.469.649-.853.023-.4-.2-.811-.714-1.376v-.097l-.003-.003c-.17-.2-.25-.535-.338-.926-.085-.401-.182-.786-.492-1.046h-.003c-.059-.054-.123-.067-.188-.135a.357.357 0 00-.19-.064c.431-1.278.264-2.55-.173-3.694-.533-1.41-1.465-2.638-2.175-3.483-.796-1.005-1.576-1.957-1.56-3.368.026-2.152.236-6.133-3.544-6.139zm.529 3.405h.013c.213 0 .396.062.584.198.19.135.33.332.438.533.105.259.158.459.166.724 0-.02.006-.04.006-.06v.105a.086.086 0 01-.004-.021l-.004-.024a1.807 1.807 0 01-.15.706.953.953 0 01-.213.335.71.71 0 00-.088-.042c-.104-.045-.198-.064-.284-.133a1.312 1.312 0 00-.22-.066c.05-.06.146-.133.183-.198.053-.128.082-.264.088-.402v-.02a1.21 1.21 0 00-.061-.4c-.045-.134-.101-.2-.183-.333-.084-.066-.167-.132-.267-.132h-.016c-.093 0-.176.03-.262.132a.8.8 0 00-.205.334 1.18 1.18 0 00-.09.4v.019c.002.089.008.179.02.267-.193-.067-.438-.135-.607-.202a1.635 1.635 0 01-.018-.2v-.02a1.772 1.772 0 01.15-.768c.082-.22.232-.406.43-.533a.985.985 0 01.594-.2zm-2.962.059h.036c.142 0 .27.048.399.135.146.129.264.288.344.465.09.199.14.4.153.667v.004c.007.134.006.2-.002.266v.08c-.03.007-.056.018-.083.024-.152.055-.274.135-.393.2.012-.09.013-.18.003-.267v-.015c-.012-.133-.04-.2-.082-.333a.613.613 0 00-.166-.267.248.248 0 00-.183-.064h-.021c-.071.006-.13.04-.186.132a.552.552 0 00-.12.27.944.944 0 00-.023.33v.015c.012.135.037.2.08.334.046.134.098.2.166.268.01.009.02.018.034.024-.07.057-.117.07-.176.136a.304.304 0 01-.131.068 2.62 2.62 0 01-.275-.402 1.772 1.772 0 01-.155-.667 1.759 1.759 0 01.08-.668 1.43 1.43 0 01.283-.535c.128-.133.26-.2.418-.2zm1.37 1.706c.332 0 .733.065 1.216.399.293.2.523.269 1.052.468h.003c.255.136.405.266.478.399v-.131a.571.571 0 01.016.47c-.123.31-.516.643-1.063.842v.002c-.268.135-.501.333-.775.465-.276.135-.588.292-1.012.267a1.139 1.139 0 01-.448-.067 3.566 3.566 0 01-.322-.198c-.195-.135-.363-.332-.612-.465v-.005h-.005c-.4-.246-.616-.512-.686-.71-.07-.268-.005-.47.193-.6.224-.135.38-.271.483-.336.104-.074.143-.102.176-.131h.002v-.003c.169-.202.436-.47.839-.601.139-.036.294-.065.466-.065zm2.8 2.142c.358 1.417 1.196 3.475 1.735 4.473.286.534.855 1.659 1.102 3.024.156-.005.33.018.513.064.646-1.671-.546-3.467-1.089-3.966-.22-.2-.232-.335-.123-.335.59.534 1.365 1.572 1.646 2.757.13.535.16 1.104.021 1.67.067.028.135.06.205.067 1.032.534 1.413.938 1.23 1.537v-.043c-.06-.003-.12 0-.18 0h-.016c.151-.467-.182-.825-1.065-1.224-.915-.4-1.646-.336-1.77.465-.008.043-.013.066-.018.135-.068.023-.139.053-.209.064-.43.268-.662.669-.793 1.187-.13.533-.17 1.156-.205 1.869v.003c-.02.334-.17.838-.319 1.35-1.5 1.072-3.58 1.538-5.348.334a2.645 2.645 0 00-.402-.533 1.45 1.45 0 00-.275-.333c.182 0 .338-.03.465-.067a.615.615 0 00.314-.334c.108-.267 0-.697-.345-1.163-.345-.467-.931-.995-1.788-1.521-.63-.4-.986-.87-1.15-1.396-.165-.534-.143-1.085-.015-1.645.245-1.07.873-2.11 1.274-2.763.107-.065.037.135-.408.974-.396.751-1.14 2.497-.122 3.854a8.123 8.123 0 01.647-2.876c.564-1.278 1.743-3.504 1.836-5.268.048.036.217.135.289.202.218.133.38.333.59.465.21.201.477.335.876.335.039.003.075.006.11.006.412 0 .73-.134.997-.268.29-.134.52-.334.74-.4h.005c.467-.135.835-.402 1.044-.7zm2.185 8.958c.037.6.343 1.245.882 1.377.588.134 1.434-.333 1.791-.765l.211-.01c.315-.007.577.01.847.268l.003.003c.208.199.305.53.391.876.085.4.154.78.409 1.066.486.527.645.906.636 1.14l.003-.007v.018l-.003-.012c-.015.262-.185.396-.498.595-.63.401-1.746.712-2.457 1.57-.618.737-1.37 1.14-2.036 1.191-.664.053-1.237-.2-1.574-.898l-.005-.003c-.21-.4-.12-1.025.056-1.69.176-.668.428-1.344.463-1.897.037-.714.076-1.335.195-1.814.12-.465.308-.797.641-.984l.045-.022zm-10.814.049h.01c.053 0 .105.005.157.014.376.055.706.333 1.023.752l.91 1.664.003.003c.243.533.754 1.064 1.189 1.637.434.598.77 1.131.729 1.57v.006c-.057.744-.48 1.148-1.125 1.294-.645.135-1.52.002-2.395-.464-.968-.536-2.118-.469-2.857-.602-.369-.066-.61-.2-.723-.4-.11-.2-.113-.602.123-1.23v-.004l.002-.003c.117-.334.03-.752-.027-1.118-.055-.401-.083-.71.043-.94.16-.334.396-.4.69-.533.294-.135.64-.202.915-.47h.002v-.002c.256-.268.445-.601.668-.838.19-.201.38-.336.663-.336zm7.159-9.074c-.435.201-.945.535-1.488.535-.542 0-.97-.267-1.28-.466-.154-.134-.28-.268-.373-.335-.164-.134-.144-.333-.074-.333.109.016.129.134.199.2.096.066.215.2.36.333.292.2.68.467 1.167.467.485 0 1.053-.267 1.398-.466.195-.135.445-.334.648-.467.156-.136.149-.267.279-.267.128.016.034.134-.147.332a8.097 8.097 0 01-.69.468zm-1.082-1.583V5.64c-.006-.02.013-.042.029-.05.074-.043.18-.027.26.004.063 0 .16.067.15.135-.006.049-.085.066-.135.066-.055 0-.092-.043-.141-.068-.052-.018-.146-.008-.163-.065zm-.551 0c-.02.058-.113.049-.166.066-.047.025-.086.068-.14.068-.05 0-.13-.02-.136-.068-.01-.066.088-.133.15-.133.08-.031.184-.047.259-.005.019.009.036.03.03.05v.02h.003z"/></symbol>
+    <symbol id="logo-itchdotio" viewBox="0 0 24 24"><path d="M3.13 1.338C2.08 1.96.02 4.328 0 4.95v1.03c0 1.303 1.22 2.45 2.325 2.45 1.33 0 2.436-1.102 2.436-2.41 0 1.308 1.07 2.41 2.4 2.41 1.328 0 2.362-1.102 2.362-2.41 0 1.308 1.137 2.41 2.466 2.41h.024c1.33 0 2.466-1.102 2.466-2.41 0 1.308 1.034 2.41 2.363 2.41 1.33 0 2.4-1.102 2.4-2.41 0 1.308 1.106 2.41 2.435 2.41C22.78 8.43 24 7.282 24 5.98V4.95c-.02-.62-2.082-2.99-3.13-3.612-3.253-.114-5.508-.134-8.87-.133-3.362 0-7.945.053-8.87.133zm6.376 6.477a2.74 2.74 0 0 1-.468.602c-.5.49-1.19.795-1.947.795a2.786 2.786 0 0 1-1.95-.795c-.182-.178-.32-.37-.446-.59-.127.222-.303.412-.486.59a2.788 2.788 0 0 1-1.95.795c-.092 0-.187-.025-.264-.052-.107 1.113-.152 2.176-.168 2.95v.005l-.006 1.167c.02 2.334-.23 7.564 1.03 8.85 1.952.454 5.545.662 9.15.663 3.605 0 7.198-.21 9.15-.664 1.26-1.284 1.01-6.514 1.03-8.848l-.006-1.167v-.004c-.016-.775-.06-1.838-.168-2.95-.077.026-.172.052-.263.052a2.788 2.788 0 0 1-1.95-.795c-.184-.178-.36-.368-.486-.59-.127.22-.265.412-.447.59a2.786 2.786 0 0 1-1.95.794c-.76 0-1.446-.303-1.948-.793a2.74 2.74 0 0 1-.468-.602 2.738 2.738 0 0 1-.463.602 2.787 2.787 0 0 1-1.95.794h-.16a2.787 2.787 0 0 1-1.95-.793 2.738 2.738 0 0 1-.464-.602zm-2.004 2.59v.002c.795.002 1.5 0 2.373.953.687-.072 1.406-.108 2.125-.107.72 0 1.438.035 2.125.107.873-.953 1.578-.95 2.372-.953.376 0 1.876 0 2.92 2.934l1.123 4.028c.832 2.995-.266 3.068-1.636 3.07-2.03-.075-3.156-1.55-3.156-3.025-1.124.184-2.436.276-3.748.277-1.312 0-2.624-.093-3.748-.277 0 1.475-1.125 2.95-3.156 3.026-1.37-.004-2.468-.077-1.636-3.072l1.122-4.027c1.045-2.934 2.545-2.934 2.92-2.934zM12 12.714c-.002.002-2.14 1.964-2.523 2.662l1.4-.056v1.22c0 .056.56.033 1.123.007.562.026 1.124.05 1.124-.008v-1.22l1.4.055C14.138 14.677 12 12.713 12 12.713z"/></symbol>
+    <symbol id="logo-github" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></symbol>
+    <symbol id="icono-persona" viewBox="0 0 24 24"><path d="M8.5 7.5a3.5 3.5 0 1 0 7 0a3.5 3.5 0 1 0 -7 0z"/><path d="M4.5 20.5V18a5.5 5.5 0 0 1 5.5 -5.5H14A5.5 5.5 0 0 1 19.5 18V20.5z"/></symbol>
+    <symbol id="icono-calendario" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M4 4h16a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zM4 10v10h16V10z"/><path d="M7 2h2v5H7z"/><path d="M15 2h2v5h-2z"/><path d="M6 12h3v3H6z"/><path d="M10.5 12h3v3h-3z"/><path d="M15 12h3v3h-3z"/><path d="M6 16h3v3H6z"/><path d="M10.5 16h3v3h-3z"/></symbol>
+    <symbol id="icono-descargar" viewBox="0 0 24 24"><path d="M11 3H13V12.2L16.3 8.9L17.7 10.3L12 16.1L6.3 10.3L7.7 8.9L11 12.2z"/><path d="M4 17.5H6V19.5H18V17.5H20V21.5H4z"/></symbol>
+  </svg>
+
+  <header class="cabecera">
+    <a class="cabecera__marca" href="../index.html#inicio">Mireia Gutiérrez</a>
+
+    <button class="cabecera__menu" type="button" aria-expanded="false" aria-controls="navegacion"
+            data-i18n-aria="nav.abrir" aria-label="Abrir menú">
+      <span class="hamburguesa" aria-hidden="true"></span>
+    </button>
+
+    <nav id="navegacion" class="nav" data-i18n-aria="nav.etiqueta" aria-label="Secciones">
+      <ul class="nav__lista">
+        <li><a class="nav__enlace" href="../index.html#inicio" data-i18n="nav.inicio">Inicio</a></li>
+        <li><a class="nav__enlace" href="../index.html#sobre-mi" data-i18n="nav.sobreMi">Sobre mí</a></li>
+        <li><a class="nav__enlace" href="../index.html#experiencia" data-i18n="nav.experiencia">Experiencia</a></li>
+        <li><a class="nav__enlace" href="../index.html#formacion" data-i18n="nav.formacion">Formación</a></li>
+        <li><a class="nav__enlace" href="../index.html#habilidades" data-i18n="nav.habilidades">Habilidades</a></li>
+        <li><a class="nav__enlace" href="../index.html#proyectos" data-i18n="nav.proyectos" aria-current="true">Proyectos</a></li>
+        <li><a class="nav__enlace" href="../index.html#como-la-hice" data-i18n="nav.comoLaHice">Cómo hice esta web</a></li>
+        <li><a class="nav__enlace" href="../index.html#contacto" data-i18n="nav.contacto">Contacto</a></li>
+      </ul>
+
+      <!-- Selector de idioma -->
+      <div class="idiomas" role="group" data-i18n-aria="nav.idioma" aria-label="Idioma">
+        <button class="idiomas__boton" type="button" data-idioma="es" lang="es" aria-pressed="true" aria-label="Español">ES</button>
+        <button class="idiomas__boton" type="button" data-idioma="ca" lang="ca" aria-pressed="false" aria-label="Català">CA</button>
+        <button class="idiomas__boton" type="button" data-idioma="en" lang="en" aria-pressed="false" aria-label="English">EN</button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="inicio" class="jp">
+    <!-- Título, datos y carátula -->
+    <section class="jp-hero jp-hero--apaisada" aria-labelledby="jp-titulo">
+      <div class="jp-hero__texto">
+        <a class="jp-volver" href="../index.html#proyectos" data-i18n="juego.volver">← Volver a Proyectos</a>
+        <h1 class="jp-hero__titulo" id="jp-titulo">MitoCat</h1>
+        <p class="jp-estado" data-i18n="juego.estado.publicado">Publicado</p>
+        <p class="jp-hero__lema" data-i18n="proy.mitocat.descripcion">Una aventura basada en la mitología catalana, donde cada personaje tiene su propia historia y desafío.</p>
+
+        <dl class="juego__datos">
+          <div class="juego__dato">
+            <dt data-i18n="proy.motor">Motor</dt>
+            <dd><span class="juego__marca"><svg class="logo juego__logo" aria-hidden="true" focusable="false"><use href="#logo-unity"/></svg>Unity</span></dd>
+          </div>
+          <div class="juego__dato">
+            <dt data-i18n="proy.plataforma">Plataforma</dt>
+            <dd>
+              <span class="juego__marca"><svg class="logo juego__logo" aria-hidden="true" focusable="false"><use href="#logo-windows"/></svg>Windows</span>
+              <span class="juego__marca"><svg class="logo juego__logo" aria-hidden="true" focusable="false"><use href="#logo-linux"/></svg>Linux</span>
+              <span class="juego__marca"><svg class="logo juego__logo" aria-hidden="true" focusable="false"><use href="#logo-apple"/></svg>Mac</span>
+            </dd>
+          </div>
+          <div class="juego__dato">
+            <dt data-i18n="proy.tiempo">Tiempo</dt>
+            <dd><span class="juego__marca"><svg class="logo juego__logo" aria-hidden="true" focusable="false"><use href="#icono-calendario"/></svg><span><span data-i18n="proy.mitocat.duracion">5 meses</span> · <span data-i18n="proy.mitocat.fechas">dic 2025 – may 2026</span></span></span></dd>
+          </div>
+          <div class="juego__dato">
+            <dt data-i18n="proy.tematica">Temática</dt>
+            <dd data-i18n="proy.mitocat.tematica">Mitología catalana</dd>
+          </div>
+        </dl>
+
+        <p class="jp-botones">
+          <a class="boton boton--relleno" href="https://mireiaguila9.itch.io/mitocat" target="_blank" rel="noopener noreferrer"><span data-i18n="juego.itch">Ver en itch.io</span><span class="solo-lectores" data-i18n="juego.pestana"> (se abre en una pestaña nueva)</span></a>
+        </p>
+      </div>
+
+      <figure class="jp-portada">
+        <img src="../images/juegos/mitocat/portada.webp" width="1000" height="495" alt="Cartel de MitoCat, «Leyendas catalanas - 10 minijuegos», con una fila de personajes de la mitología catalana sobre un bosque oscuro" data-i18n-alt="mitocat.portada.alt">
+      </figure>
+    </section>
+
+    <!-- Descripción (texto de itch.io) -->
+    <section class="jp-bloque" aria-labelledby="jp-sobre">
+      <h2 id="jp-sobre" data-i18n="juego.sobre">Sobre el juego</h2>
+      <div class="jp-texto">
+        <p data-i18n="mitocat.p1">Descubre la magia de la Mitología Catalana con MitoCat.</p>
+        <p data-i18n="mitocat.p2">¿Todos conocemos a Sant Jordi, el Caga Tió o la Castanyera, verdad? Pero, ¿qué me dices de la Pesanta, la Molsosa o la Cocollona? A través de MitoCat, podrás descubrir quiénes son estos personajes y muchos otros viviendo sus leyendas en primera persona.</p>
+        <h3 data-i18n="mitocat.h.que">¿Qué es MitoCat?</h3>
+        <p data-i18n="mitocat.p3">Es una colección de diez minijuegos únicos, uno por cada leyenda. He querido explorar diferentes mecánicas y estilos para poner a prueba mi aprendizaje: encontrarás juegos en 3D y 2D, perspectivas en primera y tercera persona, mecánicas de shooter, vuelo, natación, magia y mucho más. Desde surcar los cielos de Girona con la Cocollona hasta escapar de las sombras con el mismísimo Comte Estruch.</p>
+        <h3 data-i18n="mitocat.h.proyecto">Sobre el proyecto</h3>
+        <p data-i18n="mitocat.p4">Soy Mireia y MitoCat es el proyecto con el que he aprendido a programar en Unity desde cero. La gran variedad de estilos en los niveles no es casualidad: mi objetivo era aprender el máximo posible sobre diferentes mecánicas de juego en mi etapa de formación.</p>
+        <h3 data-i18n="mitocat.h.gracias">Agradecimientos</h3>
+        <p data-i18n="mitocat.p5">Este camino de aprendizaje no habría sido posible sin el apoyo de personas increíbles:</p>
+        <ul>
+          <li data-i18n="mitocat.li1">A @LuisCanary, por guiarme con sus tutoriales de Unity desde la base.</li>
+          <li data-i18n="mitocat.li2">A W_i_dev, por despertar mi curiosidad por el mundo de la programación de videojuegos y por su labor constante impulsando el papel de la mujer en la industria.</li>
+        </ul>
+        <p data-i18n="mitocat.p6">¡Espero que disfrutes jugando tanto como yo he disfrutado creándolo!</p>
+      </div>
+
+      <aside class="jp-nota" aria-labelledby="jp-ia">
+        <h3 id="jp-ia" data-i18n="juego.ia.titulo">Sobre el uso de IA</h3>
+        <p><span data-i18n="mitocat.ia">A nivel visual, la IA ha tenido un papel importante: me ha ayudado a crear los personajes, los fondos y otros elementos gráficos. Al programar ha sido, más bien, mi maestra: a quien consultaba mis dudas mientras aprendía Unity. El desarrollo del juego es mío al 100 %: no se ha hecho con IA de forma automática, como sí ocurre con esta web.</span> <a href="../index.html#como-la-hice" data-i18n="nav.comoLaHice">Cómo hice esta web</a></p>
+      </aside>
+    </section>
+
+    <!-- Gameplay: la miniatura es una imagen propia; el iframe de YouTube se crea al pulsar -->
+    <section class="jp-bloque" aria-labelledby="jp-gameplay">
+      <h2 id="jp-gameplay" data-i18n="juego.gameplay">Gameplay</h2>
+      <div class="gameplay" data-youtube="KDDkfI_Yom4">
+        <a class="gameplay__enlace" href="https://www.youtube.com/watch?v=KDDkfI_Yom4" target="_blank" rel="noopener noreferrer">
+          <img src="../images/juegos/mitocat/gameplay.webp" width="960" height="540" alt="">
+          <span class="gameplay__play" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M7 4l13 8-13 8z"/></svg></span>
+          <span class="solo-lectores" data-i18n="juego.reproducir">Reproducir el vídeo de gameplay en YouTube</span>
+        </a>
+      </div>
+      <p class="gameplay__aviso" data-i18n="juego.ytAviso">El vídeo se carga desde YouTube cuando pulsas play.</p>
+    </section>
+
+    <!-- Capturas: cada una enlaza a su imagen grande; con JavaScript se abre en un visor -->
+    <section class="jp-bloque" aria-labelledby="jp-capturas">
+      <h2 id="jp-capturas" data-i18n="juego.capturas">Capturas</h2>
+      <ul class="galeria galeria--tres">
+        <li><a class="galeria__enlace" href="../images/juegos/mitocat/captura-01.webp"><img src="../images/juegos/mitocat/captura-01-m.webp" width="600" height="336" loading="lazy" alt="Captura de pantalla de MitoCat: 1 de 9"></a></li>
+        <li><a class="galeria__enlace" href="../images/juegos/mitocat/captura-02.webp"><img src="../images/juegos/mitocat/captura-02-m.webp" width="600" height="336" loading="lazy" alt="Captura de pantalla de MitoCat: 2 de 9"></a></li>
+        <li><a class="galeria__enlace" href="../images/juegos/mitocat/captura-03.webp"><img src="../images/juegos/mitocat/captura-03-m.webp" width="600" height="336" loading="lazy" alt="Captura de pantalla de MitoCat: 3 de 9"></a></li>
+        <li><a class="galeria__enlace" href="../images/juegos/mitocat/captura-04.webp"><img src="../images/juegos/mitocat/captura-04-m.webp" width="600" height="336" loading="lazy" alt="Captura de pantalla de MitoCat: 4 de 9"></a></li>
+        <li><a class="galeria__enlace" href="../images/juegos/mitocat/captura-05.webp"><img src="../images/juegos/mitocat/captura-05-m.webp" width="600" height="336" loading="lazy" alt="Captura de pantalla de MitoCat: 5 de 9"></a></li>
+        <li><a class="galeria__enlace" href="../images/juegos/mitocat/captura-06.webp"><img src="../images/juegos/mitocat/captura-06-m.webp" width="600" height="336" loading="lazy" alt="Captura de pantalla de MitoCat: 6 de 9"></a></li>
+        <li><a class="galeria__enlace" href="../images/juegos/mitocat/captura-07.webp"><img src="../images/juegos/mitocat/captura-07-m.webp" width="600" height="336" loading="lazy" alt="Captura de pantalla de MitoCat: 7 de 9"></a></li>
+        <li><a class="galeria__enlace" href="../images/juegos/mitocat/captura-08.webp"><img src="../images/juegos/mitocat/captura-08-m.webp" width="600" height="336" loading="lazy" alt="Captura de pantalla de MitoCat: 8 de 9"></a></li>
+        <li><a class="galeria__enlace" href="../images/juegos/mitocat/captura-09.webp"><img src="../images/juegos/mitocat/captura-09-m.webp" width="600" height="336" loading="lazy" alt="Captura de pantalla de MitoCat: 9 de 9"></a></li>
+      </ul>
+    </section>
+
+    <!-- Descarga -->
+    <section class="jp-bloque" aria-labelledby="jp-descarga">
+      <h2 id="jp-descarga" data-i18n="juego.descarga">Descarga</h2>
+      <div class="descarga">
+        <p data-i18n="juego.descargaTexto">La descarga está en itch.io.</p>
+        <ul class="descarga__lista">
+          <li>
+            <span class="juego__marca"><svg class="logo juego__logo" aria-hidden="true" focusable="false"><use href="#logo-windows"/></svg>Windows</span>
+            <span class="descarga__archivo">mitocat-windows.zip</span>
+            <span class="descarga__peso">3,3 GB</span>
+          </li>
+          <li>
+            <span class="juego__marca"><svg class="logo juego__logo" aria-hidden="true" focusable="false"><use href="#logo-apple"/></svg>macOS</span>
+            <span class="descarga__archivo">mitocat-mac.zip</span>
+            <span class="descarga__peso">3,4 GB</span>
+          </li>
+          <li>
+            <span class="juego__marca"><svg class="logo juego__logo" aria-hidden="true" focusable="false"><use href="#logo-linux"/></svg>Linux</span>
+            <span class="descarga__archivo">mitocat-linux.zip</span>
+            <span class="descarga__peso">3,3 GB</span>
+          </li>
+        </ul>
+        <a class="boton boton--relleno" href="https://mireiaguila9.itch.io/mitocat" target="_blank" rel="noopener noreferrer"><span data-i18n="juego.descargarItch">Descargar en itch.io</span><span class="solo-lectores" data-i18n="juego.pestana"> (se abre en una pestaña nueva)</span></a>
+      </div>
+    </section>
+
+    <!-- Anterior / siguiente (el orden del carrusel: Ecos, MitoCat, Feminist, y vuelta) -->
+    <nav class="jp-bloque" aria-labelledby="jp-otros">
+      <h2 id="jp-otros" data-i18n="juego.otros">Otros proyectos</h2>
+      <div class="jp-vecinos">
+        <a class="jp-vecino" href="ecos.html"><small data-i18n="juego.prev">Anterior</small><strong>Ecos de un futuro pasado</strong></a>
+        <a class="jp-vecino jp-vecino--sig jp-vecino--feminist" href="feminist.html"><small data-i18n="juego.next">Siguiente</small><strong>Feminist</strong></a>
+      </div>
+    </nav>
+  </main>
+
+  <footer class="pie">
+    <p>© <span class="pie__anio">2026</span> Mireia Gutiérrez Águila</p>
+    <ul class="pie__redes" aria-label="Redes" data-i18n-aria="pie.redes">
+      <li><a class="pie__red" href="https://www.linkedin.com/in/mireia-guti%C3%A9rrez-%C3%A1guila-qatester-pm" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg class="logo" aria-hidden="true" focusable="false"><use href="#icono-persona"/></svg></a></li>
+      <li><a class="pie__red" href="https://mireiaguila9.itch.io/" target="_blank" rel="noopener noreferrer" aria-label="itch.io"><svg class="logo" aria-hidden="true" focusable="false"><use href="#logo-itchdotio"/></svg></a></li>
+      <li><a class="pie__red" href="https://github.com/MireiaGutierrezAguila" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg class="logo" aria-hidden="true" focusable="false"><use href="#logo-github"/></svg></a></li>
+    </ul>
+    <a class="pie__arriba" href="#inicio" data-i18n="pie.arriba">Volver arriba</a>
+    <p class="pie__hecho"><a href="../index.html#como-la-hice" data-i18n="pie.hecho">Hecha con Claude Code: cómo la hice</a></p>
+  </footer>
+
+  <script src="../js/traducciones.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/juego.js"></script>
+</body>
+</html>

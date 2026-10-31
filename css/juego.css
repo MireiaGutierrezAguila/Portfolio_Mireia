@@ -51,6 +51,11 @@
   line-height: 1.05;
 }
 
+/* Títulos largos (Ecos de un futuro pasado): algo más pequeños para que no ocupen cuatro líneas */
+.jp-hero__titulo--largo {
+  font-size: clamp(2.5rem, 1.75rem + 3.5vw, 3.75rem);
+}
+
 .jp-estado {
   display: inline-block;
   margin: 0 0 1rem;
@@ -134,6 +139,29 @@
 
 .jp-texto p {
   margin: 0 0 1.25rem;
+}
+
+/* Subtítulos y lista dentro del texto (MitoCat: "¿Qué es...?", "Agradecimientos") */
+.jp-texto h3 {
+  margin: 2rem 0 0.5rem;
+  font-size: var(--t-medio);
+  font-weight: 600;
+  color: var(--acento);
+}
+
+.jp-texto h4 {
+  margin: 1.5rem 0 0.25rem;
+  font-size: var(--t-base);
+  font-weight: 600;
+}
+
+.jp-texto ul {
+  margin: 0 0 1.25rem;
+  padding-left: 1.25rem;
+}
+
+.jp-texto li {
+  margin-bottom: 0.5rem;
 }
 
 .jp-nota {
@@ -234,14 +262,31 @@
   list-style: none;
 }
 
-/* Con 10 capturas, filas completas: 2 columnas en móvil y tablet, 5 en escritorio */
-.galeria--decena {
+/* Galería de 3 columnas desde tablet y 2 en móvil. Si la última captura queda sola en su fila
+   (7 o 10 capturas en 3 columnas; cualquier cantidad impar en 2), se centra */
+.galeria--tres {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-@media (min-width: 1024px) {
-  .galeria--decena {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+.galeria--tres li:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+  justify-self: center;
+  width: calc(50% - 0.5rem);
+}
+
+@media (min-width: 768px) {
+  .galeria--tres {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .galeria--tres li:last-child:nth-child(odd) {
+    grid-column: auto;
+    justify-self: stretch;
+    width: auto;
+  }
+
+  .galeria--tres li:last-child:nth-child(3n + 1) {
+    grid-column: 2;
   }
 }
 
@@ -429,6 +474,39 @@
     grid-template-columns: minmax(0, 1.1fr) minmax(0, 24rem);
     gap: 4rem;
   }
+
+  /* Carátula apaisada (MitoCat, Ecos): la carátula es apaisada (2:1) y con el ancho de una cuadrada se ve pequeña.
+     Se le da una columna de hasta 40 rem; título, estado y descripción quedan a su izquierda
+     y la ficha de datos y el botón ocupan después el ancho completo.
+     (.jp-hero__texto pasa a display: contents para colocar sus hijos directamente en la rejilla) */
+  .jp-hero--apaisada {
+    grid-template-columns: minmax(18rem, 1fr) minmax(0, 40rem);
+    column-gap: 2.5rem;
+    row-gap: 0;
+    align-items: start;
+  }
+
+  .jp-hero--apaisada .jp-hero__texto {
+    display: contents;
+  }
+
+  .jp-hero--apaisada .jp-volver { grid-area: 1 / 1; align-self: end; justify-self: start; }
+  .jp-hero--apaisada .jp-hero__titulo { grid-area: 2 / 1; }
+  .jp-hero--apaisada .jp-estado { grid-area: 3 / 1; justify-self: start; }
+  .jp-hero--apaisada .jp-hero__lema { grid-area: 4 / 1; }
+  .jp-hero.jp-hero--apaisada .jp-portada { grid-area: 1 / 2 / 5 / 3; align-self: center; width: 100%; }
+  .jp-hero--apaisada .juego__datos { grid-area: 5 / 1 / 6 / 3; }
+  .jp-hero--apaisada .jp-botones { grid-area: 6 / 1 / 7 / 3; }
+}
+
+.jp-hero--apaisada .jp-portada {
+  width: min(100%, 32rem);
+}
+
+/* Carátula casi cuadrada dentro de la cabecera apaisada (Ecos): no hace falta que llene los 40 rem */
+.jp-hero.jp-hero--apaisada .jp-portada--media {
+  max-width: 30rem;
+  justify-self: center;
 }
 
 @media (prefers-reduced-motion: reduce) {
