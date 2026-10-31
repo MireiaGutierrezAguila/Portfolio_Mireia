@@ -1,0 +1,484 @@
+/* ==========================================================
+   Página de ejemplo de documentación de producto (ejemplos/*.html)
+   Se carga después de styles.css y reutiliza sus colores, fuentes y piezas.
+   Los paneles de Confluence (pasteles) se traducen a tonos oscuros de la paleta:
+   cian = información, ámbar = aviso, turquesa = Jira, violeta (solo borde) = Figma y recordatorio.
+   ========================================================== */
+.pagina-ejemplo {
+  --acento: var(--cian);
+}
+
+.ej {
+  padding: calc(var(--alto-cabecera) + 2rem) var(--lateral) var(--hueco);
+}
+
+/* ---------- Presentación (se traduce) ---------- */
+.ej-volver {
+  display: inline-block;
+  font-size: var(--t-pequeno);
+  color: var(--acento);
+}
+
+.ej-intro h1 {
+  margin: 0.75rem 0 1rem;
+  font-size: clamp(2.25rem, 1.6rem + 3.5vw, 4rem);
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.ej-intro p {
+  max-width: 42rem;
+  margin: 0 0 0.75rem;
+}
+
+.ej-intro .ej-nota {
+  font-size: var(--t-pequeno);
+  color: var(--texto-2);
+}
+
+.ej-controles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+/* .boton fija display y anularía el atributo hidden: sin JS estos botones no deben verse */
+.ej-controles .boton[hidden] {
+  display: none;
+}
+
+/* ---------- El documento ---------- */
+.doc {
+  display: grid;
+  gap: 1.25rem;
+  margin-top: 2.5rem;
+  padding: clamp(1rem, 0.4rem + 2.5vw, 2.25rem);
+  border: 1px solid var(--linea);
+  border-top: 2px solid var(--acento);
+  border-radius: 0.75rem;
+  background: color-mix(in srgb, var(--tarjeta) 70%, var(--fondo));
+}
+
+.doc__titulo {
+  margin: 0;
+  font-size: clamp(1.5rem, 1.1rem + 1.8vw, 2.25rem);
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.doc__intro {
+  margin: 0;
+}
+
+.doc p,
+.doc ul,
+.doc ol {
+  margin: 0;
+}
+
+.doc p + p,
+.doc p + ul,
+.doc p + ol,
+.doc ul + p,
+.doc ol + p,
+.doc p + figure,
+.doc ul + figure,
+.doc ul + .doc-codigo {
+  margin-top: 0.75rem;
+}
+
+.doc ul,
+.doc ol {
+  padding-left: 1.4rem;
+}
+
+.doc li + li {
+  margin-top: 0.4rem;
+}
+
+.doc li > ul {
+  margin-top: 0.4rem;
+}
+
+.doc h3,
+.doc h4 {
+  margin: 0;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.doc h4 {
+  font-size: 1.125rem;
+}
+
+.doc small {
+  font-size: 0.8125rem;
+  color: var(--texto-2);
+}
+
+/* ---------- Secciones (los títulos "H1" de Confluence) ---------- */
+.doc-seccion {
+  display: grid;
+  gap: 1.25rem;
+  padding-top: 1.5rem;
+  scroll-margin-top: calc(var(--alto-cabecera) + 1rem);
+}
+
+.doc-seccion__titulo {
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--linea);
+  font-size: clamp(1.375rem, 1.1rem + 1.3vw, 1.875rem);
+}
+
+/* Texto a la izquierda y captura a la derecha desde 900 px */
+.doc-cols {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.doc-col {
+  display: grid;
+  gap: 1rem;
+  align-content: start;
+  min-width: 0;
+}
+
+.doc-col--lado {
+  gap: 1.5rem;
+}
+
+/* Bloque a todo el ancho (la tabla de parámetros no cabe en media columna) */
+.doc-ancho {
+  display: grid;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+@media (min-width: 900px) {
+  .doc-cols {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    gap: 2rem;
+    align-items: start;
+  }
+
+  /* La captura acompaña al leer mientras se abren los apartados */
+  .doc-figura--lado,
+  .doc-col--lado {
+    position: sticky;
+    top: calc(var(--alto-cabecera) + 1rem);
+  }
+}
+
+/* ---------- Paneles ---------- */
+.doc-panel {
+  --c: var(--cian);
+  padding: 0.9rem 1.1rem;
+  border: 1px solid color-mix(in srgb, var(--c) 35%, transparent);
+  border-left: 4px solid var(--c);
+  border-radius: 0.5rem;
+  background: color-mix(in srgb, var(--c) 10%, var(--tarjeta));
+}
+
+.doc-panel--info {
+  --c: var(--cian);
+}
+
+.doc-panel--aviso {
+  --c: var(--ambar);
+}
+
+.doc-panel--jira {
+  --c: var(--turquesa);
+}
+
+/* Violeta solo en los bordes; el relleno se queda neutro */
+.doc-panel--figma {
+  border-color: var(--violeta);
+  background: var(--tarjeta);
+}
+
+.doc-panel--neutro {
+  --c: var(--texto-2);
+  background: var(--tarjeta);
+}
+
+.doc-pendiente {
+  color: var(--texto-2);
+  font-style: italic;
+}
+
+/* ---------- Apartados desplegables (los "expand" de Confluence) ---------- */
+.doc__duo {
+  display: grid;
+  gap: 1rem;
+  align-items: start;
+}
+
+@media (min-width: 768px) {
+  .doc__duo {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.doc-desplegable {
+  border: 1px solid var(--linea);
+  border-radius: 0.5rem;
+  background: var(--tarjeta);
+}
+
+.doc-desplegable summary {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 2.75rem;
+  padding: 0.4rem 1rem;
+  font-family: var(--fuente-titulos);
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+}
+
+.doc-desplegable summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Flecha que gira al abrir */
+.doc-desplegable summary::after {
+  content: "";
+  flex: none;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-left: auto;
+  border-right: 2px solid var(--acento);
+  border-bottom: 2px solid var(--acento);
+  rotate: 45deg;
+  translate: 0 -2px;
+}
+
+.doc-desplegable[open] > summary::after {
+  rotate: -135deg;
+  translate: 0 2px;
+}
+
+.doc-desplegable[open] > summary {
+  border-bottom: 1px solid var(--linea);
+}
+
+.doc-desplegable__cuerpo {
+  display: grid;
+  gap: 0.75rem;
+  padding: 0.9rem;
+}
+
+/* ---------- Menú de la documentación ---------- */
+.doc-menu,
+.doc-menu ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.doc-menu ul {
+  padding-left: 1.1rem;
+}
+
+/* ---------- Bloques de código (endpoints) ----------
+   Se usa la tipografía de lectura: la web solo tiene dos familias */
+.doc-codigo {
+  margin: 0.5rem 0 0;
+  padding: 0.6rem 0.9rem;
+  overflow-x: auto;
+  border: 1px solid var(--linea);
+  border-radius: 0.4rem;
+  background: var(--fondo);
+  font-family: var(--fuente-texto);
+  font-weight: 600;
+  white-space: pre;
+}
+
+.doc-codigo code {
+  font: inherit;
+}
+
+/* ---------- Capturas ---------- */
+.doc-figura {
+  margin: 0;
+  justify-self: center;
+  max-width: 100%;
+}
+
+.doc-figura img {
+  margin-inline: auto;
+  border: 1px solid var(--linea);
+  border-radius: 0.5rem;
+}
+
+.doc-figura--dentro {
+  margin-top: 0.75rem;
+}
+
+.doc-figura figcaption {
+  margin-top: 0.6rem;
+  font-size: var(--t-pequeno);
+  color: var(--texto-2);
+  text-align: center;
+}
+
+.doc-figura figcaption strong {
+  color: var(--texto);
+}
+
+/* Cada captura es un enlace a su imagen: con JavaScript se abre en el visor */
+.doc-ampliar {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  margin-inline: auto;
+  cursor: zoom-in;
+}
+
+.doc-ampliar img {
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.doc-ampliar:hover img,
+.doc-ampliar:focus-visible img {
+  border-color: var(--acento);
+  box-shadow: 0 0 1.25rem color-mix(in srgb, var(--acento) 35%, transparent);
+}
+
+/* ---------- Visor de imágenes: ventana modal nativa (<dialog>) que crea js/ejemplo.js ---------- */
+.visor {
+  width: min(96vw, 80rem);
+  max-height: 94vh;
+  padding: 0;
+  border: 1px solid var(--acento);
+  background: #0B0910;
+  color: var(--texto);
+  overflow: hidden;
+}
+
+.visor::backdrop {
+  background: rgba(8, 7, 13, 0.9);
+}
+
+/* Si la imagen es más grande que la ventana, el marco se desplaza */
+.visor__marco {
+  max-height: calc(94vh - 7.5rem);
+  overflow: auto;
+  background: #000;
+}
+
+/* Crece hasta ocupar la ventana, pero sin pasar del doble de su tamaño real para que no se vea borrosa */
+.visor__img {
+  display: block;
+  width: min(100%, calc(var(--ancho-natural, 100vw) * 2));
+  height: auto;
+  margin-inline: auto;
+}
+
+/* Capturas de pantallas enteras: nunca más pequeñas que 900 px (o su tamaño real, si es menor) */
+.visor__img--ancha {
+  min-width: min(var(--ancho-natural), 900px);
+}
+
+.visor__pie {
+  margin: 0;
+  padding: 0.6rem 1rem 0;
+  font-size: var(--t-pequeno);
+  color: var(--texto-2);
+}
+
+.visor__barra {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+}
+
+.visor__contador {
+  margin-right: auto;
+  font-size: var(--t-pequeno);
+  color: var(--texto-2);
+}
+
+.visor__boton {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border: 1px solid var(--linea);
+  border-radius: 0.5rem;
+  background: transparent;
+  color: var(--texto);
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+.visor__boton:hover {
+  border-color: var(--acento);
+}
+
+.visor-abierto {
+  overflow: hidden;
+}
+
+/* ---------- Tabla de parámetros ---------- */
+.doc-tabla__marco {
+  overflow-x: auto;
+  border: 1px solid var(--linea);
+  border-radius: 0.5rem;
+}
+
+.doc-tabla {
+  width: 100%;
+  min-width: 40rem;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+
+.doc-tabla th,
+.doc-tabla td {
+  padding: 0.6rem 0.75rem;
+  border-bottom: 1px solid var(--linea);
+  text-align: left;
+  vertical-align: top;
+}
+
+.doc-tabla thead th {
+  background: color-mix(in srgb, var(--cian) 22%, var(--tarjeta));
+  font-family: var(--fuente-titulos);
+}
+
+.doc-tabla tbody th,
+.doc-tabla tbody td {
+  background: color-mix(in srgb, var(--cian) 7%, var(--tarjeta));
+}
+
+.doc-tabla tbody tr:last-child th,
+.doc-tabla tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+/* YES / NO: el significado va en el texto, el color solo acompaña */
+.doc-si,
+.doc-no {
+  display: inline-block;
+  padding: 0.1rem 0.6rem;
+  border: 1px solid currentColor;
+  border-radius: 0.3rem;
+  font-family: var(--fuente-titulos);
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+
+.doc-si {
+  color: var(--ambar);
+  background: color-mix(in srgb, var(--ambar) 14%, transparent);
+}
+
+.doc-no {
+  color: var(--turquesa);
+  background: color-mix(in srgb, var(--turquesa) 14%, transparent);
+}

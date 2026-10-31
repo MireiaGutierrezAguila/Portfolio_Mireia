@@ -356,6 +356,90 @@ h3 {
   margin-top: 0.75rem;
 }
 
+/* Aviso de scroll al pie de la portada: tres hexágonos que caen en cascada y se desvanecen.
+   Es una recreación en SVG + CSS de la animación images/scroll.lottie (mismos tiempos y curvas),
+   sin librería. Va dentro de la portada, así que desaparece al hacer scroll. */
+.aviso-scroll {
+  position: absolute;
+  /* algo despegado del borde inferior de la pantalla (más en pantallas altas) */
+  bottom: clamp(2rem, 8svh, 5rem);
+  left: 50%;
+  z-index: 1;
+  width: 4.5rem;
+  aspect-ratio: 1;
+  translate: -50% 0;
+}
+
+.aviso-scroll svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  fill: none;
+  stroke-width: 2.5;
+  stroke-linejoin: round;
+}
+
+.aviso-scroll__hex {
+  opacity: 0;
+  animation: 1.835s cubic-bezier(0.333, 0, 0.667, 1) infinite;
+}
+
+.aviso-scroll__hex--1 {
+  stroke: var(--cian);
+  animation-name: aviso-hex-1;
+}
+
+.aviso-scroll__hex--2 {
+  stroke: var(--violeta);
+  animation-name: aviso-hex-2;
+}
+
+.aviso-scroll__hex--3 {
+  stroke: var(--magenta-claro);
+  animation-name: aviso-hex-3;
+}
+
+/* Los porcentajes son los fotogramas del original (de 55): cada hexágono baja y entra/sale de opacidad */
+@keyframes aviso-hex-1 {
+  0% { transform: translateY(30.05px); opacity: 0; }
+  27.27% { opacity: 0.62; }
+  49.09% { transform: translateY(46.3px); }
+  74.55%, 100% { transform: translateY(42.55px); opacity: 0; }
+}
+
+@keyframes aviso-hex-2 {
+  0%, 7.27% { transform: translateY(36.78px); opacity: 0; }
+  34.55% { opacity: 1; }
+  56.36% { transform: translateY(57.03px); }
+  81.82%, 100% { transform: translateY(52.53px); opacity: 0; }
+}
+
+@keyframes aviso-hex-3 {
+  0%, 14.55% { transform: translateY(44.03px); opacity: 0; }
+  41.82% { opacity: 1; }
+  63.64% { transform: translateY(67.78px); }
+  87.27%, 100% { transform: translateY(61.53px); opacity: 0; }
+}
+
+/* Con movimiento reducido no se anima: queda una cascada fija */
+@media (prefers-reduced-motion: reduce) {
+  .aviso-scroll__hex {
+    animation: none;
+  }
+
+  .aviso-scroll__hex--1 { transform: translateY(34px); opacity: 0.4; }
+  .aviso-scroll__hex--2 { transform: translateY(50px); opacity: 0.7; }
+  .aviso-scroll__hex--3 { transform: translateY(66px); opacity: 1; }
+}
+
+/* En pantallas muy bajas el aviso taparía los botones */
+@media (max-height: 560px) {
+  .aviso-scroll {
+    display: none;
+  }
+}
+
 /* ---------- Botones ---------- */
 .boton {
   display: inline-block;
@@ -647,6 +731,11 @@ h3 {
 .hito__detalle p {
   margin: 0.75rem 0 0;
   color: var(--texto-2);
+}
+
+/* Botón de ejemplo (documentación / pruebas) al final de la descripción ampliada */
+.hito__detalle .hito__accion {
+  margin-top: 1.25rem;
 }
 
 /* ---------- Formación: cuadrícula de tarjetas ----------

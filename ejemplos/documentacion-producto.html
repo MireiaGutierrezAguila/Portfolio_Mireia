@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-i18n="ejemplo.meta.titulo">Ejemplo de documentación de producto · Mireia Gutiérrez Águila</title>
+  <meta name="description" data-i18n-content="ejemplo.meta.desc" content="Ejemplo, con datos ficticios, de cómo organizo la documentación de producto para guiar a diseño, desarrollo y QA, por Mireia Gutiérrez Águila.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,600;0,700;1,400&family=Tektur:wdth,wght@75..100,400..900&display=swap">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/ejemplo.css">
+</head>
+<body class="pagina-ejemplo">
+  <svg class="sprite" aria-hidden="true" focusable="false">
+    <symbol id="logo-itchdotio" viewBox="0 0 24 24"><path d="M3.13 1.338C2.08 1.96.02 4.328 0 4.95v1.03c0 1.303 1.22 2.45 2.325 2.45 1.33 0 2.436-1.102 2.436-2.41 0 1.308 1.07 2.41 2.4 2.41 1.328 0 2.362-1.102 2.362-2.41 0 1.308 1.137 2.41 2.466 2.41h.024c1.33 0 2.466-1.102 2.466-2.41 0 1.308 1.034 2.41 2.363 2.41 1.33 0 2.4-1.102 2.4-2.41 0 1.308 1.106 2.41 2.435 2.41C22.78 8.43 24 7.282 24 5.98V4.95c-.02-.62-2.082-2.99-3.13-3.612-3.253-.114-5.508-.134-8.87-.133-3.362 0-7.945.053-8.87.133zm6.376 6.477a2.74 2.74 0 0 1-.468.602c-.5.49-1.19.795-1.947.795a2.786 2.786 0 0 1-1.95-.795c-.182-.178-.32-.37-.446-.59-.127.222-.303.412-.486.59a2.788 2.788 0 0 1-1.95.795c-.092 0-.187-.025-.264-.052-.107 1.113-.152 2.176-.168 2.95v.005l-.006 1.167c.02 2.334-.23 7.564 1.03 8.85 1.952.454 5.545.662 9.15.663 3.605 0 7.198-.21 9.15-.664 1.26-1.284 1.01-6.514 1.03-8.848l-.006-1.167v-.004c-.016-.775-.06-1.838-.168-2.95-.077.026-.172.052-.263.052a2.788 2.788 0 0 1-1.95-.795c-.184-.178-.36-.368-.486-.59-.127.22-.265.412-.447.59a2.786 2.786 0 0 1-1.95.794c-.76 0-1.446-.303-1.948-.793a2.74 2.74 0 0 1-.468-.602 2.738 2.738 0 0 1-.463.602 2.787 2.787 0 0 1-1.95.794h-.16a2.787 2.787 0 0 1-1.95-.793 2.738 2.738 0 0 1-.464-.602zm-2.004 2.59v.002c.795.002 1.5 0 2.373.953.687-.072 1.406-.108 2.125-.107.72 0 1.438.035 2.125.107.873-.953 1.578-.95 2.372-.953.376 0 1.876 0 2.92 2.934l1.123 4.028c.832 2.995-.266 3.068-1.636 3.07-2.03-.075-3.156-1.55-3.156-3.025-1.124.184-2.436.276-3.748.277-1.312 0-2.624-.093-3.748-.277 0 1.475-1.125 2.95-3.156 3.026-1.37-.004-2.468-.077-1.636-3.072l1.122-4.027c1.045-2.934 2.545-2.934 2.92-2.934zM12 12.714c-.002.002-2.14 1.964-2.523 2.662l1.4-.056v1.22c0 .056.56.033 1.123.007.562.026 1.124.05 1.124-.008v-1.22l1.4.055C14.138 14.677 12 12.713 12 12.713z"/></symbol>
+    <symbol id="logo-github" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></symbol>
+    <symbol id="icono-persona" viewBox="0 0 24 24"><path d="M8.5 7.5a3.5 3.5 0 1 0 7 0a3.5 3.5 0 1 0 -7 0z"/><path d="M4.5 20.5V18a5.5 5.5 0 0 1 5.5 -5.5H14A5.5 5.5 0 0 1 19.5 18V20.5z"/></symbol>
+  </svg>
+
+  <header class="cabecera">
+    <a class="cabecera__marca" href="../index.html#inicio">Mireia Gutiérrez</a>
+
+    <button class="cabecera__menu" type="button" aria-expanded="false" aria-controls="navegacion"
+            data-i18n-aria="nav.abrir" aria-label="Abrir menú">
+      <span class="hamburguesa" aria-hidden="true"></span>
+    </button>
+
+    <nav id="navegacion" class="nav" data-i18n-aria="nav.etiqueta" aria-label="Secciones">
+      <ul class="nav__lista">
+        <li><a class="nav__enlace" href="../index.html#inicio" data-i18n="nav.inicio">Inicio</a></li>
+        <li><a class="nav__enlace" href="../index.html#sobre-mi" data-i18n="nav.sobreMi">Sobre mí</a></li>
+        <li><a class="nav__enlace" href="../index.html#experiencia" data-i18n="nav.experiencia" aria-current="true">Experiencia</a></li>
+        <li><a class="nav__enlace" href="../index.html#formacion" data-i18n="nav.formacion">Formación</a></li>
+        <li><a class="nav__enlace" href="../index.html#habilidades" data-i18n="nav.habilidades">Habilidades</a></li>
+        <li><a class="nav__enlace" href="../index.html#proyectos" data-i18n="nav.proyectos">Proyectos</a></li>
+        <li><a class="nav__enlace" href="../index.html#como-la-hice" data-i18n="nav.comoLaHice">Cómo hice esta web</a></li>
+        <li><a class="nav__enlace" href="../index.html#contacto" data-i18n="nav.contacto">Contacto</a></li>
+      </ul>
+
+      <!-- Selector de idioma -->
+      <div class="idiomas" role="group" data-i18n-aria="nav.idioma" aria-label="Idioma">
+        <button class="idiomas__boton" type="button" data-idioma="es" lang="es" aria-pressed="true" aria-label="Español">ES</button>
+        <button class="idiomas__boton" type="button" data-idioma="ca" lang="ca" aria-pressed="false" aria-label="Català">CA</button>
+        <button class="idiomas__boton" type="button" data-idioma="en" lang="en" aria-pressed="false" aria-label="English">EN</button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="inicio" class="ej">
+    <!-- Presentación de la página (se traduce) -->
+    <header class="ej-intro">
+      <a class="ej-volver" href="../index.html#experiencia" data-i18n="ejemplo.volver">← Volver a Experiencia</a>
+      <h1 data-i18n="ejemplo.titulo">Ejemplo de documentación de producto</h1>
+      <p data-i18n="ejemplo.intro">Ejemplo, con datos ficticios, de cómo organizo la documentación de producto: una página por funcionalidad que guía a diseño, desarrollo y QA. Los apartados se despliegan para consultar solo lo que haga falta.</p>
+      <p class="ej-nota" data-i18n="ejemplo.nota">El documento de ejemplo está en inglés. Pulsa cualquier captura para verla en grande.</p>
+      <!-- Los botones se muestran con JavaScript (sin JS los apartados se abren uno a uno) -->
+      <div class="ej-controles" role="group" data-i18n-aria="ejemplo.grupo" aria-label="Apartados del documento">
+        <button class="boton boton--linea" type="button" id="doc-expandir" data-i18n="ejemplo.expandir" hidden>Expandir todo</button>
+        <button class="boton boton--linea" type="button" id="doc-contraer" data-i18n="ejemplo.contraer" hidden>Contraer todo</button>
+      </div>
+    </header>
+
+    <!-- El documento (contenido en inglés, tal como es el original) -->
+    <article class="doc" lang="en" aria-labelledby="doc-titulo">
+      <h2 id="doc-titulo" class="doc__titulo">EXAMPLE OF PRODUCT DOCUMENTATION</h2>
+
+      <p class="doc__intro"><span aria-hidden="true">✅</span> <strong>Intro</strong> → A short introduction.</p>
+      <div class="doc-panel doc-panel--aviso">
+        <p>Important general information (only if necessary)</p>
+      </div>
+
+      <div class="doc__duo">
+        <details class="doc-desplegable">
+          <summary><span aria-hidden="true">📍</span> LOCATION SECTION</summary>
+          <div class="doc-desplegable__cuerpo">
+            <div class="doc-panel doc-panel--aviso">
+              <figure class="doc-figura">
+                <a class="doc-ampliar" href="../images/ejemplos/documentacion-producto/01-location.webp"><img src="../images/ejemplos/documentacion-producto/01-location.webp" width="293" height="535" loading="lazy" decoding="async"
+                     alt="Mock-up of the main menu of the website, with the option “Desarrollo web” highlighted in a pink frame"><span class="solo-lectores"> – enlarge image</span></a>
+              </figure>
+            </div>
+          </div>
+        </details>
+
+        <details class="doc-desplegable">
+          <summary><span aria-hidden="true">📚</span> SEE MENU DOCU</summary>
+          <div class="doc-desplegable__cuerpo">
+            <div class="doc-panel doc-panel--aviso">
+              <p>MENÚ DOCU</p>
+              <ul class="doc-menu">
+                <li>GENERAL
+                  <ul><li><a href="#main-page-and-filters">MAIN PAGE AND FILTERS</a></li></ul>
+                </li>
+                <li>SEE
+                  <ul><li><a href="#see-details">SEE DETAILS</a></li></ul>
+                </li>
+                <li>CREATE
+                  <ul><li><a href="#create-element">NEW</a></li></ul>
+                </li>
+                <li>EDIT
+                  <ul><li><a href="#edit-element">EDIT</a></li></ul>
+                </li>
+                <li>DELETE
+                  <ul><li><a href="#delete-element">DELETE</a></li></ul>
+                </li>
+                <li>CACHE</li>
+              </ul>
+            </div>
+          </div>
+        </details>
+      </div>
+
+      <section class="doc-panel doc-panel--jira" aria-labelledby="doc-jira">
+        <h3 id="doc-jira">RELATED JIRA TICKETS IN THIS SECTION</h3>
+        <p><em><strong>Dev_FRONT</strong></em>:</p>
+        <ul><li class="doc-pendiente">(ticket links)</li></ul>
+        <p><strong>DESIGN</strong>:</p>
+        <ul><li class="doc-pendiente">(ticket links)</li></ul>
+        <p><em><strong>SERVER (Dev_BACK)</strong></em>:</p>
+        <ul><li class="doc-pendiente">(ticket links)</li></ul>
+      </section>
+
+      <div class="doc-panel doc-panel--figma">
+        <h3><span aria-hidden="true">🎨</span> DESIGN FIGMA → linkFigma</h3>
+      </div>
+
+      <!-- ===== MAIN PAGE AND FILTERS ===== -->
+      <section class="doc-seccion" id="main-page-and-filters" aria-labelledby="h-main">
+        <h3 id="h-main" class="doc-seccion__titulo">MAIN PAGE AND FILTERS</h3>
+        <div class="doc-cols">
+          <div class="doc-col">
+            <div class="doc-panel doc-panel--info">
+              <p>MAIN PAGE</p>
+              <p>In the general page, apart from the search engine and the tables, we have a “<strong>home</strong>” <strong>button</strong> that takes us to the main menu, another one to create new records and a <strong>clock</strong> that <strong>opens</strong> the <strong>logs</strong> of the actions performed.</p>
+              <p>When you <strong>open the page, no data</strong> should be <strong>displayed</strong>, so that it loads quickly. Once you’ve applied the filter and clicked the <strong>search button</strong>, the <strong>data</strong> should <strong>appear</strong>.</p>
+            </div>
+
+            <details class="doc-desplegable">
+              <summary><span aria-hidden="true">📍</span> ENDPOINTS and API</summary>
+              <div class="doc-desplegable__cuerpo">
+                <div class="doc-panel doc-panel--info">
+                  <p>FIND</p>
+                  <pre class="doc-codigo"><code>/endpointFind/</code></pre>
+                </div>
+                <div class="doc-panel doc-panel--info">
+                  <p>GET</p>
+                  <pre class="doc-codigo"><code>/endpointGet/{id}</code></pre>
+                </div>
+                <div class="doc-panel doc-panel--neutro">
+                  <p><strong>API</strong> <span aria-hidden="true">➡️</span> Api Example (link)</p>
+                  <p><span aria-hidden="true">🗄️</span> <strong>Database:</strong> <em>bbdd_ejemplo</em></p>
+                </div>
+              </div>
+            </details>
+
+            <details class="doc-desplegable">
+              <summary><span aria-hidden="true">🔎</span> FILTERS</summary>
+              <div class="doc-desplegable__cuerpo">
+                <div class="doc-panel doc-panel--info">
+                  <p>The filters that should appear in this section are as follows:</p>
+                  <ul>
+                    <li><strong>Parameter_1</strong>: is a selector that shows different <strong>xxxxx</strong> and allows typing to find the one we need. <strong>Once selected, the xxxx selector should only show us the xxxxx of the chosen xxxxx.</strong></li>
+                    <li><strong>Parameter_2</strong>: <strong>Selector</strong> that must show the current xxxxx (endpoint that returns the names “<em>/example/names/xxxxx</em>”).</li>
+                    <li><strong>…</strong></li>
+                    <li><strong>Button Search</strong>: By clicking this button we perform the search for the selected filters.</li>
+                    <li><strong>Button clear</strong>: With this option, we delete everything that is selected in the filters at the same time.</li>
+                    <li><strong>Hide filters</strong>: we must have the option to hide the filters (V) to be able to see more records.</li>
+                  </ul>
+                </div>
+              </div>
+            </details>
+
+            <details class="doc-desplegable">
+              <summary><span aria-hidden="true">🖥️</span> TABLE</summary>
+              <div class="doc-desplegable__cuerpo">
+                <div class="doc-panel doc-panel--info">
+                  <p>The following <strong>sections should appear</strong> in the table:</p>
+                  <ul>
+                    <li><strong>Numbering</strong>: each row must be numbered.</li>
+                    <li><strong>Parameter_1</strong>: shows the xxxx code.</li>
+                    <li><strong>Parameter_2</strong>: show xxxx.</li>
+                    <li><strong>…</strong></li>
+                  </ul>
+                  <p><strong>Other elements in the table</strong></p>
+                  <ul>
+                    <li><strong>Button see</strong>: To display the rest of the values.</li>
+                    <li><strong>New button</strong>: this button opens the view for creating new registration.</li>
+                    <li><strong>Edit button</strong>: this opens an edit pop-up to modify the values.</li>
+                    <li><strong>Delete button</strong>: to delete one of the records.</li>
+                    <li><strong>Button to view more information</strong>: to the left of the table, there should be a button for each record to display the rest of the parameters that are not visible at first glance.</li>
+                    <li><strong>Records to display in the table</strong>: We should be able to see about <strong>25 without scrolling</strong> and with scrolling up to <strong>50</strong> without <strong>turning the page</strong>. Scrolling must be possible with the <strong>scroll bar</strong> <strong>and</strong> with the <strong>mouse</strong>.</li>
+                    <li><strong>Total items and page</strong>: shows the total number of records, if it is before filtering it will show the total <strong>number records</strong> that exist. If we have performed a search, the total number of records according to the ones we have filtered. For example: <strong>Page 1 - 10 of 309 items</strong>.</li>
+                    <li><strong>Page change buttons</strong>: At the bottom of the table we can see a series of buttons to scroll through the existing pages.</li>
+                    <li><strong>Scroll</strong>: We must be able to <strong>scroll</strong> with the mouse to see the <strong>total number of items</strong> displayed on the page.</li>
+                  </ul>
+                </div>
+              </div>
+            </details>
+          </div>
+
+          <figure class="doc-figura doc-figura--lado">
+            <a class="doc-ampliar" href="../images/ejemplos/documentacion-producto/02-main-page.webp"><img src="../images/ejemplos/documentacion-producto/02-main-page.webp" width="1645" height="785" loading="lazy" decoding="async"
+                 alt="Mock-up of the main page, “General information”: a row of filters at the top, the Search and Clear buttons, a Logs button with a clock, and a table of records with numbered rows, a header grouped by colour, a blue note listing games (Game 1 to Game 4) next to one of the eye icons, and a pager at the bottom (Page 1 - 10 of 309 items)"><span class="solo-lectores"> – enlarge image</span></a>
+            <figcaption><strong>MAIN PAGE AND FILTERS</strong><br>(PRELIMINARY PM DESIGN TO GUIDE THE UX/UI TEAM)</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- ===== SEE DETAILS ===== -->
+      <section class="doc-seccion" id="see-details" aria-labelledby="h-see">
+        <h3 id="h-see" class="doc-seccion__titulo">SEE DETAILS</h3>
+        <div class="doc-cols">
+          <div class="doc-col">
+            <details class="doc-desplegable">
+              <summary><span aria-hidden="true">📍</span> ENDPOINTS and API</summary>
+              <div class="doc-desplegable__cuerpo">
+                <div class="doc-panel doc-panel--info">
+                  <p>FIND</p>
+                  <pre class="doc-codigo"><code>/endpointFind/</code></pre>
+                </div>
+                <div class="doc-panel doc-panel--info">
+                  <p>GET</p>
+                  <pre class="doc-codigo"><code>/endpointGet/{id}</code></pre>
+                </div>
+                <div class="doc-panel doc-panel--neutro">
+                  <p><strong>API</strong> <span aria-hidden="true">➡️</span> Api Example (link)</p>
+                  <p><span aria-hidden="true">🗄️</span> <strong>Database:</strong> <em>bbdd_ejemplo</em></p>
+                </div>
+              </div>
+            </details>
+
+            <div class="doc-panel doc-panel--info">
+              <p>We will <strong>NOT</strong> display the data in a <strong>pop-up window or window</strong>, but in the same list by expanding the section of the record we want to see in more detail.</p>
+              <p>To view all the data, we must be able to do so <strong>by clicking on the ‘V’ symbol or “<span aria-hidden="true">👁️</span><span class="solo-lectores">eye</span>”.</strong> When we do so, the field will <strong>expand and show the rest of the fields</strong> that are not displayed in the main view.</p>
+              <p>The rest of the records in the list <strong>should continue to be displayed in the same way</strong>, and <strong>we should be able to display the details of several at the same time.</strong></p>
+              <p>Once we <strong>expand the information</strong>, we will find the following:</p>
+              <ol>
+                <li>Parameter_1</li>
+                <li>Parameter_2</li>
+                <li>…</li>
+              </ol>
+            </div>
+          </div>
+
+          <figure class="doc-figura doc-figura--lado">
+            <a class="doc-ampliar" href="../images/ejemplos/documentacion-producto/03-see-details.webp"><img src="../images/ejemplos/documentacion-producto/03-see-details.webp" width="863" height="679" loading="lazy" decoding="async"
+                 alt="Mock-up of the table with one row expanded: a blue note lists the game names (Game 1, Game 2, Game 3, Game 4…) that appear when the eye icon is clicked"><span class="solo-lectores"> – enlarge image</span></a>
+            <figcaption>(PRELIMINARY PM DESIGN TO GUIDE THE UX/UI TEAM)</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- ===== CREATE ELEMENT ===== -->
+      <section class="doc-seccion" id="create-element" aria-labelledby="h-create">
+        <h3 id="h-create" class="doc-seccion__titulo">CREATE ELEMENT</h3>
+        <div class="doc-cols">
+          <div class="doc-col">
+            <details class="doc-desplegable">
+              <summary><span aria-hidden="true">📍</span> ENDPOINTS and API</summary>
+              <div class="doc-desplegable__cuerpo">
+                <div class="doc-panel doc-panel--info">
+                  <p>CREATE</p>
+                  <pre class="doc-codigo"><code>/endpointCreate/</code></pre>
+                </div>
+                <div class="doc-panel doc-panel--neutro">
+                  <p><strong>API</strong> <span aria-hidden="true">➡️</span> Api Example (link)</p>
+                  <p><span aria-hidden="true">🗄️</span> <strong>Database:</strong> <em>bbdd_ejemplo</em></p>
+                </div>
+              </div>
+            </details>
+
+            <div class="doc-panel doc-panel--info">
+              <p>STEPS TO CREATE</p>
+              <ol>
+                <li>Create/New item button</li>
+                <li>Fill in the form</li>
+                <li>Save button (the form does not close)</li>
+                <li>A confirmation/error pop-up appears</li>
+                <li>Close confirmation/creation pop-up</li>
+                <li>Logs appear below the form</li>
+                <li>View log details if necessary (they can be expanded)</li>
+                <li>Proceed with new creation/close form</li>
+              </ol>
+            </div>
+          </div>
+
+          <figure class="doc-figura doc-figura--lado">
+            <a class="doc-ampliar" href="../images/ejemplos/documentacion-producto/04-new-form.webp"><img src="../images/ejemplos/documentacion-producto/04-new-form.webp" width="543" height="598" loading="lazy" decoding="async"
+                 alt="Mock-up of the creation form “CREATE new DATA”: empty selectors and fields grouped as General data and Groups 1 to 3, a checkbox, an “ADD DataX” button, Clear and Save buttons, and an empty Logs box at the bottom"><span class="solo-lectores"> – enlarge image</span></a>
+            <figcaption><strong>NEW XXXX</strong><br>(PRELIMINARY PM DESIGN TO GUIDE THE UX/UI TEAM)</figcaption>
+          </figure>
+        </div>
+
+        <div class="doc-ancho">
+            <p>The fields that the new creation form must have are as follows:</p>
+            <div class="doc-tabla__marco" role="region" aria-label="Fields of the creation form" tabindex="0">
+              <table class="doc-tabla">
+                <thead>
+                  <tr>
+                    <th scope="col">Parameter</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Mandatory</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Example data</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Param_1<br><small>(codeXxx)</small></th>
+                    <td>Selector</td>
+                    <td><span class="doc-si">YES</span></td>
+                    <td>This selector has to show the <strong>list of xxxx</strong> and at the same time you have to be able to type to make the search easier. Only one xxxx should be selectable. (To display xxxx, we can use this endpoint: /example/types/xxxx)</td>
+                    <td>“example98”</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Param_2<br><small>(param2Id)</small></th>
+                    <td>Text</td>
+                    <td><span class="doc-si">YES</span></td>
+                    <td>Field in which to enter a text.</td>
+                    <td>codeSpain</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Param_3<br><small>(param3Id)</small></th>
+                    <td>Num</td>
+                    <td><span class="doc-no">NO</span></td>
+                    <td>Number value of xxxx</td>
+                    <td>3000</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Param_4<br><small>(param4Id)</small></th>
+                    <td>Array</td>
+                    <td><span class="doc-no">NO</span></td>
+                    <td>Items separated by commas</td>
+                    <td>1,2,3,4,5</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+        </div>
+
+        <div class="doc-cols">
+          <div class="doc-col">
+            <h4>CREATED</h4>
+            <p>When you select the Create button, there are two possibilities:</p>
+            <div class="doc-panel doc-panel--info">
+              <p><strong>1.- FAILURE TO CREATE THE NEW RECORD <span aria-hidden="true">❌</span></strong></p>
+              <p>If it has not been created correctly, a warning should appear explaining why it could not be created. <strong>THE CREATION POP-UP WINDOW MUST NOT BE CLOSED</strong>, as this allows <strong>us to correct only what is necessary</strong> and try to create it again.</p>
+              <p>Example of an error message when creating:</p>
+              <figure class="doc-figura doc-figura--dentro">
+                <a class="doc-ampliar" href="../images/ejemplos/documentacion-producto/05-error-popup.webp"><img src="../images/ejemplos/documentacion-producto/05-error-popup.webp" width="400" height="209" loading="lazy" decoding="async"
+                     alt="Pop-up window titled “New Element Data” with a green check mark and the details of the record"><span class="solo-lectores"> – enlarge image</span></a>
+              </figure>
+            </div>
+            <div class="doc-panel doc-panel--info">
+              <p><strong>2.- CREATED SUCCESSFULLY <span aria-hidden="true">✅</span></strong></p>
+              <p>If the record has been created successfully, a confirmation pop-up window similar to this one will appear:</p>
+              <figure class="doc-figura doc-figura--dentro">
+                <a class="doc-ampliar" href="../images/ejemplos/documentacion-producto/06-ok-popup.webp"><img src="../images/ejemplos/documentacion-producto/06-ok-popup.webp" width="403" height="203" loading="lazy" decoding="async"
+                     alt="Pop-up window titled “New Element Data” saying that all the data has been created correctly, with a green check mark and the details: id 78, version V.2.3, name element ExampleName"><span class="solo-lectores"> – enlarge image</span></a>
+              </figure>
+              <p>Data that must appear in detail in the pop-up:</p>
+              <ol>
+                <li>Parameter_1</li>
+                <li>Parameter_2</li>
+              </ol>
+              <p>The form must not be closed in order to view the logs.</p>
+              <p>After closing the form, the main page <strong>should be displayed by filtering by the ID</strong> of the parameter we just created. This way, we will only see the new record and can review the data created if necessary.</p>
+            </div>
+            <div class="doc-panel doc-panel--info">
+              <p><span aria-hidden="true">🕔</span> <strong>See InfoGeneral-LOGS (link)</strong></p>
+            </div>
+          </div>
+
+          <div class="doc-col doc-col--lado">
+            <figure class="doc-figura">
+              <a class="doc-ampliar" href="../images/ejemplos/documentacion-producto/07-tras-error.webp"><img src="../images/ejemplos/documentacion-producto/07-tras-error.webp" width="605" height="797" loading="lazy" decoding="async"
+                   alt="Mock-up of the creation form filled in, with a pink “Response error” line and a blue information line in the Logs box"><span class="solo-lectores"> – enlarge image</span></a>
+              <figcaption><strong>VIEW AFTER CLOSING POPUP OF FAILURE TO CREATE</strong><br>(PRELIMINARY PM DESIGN TO GUIDE THE UX/UI TEAM)</figcaption>
+            </figure>
+            <figure class="doc-figura">
+              <a class="doc-ampliar" href="../images/ejemplos/documentacion-producto/08-nueva-creacion.webp"><img src="../images/ejemplos/documentacion-producto/08-nueva-creacion.webp" width="635" height="809" loading="lazy" decoding="async"
+                   alt="Mock-up of the creation form filled in, with a green line in the Logs box saying that the new record has been created successfully"><span class="solo-lectores"> – enlarge image</span></a>
+              <figcaption><strong>SHOW NEW CREATION</strong></figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== EDIT ELEMENT ===== -->
+      <section class="doc-seccion" id="edit-element" aria-labelledby="h-edit">
+        <h3 id="h-edit" class="doc-seccion__titulo">EDIT ELEMENT</h3>
+        <div class="doc-cols">
+          <div class="doc-col">
+            <details class="doc-desplegable">
+              <summary><span aria-hidden="true">📍</span> ENDPOINTS and API</summary>
+              <div class="doc-desplegable__cuerpo">
+                <div class="doc-panel doc-panel--info">
+                  <p>UPDATE</p>
+                  <pre class="doc-codigo"><code>/endpointUpdate/</code></pre>
+                </div>
+                <div class="doc-panel doc-panel--neutro">
+                  <p><strong>API</strong> <span aria-hidden="true">➡️</span> Api Example (link)</p>
+                  <p><span aria-hidden="true">🗄️</span> <strong>Database:</strong> <em>bbdd_ejemplo</em></p>
+                </div>
+              </div>
+            </details>
+
+            <div class="doc-panel doc-panel--info">
+              <p>To edit a record, click on the “Edit” button in the list. The edit button will open a pop-up window where you can edit all fields.</p>
+              <p>The edit window has more or less the same fields as the creation option, but with the current data already visible and the <strong>option to modify it</strong>.</p>
+              <p>As when creating, a pop-up window will appear informing you that the modification has been successful or reporting an error (<span aria-hidden="true">👁️</span> see the <a href="#create-element">section on creating</a>).</p>
+              <p>The fields in the edit pop-up are as follows:</p>
+              <ol>
+                <li><strong>Parameter ID (not editable)</strong></li>
+                <li><strong>Name</strong></li>
+                <li><strong>Description</strong></li>
+                <li>The <strong>possibility</strong> of <strong>adding</strong> or <strong>removing</strong> countries</li>
+                <li><strong>List of linked certifications</strong>: with the <strong>possibility</strong> of <strong>unlinking</strong> them.</li>
+                <li><strong>Button to create a new certification</strong></li>
+                <li><strong>Button to link an existing certification</strong></li>
+                <li><strong>Button to save all changes</strong></li>
+              </ol>
+              <p>The form must not be closed in order to view the logs.</p>
+              <p>After closing the form, the main page <strong>should be displayed by filtering by the ID</strong> of the parameter we just created. This way, we will only see the new record and can review the data created if necessary.</p>
+              <p>See InfoGeneral-LOGS (link)</p>
+            </div>
+          </div>
+
+          <figure class="doc-figura doc-figura--lado">
+            <a class="doc-ampliar" href="../images/ejemplos/documentacion-producto/09-edit.webp"><img src="../images/ejemplos/documentacion-producto/09-edit.webp" width="614" height="691" loading="lazy" decoding="async"
+                 alt="Mock-up of the form “EDIT new DATA”: some fields are grey (not editable) and others are blue (editable), with Clear and Save buttons and an empty Logs box"><span class="solo-lectores"> – enlarge image</span></a>
+            <figcaption><strong>EDIT</strong><br>(PRELIMINARY PM DESIGN TO GUIDE THE UX/UI TEAM)</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- ===== DELETE ELEMENT ===== -->
+      <section class="doc-seccion" id="delete-element" aria-labelledby="h-delete">
+        <h3 id="h-delete" class="doc-seccion__titulo">DELETE ELEMENT</h3>
+        <div class="doc-col doc-col--ancho">
+          <details class="doc-desplegable">
+            <summary><span aria-hidden="true">📍</span> ENDPOINTS and API</summary>
+            <div class="doc-desplegable__cuerpo">
+              <div class="doc-panel doc-panel--info">
+                <p>DELETE</p>
+                <pre class="doc-codigo"><code>/endpointDelete/{id}</code></pre>
+              </div>
+              <div class="doc-panel doc-panel--neutro">
+                <p><strong>API</strong> <span aria-hidden="true">➡️</span> Api Example (link)</p>
+                <p><span aria-hidden="true">🗄️</span> <strong>Database:</strong> <em>bbdd_ejemplo</em></p>
+              </div>
+            </div>
+          </details>
+
+          <p>The delete button can be found in the same table on the main page and has a rubbish bin symbol.</p>
+          <div class="doc-panel doc-panel--info">
+            <p>The popUp should display the following information:</p>
+            <ul>
+              <li><strong>Title</strong>: Delete Data</li>
+              <li><strong>Question</strong>: Are you sure you want to REMOVE this Data Element?</li>
+              <li><strong>Data</strong>:
+                <ul><li><strong>Currency</strong></li></ul>
+              </li>
+              <li>Button (<strong>No, cancel</strong>)</li>
+              <li>Button (<strong>Yes, I’m sure</strong>)</li>
+            </ul>
+            <figure class="doc-figura doc-figura--dentro">
+              <a class="doc-ampliar" href="../images/ejemplos/documentacion-producto/10-delete.webp"><img src="../images/ejemplos/documentacion-producto/10-delete.webp" width="390" height="295" loading="lazy" decoding="async"
+                   alt="Pop-up window titled “DELETE Data” asking “Are you sure you want to REMOVE this Data Element?”, with a red siren icon, the details of the record and two buttons: “Yes, I’m sure” and “No, cancel”"><span class="solo-lectores"> – enlarge image</span></a>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== Cierre ===== -->
+      <div class="doc-panel doc-panel--figma">
+        <h3><span aria-hidden="true">🧠</span> Reminder to the development team:</h3>
+        <p><em>Please note down the endpoints used in this section in the shared Backend documentation so that we all have an overview of the project and can act accordingly.</em></p>
+      </div>
+
+      <details class="doc-desplegable">
+        <summary><span aria-hidden="true">🪲</span> Tips for testing</summary>
+        <div class="doc-desplegable__cuerpo">
+          <div class="doc-panel doc-panel--aviso">
+            <h4><span aria-hidden="true">⚠️</span> What can we test and what can’t we test in this section?</h4>
+            <p>CREATIONS:</p>
+            <ul>
+              <li><em>In this case, we can create records in any type of control, as there is an option to delete the record.</em></li>
+              <li><em>Create records with names that identify our equipment so that we can distinguish these test results from data relating to other equipment.</em></li>
+              <li><em>Remember to delete any records that do not need to be retained in order to keep the database clean.</em></li>
+            </ul>
+            <p>EDITING:</p>
+            <ul>
+              <li><em>You are not permitted to edit existing records that were not created by your own team.</em></li>
+              <li><em>Check that the ability to edit some fields but not others matches the information in the documentation and the API. If there are any inconsistencies, please report them to the product team.</em></li>
+            </ul>
+            <p>DELETE:</p>
+            <ul>
+              <li><em>Check that records linked to record 2 cannot be deleted.</em></li>
+              <li><em>Verify that the deleted record actually disappears from the database (MySQL) and from its related record (MongoDB).</em></li>
+            </ul>
+          </div>
+          <div class="doc-panel doc-panel--info">
+            <h4><span aria-hidden="true">🔢</span> Examples of valid data for testing</h4>
+            <p><em>An external document (CSV) has been created containing a table with real-life examples that meet the requirements of the endpoints for creating the records in this section. If you have completed the list (150 examples) and need more data for testing, you can re-enter them by changing the currency code (EUR, USD, MXN, etc.) – this gives you thousands of possibilities. You can view the table via the following link: <strong>“linkDataTesting”</strong></em></p>
+          </div>
+        </div>
+      </details>
+    </article>
+  </main>
+
+  <footer class="pie">
+    <p>© <span class="pie__anio">2026</span> Mireia Gutiérrez Águila</p>
+    <ul class="pie__redes" aria-label="Redes" data-i18n-aria="pie.redes">
+      <li><a class="pie__red" href="https://www.linkedin.com/in/mireia-guti%C3%A9rrez-%C3%A1guila-qatester-pm" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg class="logo" aria-hidden="true" focusable="false"><use href="#icono-persona"/></svg></a></li>
+      <li><a class="pie__red" href="https://mireiaguila9.itch.io/" target="_blank" rel="noopener noreferrer" aria-label="itch.io"><svg class="logo" aria-hidden="true" focusable="false"><use href="#logo-itchdotio"/></svg></a></li>
+      <li><a class="pie__red" href="https://github.com/MireiaGutierrezAguila" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg class="logo" aria-hidden="true" focusable="false"><use href="#logo-github"/></svg></a></li>
+    </ul>
+    <a class="pie__arriba" href="#inicio" data-i18n="pie.arriba">Volver arriba</a>
+    <p class="pie__hecho"><a href="../index.html#como-la-hice" data-i18n="pie.hecho">Hecha con Claude Code: cómo la hice</a></p>
+  </footer>
+
+  <script src="../js/traducciones.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/ejemplo.js"></script>
+  <script src="../js/cursor-trail.js"></script>
+</body>
+</html>
