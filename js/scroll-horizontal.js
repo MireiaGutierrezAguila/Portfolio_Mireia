@@ -45,8 +45,10 @@ if (seccionHorizontal) {
     const ultimo = paneles[paneles.length - 1];
     const margenDerecho = parseFloat(getComputedStyle(carril).paddingRight);
     recorrido = Math.max(0, ultimo.offsetLeft + ultimo.offsetWidth + margenDerecho - marco.clientWidth);
-    salida = marco.clientWidth;
-    pausa = Math.round(marco.clientHeight * 0.5);
+    // Las tarjetas se desvanecen mientras salen, así que no hace falta que recorran todo el ancho:
+    // con 60 % basta y se ahorra scroll antes de que aparezca el vídeo
+    salida = Math.round(marco.clientWidth * 0.6);
+    pausa = Math.round(marco.clientHeight * 0.1);
 
     seccionHorizontal.style.setProperty('--recorrido', `${recorrido}px`);
     seccionHorizontal.style.setProperty('--alto-extra', `${recorrido + salida + pausa}px`);
