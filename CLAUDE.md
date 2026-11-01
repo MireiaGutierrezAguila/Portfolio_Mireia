@@ -41,6 +41,7 @@ Al informar de lo que encuentres o hagas, marca cada punto según su tipo:
 Web estática pura: HTML + CSS + JS vanilla, sin backend, sin build, sin dependencias. Despliegue previsto en hosting gratuito (GitHub Pages / Netlify).
 - Servir en local: `python3 -m http.server 8000` y abrir http://localhost:8000
 - No hay linter ni tests automatizados configurados.
+- **Publicada (2026-11-01)** con GitHub Pages (rama `main`, carpeta raíz): `https://mireiagutierrezaguila.github.io/Portfolio_Mireia/`. **No borrar el archivo vacío `.nojekyll` de la raíz:** sin él, GitHub pasa los archivos por Jekyll y la publicación falla porque `CLAUDE.md` contiene `{{Evolution = …}}`, que Jekyll lee como código Liquid. Todas las rutas son relativas (funcionan bajo `/Portfolio_Mireia/`) y GitHub distingue mayúsculas de minúsculas, a diferencia del Mac.
 
 ## Arquitectura prevista
 - `index.html` — one-page con secciones: Inicio · Sobre mí · Experiencia · Formación · Habilidades · Proyectos · Cómo hice esta web · Contacto · footer.
