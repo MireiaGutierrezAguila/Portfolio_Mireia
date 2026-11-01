@@ -281,7 +281,7 @@ h3 {
 /* ---------- Portada ---------- */
 .seccion--portada {
   position: relative;
-  isolation: isolate; /* los anillos de fondo se quedan dentro de la portada */
+  isolation: isolate; /* el fondo de la portada se queda dentro de ella */
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -292,41 +292,12 @@ h3 {
   overflow: hidden;
 }
 
-/* Anillos de fondo, muy tenues: un brillo magenta y círculos concéntricos de línea fina */
-.portada__anillos {
-  position: absolute;
-  inset: 50% auto auto 70%;
-  z-index: -1;
-  width: 140vmax;
-  aspect-ratio: 1;
-  translate: -50% -50%;
-  background:
-    radial-gradient(circle, rgba(148, 0, 84, 0.28) 0, transparent 22%),
-    repeating-radial-gradient(circle, transparent 0 11.5%, rgba(139, 92, 246, 0.16) 11.5% 11.6%);
-  pointer-events: none;
-}
+/* El fondo de la portada (plano técnico) está en css/portada.css */
 
 .portada__nombre {
   font-size: var(--t-nombre);
   font-weight: 700;
   letter-spacing: -0.01em;
-  /* Único momento animado de la web: el nombre se despliega de estrecho a ancho al cargar */
-  font-stretch: 100%;
-  animation: desplegar 1.4s cubic-bezier(0.2, 0.7, 0.2, 1) both;
-}
-
-@keyframes desplegar {
-  from {
-    font-stretch: 75%;
-    letter-spacing: 0.08em;
-    opacity: 0;
-  }
-
-  to {
-    font-stretch: 100%;
-    letter-spacing: -0.01em;
-    opacity: 1;
-  }
 }
 
 /* Los apellidos van siempre juntos: si el nombre no cabe en una línea,
@@ -2291,10 +2262,6 @@ button.boton--linea {
   .hamburguesa::after,
   .boton {
     transition: none;
-  }
-
-  .portada__nombre {
-    animation: none;
   }
 
   /* El mapa de Formación cambia de estado al instante y sin brillo por cercanía */

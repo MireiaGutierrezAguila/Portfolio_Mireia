@@ -1,0 +1,14 @@
+/* Vista previa del trisquel (solo para revisión) */
+body { margin: 0; background: #08070D; color: #EDEAF5; font-family: "Atkinson Hyperlegible Next", system-ui, sans-serif; }
+main { max-width: 74rem; margin: 0 auto; padding: 2rem 1rem 4rem; text-align: center; }
+h1 { font-family: Tektur, sans-serif; font-size: 1.5rem; }
+.rejilla { display: grid; grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr)); gap: 2.5rem 1.5rem; margin-top: 2rem; }
+.v { margin: 0; }
+.v svg { width: min(100%, 26rem); height: auto; }
+.v figcaption { margin-top: 0.75rem; font-size: 0.9375rem; color: #A9A4BF; }
+.v--a { color: #EDEAF5; }
+.v--a svg { filter: none; }
+.v--a2 { color: #F7F4FF; }
+.v--a2 svg { filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.8)) drop-shadow(0 0 7px rgba(237, 234, 245, 0.45)) drop-shadow(0 0 20px rgba(237, 234, 245, 0.18)); }
+.v--a3 { color: #FFFFFF; }
+.v--a3 svg { filter: drop-shadow(0 0 1.5px rgba(255, 255, 255, 0.95)) drop-shadow(0 0 9px rgba(237, 234, 245, 0.65)) drop-shadow(0 0 26px rgba(237, 234, 245, 0.3)); }

@@ -7,8 +7,12 @@
   <meta name="description" data-i18n-content="meta.descripcion" content="Portfolio de Mireia Gutiérrez Águila: QA Tester, Product Manager y desarrolladora de videojuegos.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,600;0,700;1,400&family=Tektur:wdth,wght@75..100,400..900&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Tektur:wdth,wght@75..100,400..900&display=swap">
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/portada.css">
+  <link rel="stylesheet" href="css/intro.css">
+  <!-- Entrada de la portada: va en el head, sin defer, para tapar la página desde el primer fotograma -->
+  <script src="js/intro.js"></script>
 </head>
 <body>
 
@@ -88,7 +92,42 @@
   <main id="contenido">
 
     <section id="inicio" class="seccion seccion--portada" aria-labelledby="titulo-inicio">
-      <div class="portada__anillos" aria-hidden="true"></div>
+      <!-- Fondo de plano técnico (decorativo): cuadrícula, círculos, diagonales y una regla que se mueven solos -->
+      <div class="portada__plano" aria-hidden="true">
+        <div class="plano__brillo"></div>
+        <div class="plano__marco"><div class="plano__rejilla"></div></div>
+        <svg class="plano__dibujo" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <defs>
+            <!-- Ventanas que dejan ver el destello: tres tramos de distinto largo y brillo (cabeza y cola) que viajan por la diagonal -->
+            <mask id="plano-ventana-a" maskUnits="userSpaceOnUse" x="0" y="0" width="1600" height="900">
+              <line class="plano__ventana plano__ventana--cola" x1="860" y1="30" x2="1460" y2="730"/>
+              <line class="plano__ventana plano__ventana--medio" x1="860" y1="30" x2="1460" y2="730"/>
+              <line class="plano__ventana plano__ventana--cabeza" x1="860" y1="30" x2="1460" y2="730"/>
+            </mask>
+            <mask id="plano-ventana-b" maskUnits="userSpaceOnUse" x="0" y="0" width="1600" height="900">
+              <line class="plano__ventana plano__ventana--cola" x1="1460" y1="30" x2="860" y2="730"/>
+              <line class="plano__ventana plano__ventana--medio" x1="1460" y1="30" x2="860" y2="730"/>
+              <line class="plano__ventana plano__ventana--cabeza" x1="1460" y1="30" x2="860" y2="730"/>
+            </mask>
+          </defs>
+          <circle class="plano__c plano__c--a" cx="1130" cy="360" r="540"/>
+          <circle class="plano__c plano__c--b" cx="330" cy="820" r="420"/>
+          <circle class="plano__c plano__c--c" cx="1340" cy="30" r="190"/>
+          <circle class="plano__c plano__c--m" cx="820" cy="470" r="300"/>
+          <!-- Diagonales de rayitas, fijas; encima, la misma línea en color, visible solo donde pasa la ventana -->
+          <line class="plano__diag" x1="860" y1="30" x2="1460" y2="730"/>
+          <line class="plano__diag" x1="1460" y1="30" x2="860" y2="730"/>
+          <line class="plano__diag-luz" x1="860" y1="30" x2="1460" y2="730" mask="url(#plano-ventana-a)"/>
+          <line class="plano__diag-luz" x1="1460" y1="30" x2="860" y2="730" mask="url(#plano-ventana-b)"/>
+          <g class="plano__mira">
+            <circle cx="150" cy="770" r="52"/>
+            <circle cx="150" cy="770" r="6"/>
+            <line x1="113" y1="733" x2="187" y2="807"/>
+            <line x1="187" y1="733" x2="113" y2="807"/>
+          </g>
+        </svg>
+        <div class="plano__regla"><div class="plano__carril"></div></div>
+      </div>
 
       <h1 id="titulo-inicio" class="portada__nombre">Mireia <span class="portada__apellidos">Gutiérrez Águila</span></h1>
       <p class="portada__rol" data-i18n="inicio.rol">QA Tester &amp; Product Manager | Indie Game Developer</p>
@@ -780,5 +819,6 @@
   <script src="js/workflow.js"></script>
   <script src="js/scroll-horizontal.js"></script>
   <script src="js/cursor-trail.js"></script>
+  <script src="js/portada.js"></script>
 </body>
 </html>

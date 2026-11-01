@@ -1,0 +1,222 @@
+/* ==========================================================
+   Portada (solo index.html): fondo de plano técnico y aparición de los textos
+   Se carga después de styles.css. El fondo va dentro de .seccion--portada, que ya aísla su capa.
+   Todo lo que se mueve lo hace muy despacio y con transformaciones (no repinta la página).
+   Con «reducir movimiento» el fondo queda quieto, y js/portada.js lo pausa cuando la portada no se ve.
+   ========================================================== */
+
+/* ---------- Fondo: plano técnico ---------- */
+.portada__plano {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Un brillo magenta muy tenue detrás de los círculos, como antes */
+.plano__brillo {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 72% 52%, rgba(148, 0, 84, 0.26) 0, transparent 34%);
+}
+
+/* Cuadrícula que se desvanece hacia los bordes. El marco es fijo (lleva la máscara) y la rejilla
+   se desplaza dentro 72 px, justo una celda, así que el bucle no se nota */
+.plano__marco {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  mask-image: radial-gradient(ellipse 85% 80% at 62% 50%, #000 12%, transparent 78%);
+}
+
+.plano__rejilla {
+  position: absolute;
+  inset: -72px;
+  background-image:
+    linear-gradient(rgba(169, 164, 191, 0.075) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(169, 164, 191, 0.075) 1px, transparent 1px);
+  background-size: 72px 72px;
+  animation: plano-rejilla 30s linear infinite;
+}
+
+/* Círculos y rayas */
+.plano__dibujo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: rgba(169, 164, 191, 0.17);
+  stroke-width: 1.2;
+}
+
+/* El grosor de la línea no cambia al escalar el dibujo */
+.plano__dibujo * {
+  vector-effect: non-scaling-stroke;
+}
+
+.plano__c--a { animation: plano-flota-a 95s ease-in-out infinite alternate; }
+.plano__c--b { animation: plano-flota-b 80s ease-in-out infinite alternate; }
+.plano__c--c { animation: plano-flota-c 110s ease-in-out infinite alternate; }
+.plano__c--m { stroke: rgba(235, 75, 166, 0.2); animation: plano-flota-b 100s ease-in-out infinite alternate-reverse; }
+
+/* Diagonales de rayitas, fijas. Por encima va la misma línea en magenta claro, visible solo
+   dentro de una «ventana» (máscara) que la recorre de punta a punta: un destello con cabeza brillante
+   y cola que se apaga, una diagonal cada vez. */
+.plano__diag {
+  stroke: rgba(169, 164, 191, 0.22);
+  stroke-dasharray: 7 11;
+  vector-effect: none;
+}
+
+.plano__diag-luz {
+  stroke: var(--magenta-claro);
+  stroke-width: 2;
+  stroke-dasharray: 7 11;
+  vector-effect: none;
+}
+
+/* La ventana: un trazo blanco ancho (en una máscara, blanco = visible) con un hueco larguísimo detrás.
+   --L es el largo de la ventana. La diagonal mide 922 (600 × 700), y los fotogramas llevan números fijos
+   (no var()/calc()): Chromium y Firefox no interpolan bien esos valores dentro de @keyframes. */
+.plano__ventana {
+  stroke: #fff;
+  stroke-width: 24;
+  stroke-dasharray: var(--L) 2500;
+  stroke-dashoffset: var(--L);
+  vector-effect: none;
+  animation: 7s cubic-bezier(0.4, 0, 0.55, 1) 1.2s infinite;
+}
+
+.plano__ventana--cola { --L: 300; stroke-opacity: 0.2; animation-name: plano-destello-cola; }
+.plano__ventana--medio { --L: 150; stroke-opacity: 0.5; animation-name: plano-destello-medio; }
+.plano__ventana--cabeza { --L: 55; stroke-opacity: 1; animation-name: plano-destello-cabeza; }
+
+/* La segunda diagonal se enciende a mitad de camino de la primera */
+#plano-ventana-b .plano__ventana { animation-delay: 4.7s; }
+
+.plano__mira {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: plano-gira 160s linear infinite;
+}
+
+/* Regla de marcas con un indicador que va y viene */
+.plano__regla {
+  position: absolute;
+  inset: auto var(--lateral) 1.1rem;
+  height: 14px;
+  background:
+    repeating-linear-gradient(90deg, rgba(169, 164, 191, 0.5) 0 1px, transparent 1px 60px) left bottom / 100% 12px no-repeat,
+    repeating-linear-gradient(90deg, rgba(169, 164, 191, 0.32) 0 1px, transparent 1px 12px) left bottom / 100% 6px no-repeat;
+  overflow: hidden;
+}
+
+.plano__carril {
+  position: absolute;
+  inset: 0;
+  animation: plano-marca 26s ease-in-out infinite alternate;
+}
+
+.plano__carril::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 0 auto;
+  width: 2px;
+  background: var(--magenta-claro);
+  box-shadow: 0 0 8px rgba(235, 75, 166, 0.7);
+}
+
+@keyframes plano-rejilla { to { translate: 72px 0; } }
+@keyframes plano-flota-a { to { translate: -70px 46px; } }
+@keyframes plano-flota-b { to { translate: 58px -40px; } }
+@keyframes plano-flota-c { to { translate: -40px 62px; } }
+/* La ventana entra por el principio de la línea (stroke-dashoffset = su largo) y sale por el final (= -922):
+   viaja el 22 % del ciclo (≈ 1,5 s) y descansa el resto */
+@keyframes plano-destello-cola { 0% { stroke-dashoffset: 300; } 22%, 100% { stroke-dashoffset: -922; } }
+@keyframes plano-destello-medio { 0% { stroke-dashoffset: 150; } 22%, 100% { stroke-dashoffset: -922; } }
+@keyframes plano-destello-cabeza { 0% { stroke-dashoffset: 55; } 22%, 100% { stroke-dashoffset: -922; } }
+@keyframes plano-gira { to { rotate: 360deg; } }
+@keyframes plano-marca { from { translate: -100% 0; } to { translate: 0 0; } }
+
+/* Cuando la portada no está a la vista, el fondo se pausa (lo marca js/portada.js) */
+.portada--fuera .plano__rejilla,
+.portada--fuera .plano__dibujo *,
+.portada--fuera .plano__carril {
+  animation-play-state: paused;
+}
+
+/* ---------- Textos de la portada ---------- */
+
+/* Las letras del nombre las parte js/portada.js y aparecen en orden aleatorio, difuminadas.
+   Al terminar, el nombre vuelve a ser texto normal. */
+.portada__palabra {
+  white-space: nowrap;
+}
+
+.portada__letra {
+  opacity: 0;
+}
+
+.portada__nombre--escribiendo .portada__letra {
+  animation: portada-letra 0.6s ease-out var(--retraso, 0s) forwards;
+}
+
+@keyframes portada-letra {
+  from {
+    opacity: 0;
+    filter: blur(9px);
+  }
+
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+/* El rol, el lema y los botones entran después del nombre. Mientras dura la entrada, esperan ocultos. */
+.portada__rol,
+.portada__lema,
+.portada__acciones {
+  animation: portada-entra 0.8s ease-out both;
+}
+
+.portada__rol { animation-delay: 1.1s; }
+.portada__lema { animation-delay: 1.35s; }
+.portada__acciones { animation-delay: 1.6s; }
+
+html.intro-activa .portada__rol,
+html.intro-activa .portada__lema,
+html.intro-activa .portada__acciones {
+  animation: none;
+  opacity: 0;
+}
+
+@keyframes portada-entra {
+  from {
+    opacity: 0;
+    translate: 0 10px;
+  }
+
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+/* ---------- Movimiento reducido: todo quieto y visible ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .plano__rejilla,
+  .plano__dibujo *,
+  .plano__carril,
+  .portada__rol,
+  .portada__lema,
+  .portada__acciones {
+    animation: none;
+  }
+
+  .plano__carril {
+    translate: -50% 0;
+  }
+}
