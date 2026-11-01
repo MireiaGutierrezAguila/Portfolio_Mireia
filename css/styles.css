@@ -5,6 +5,39 @@
    Paleta y tipografía aprobadas: ver CLAUDE.md y diseno/muestra.html
    ========================================================== */
 
+/* ---------- Tipografías provisionales ----------
+   Mientras llegan Tektur y Atkinson (Google Fonts), se usa Arial redimensionada para que el texto ocupe
+   casi lo mismo que con la letra definitiva. Así, al cargar, las líneas no cambian de sitio y la página no
+   «salta» (CLS). Proporciones medidas con la fuente real: Tektur ≈ 1,02 × Arial y Atkinson ≈ 0,986 × Arial.
+   Si en algún sistema no existe Arial, el navegador pasa a la siguiente fuente de la lista. */
+@font-face {
+  font-family: "Tektur ajustada";
+  src: local("Arial"), local("ArialMT");
+  font-weight: 400 500;
+  size-adjust: 102%;
+}
+
+@font-face {
+  font-family: "Tektur ajustada";
+  src: local("Arial Bold"), local("Arial-BoldMT");
+  font-weight: 600 900;
+  size-adjust: 102%;
+}
+
+@font-face {
+  font-family: "Atkinson ajustada";
+  src: local("Arial"), local("ArialMT");
+  font-weight: 300 500;
+  size-adjust: 98.6%;
+}
+
+@font-face {
+  font-family: "Atkinson ajustada";
+  src: local("Arial Bold"), local("Arial-BoldMT");
+  font-weight: 600 900;
+  size-adjust: 98.6%;
+}
+
 /* ---------- Tokens ---------- */
 :root {
   /* Colores */
@@ -21,8 +54,8 @@
   --linea: rgba(169, 164, 191, 0.18);
 
   /* Tipografía */
-  --fuente-texto: "Atkinson Hyperlegible Next", system-ui, sans-serif;
-  --fuente-titulos: "Tektur", "Atkinson Hyperlegible Next", sans-serif;
+  --fuente-texto: "Atkinson Hyperlegible Next", "Atkinson ajustada", system-ui, sans-serif;
+  --fuente-titulos: "Tektur", "Tektur ajustada", "Atkinson Hyperlegible Next", "Atkinson ajustada", sans-serif;
   --t-pequeno: 0.875rem;
   --t-base: 1.0625rem;
   --t-medio: 1.375rem;
@@ -1044,7 +1077,9 @@ h3 {
 .juego__dato dd {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.25rem 1rem;
+  /* Hueco horizontal de 0,75 rem y no de 1 rem: en MitoCat, a 390 px, Windows + Linux + Mac cabían justo y,
+     con 1 px de diferencia entre la letra provisional y Tektur/Atkinson, «Mac» saltaba a otra fila (CLS 0,08) */
+  gap: 0.25rem 0.75rem;
   margin: 0;
 }
 
@@ -2294,4 +2329,31 @@ button.boton--linea {
   width: 100%;
   height: 100%;
   pointer-events: none;
+}
+
+/* Cursor trisquel (28 px, el punto de clic es el centro del dibujo): cian normal y magenta sobre lo pulsable.
+   Solo con ratón: en pantallas táctiles no hay cursor. Si el SVG no carga, el navegador usa la flecha o la manita.
+   Va con !important porque varias piezas (menú, carrusel, mapa...) ya traen su propio «cursor: pointer»,
+   y los hijos de lo pulsable (iconos, textos) también deben verse magenta. */
+@media (hover: hover) and (pointer: fine) {
+  html,
+  body,
+  body * {
+    cursor: url("../images/cursor/trisquel.svg") 16 16, auto !important;
+  }
+
+  a[href],
+  a[href] *,
+  button,
+  button *,
+  summary,
+  summary *,
+  [role="button"],
+  [role="tab"],
+  [data-pos="izq"],
+  [data-pos="izq"] *,
+  [data-pos="der"],
+  [data-pos="der"] * {
+    cursor: url("../images/cursor/trisquel-enlace.svg") 16 16, pointer !important;
+  }
 }

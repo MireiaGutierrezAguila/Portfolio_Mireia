@@ -1,0 +1,53 @@
+/* Página de revisión del cursor trisquel (solo para mirar; no forma parte de la web) */
+body {
+  margin: 0;
+  padding: 2rem;
+  background: #08070D;
+  color: #EDEAF5;
+  font-family: system-ui, sans-serif;
+}
+
+h1, h2 { font-weight: 600; }
+h2 { font-size: 1.1rem; margin-top: 2rem; }
+p { color: #A9A4BF; max-width: 46rem; }
+
+.fila { display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: center; }
+
+.muestra {
+  display: grid;
+  place-items: center;
+  gap: 0.5rem;
+  padding: 1.25rem;
+  border-radius: 0.5rem;
+  font-size: 0.8rem;
+}
+
+.fondo-oscuro { background: #15111D; }
+.fondo-claro { background: #E9E6F2; color: #08070D; }
+.fondo-cian { background: #12DCF0; color: #08070D; }
+
+.muestra img.real { width: 32px; height: 32px; }
+.muestra img.grande { width: 168px; height: 168px; }
+
+/* Zonas para probar el cursor de verdad (con el ratón encima) */
+.prueba {
+  display: grid;
+  place-items: center;
+  width: 16rem;
+  height: 8rem;
+  border: 1px solid #8B5CF6;
+  border-radius: 0.5rem;
+  cursor: url("../images/cursor/trisquel.svg") 16 16, auto;
+}
+
+.prueba a, .prueba button {
+  cursor: url("../images/cursor/trisquel-enlace.svg") 16 16, pointer;
+  color: #12DCF0;
+  background: none;
+  border: 1px solid #12DCF0;
+  border-radius: 0.4rem;
+  padding: 0.5rem 1rem;
+  font: inherit;
+}
+
+.prueba--clara { background: #E9E6F2; color: #08070D; }

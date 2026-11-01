@@ -48,21 +48,23 @@
 
   function alMoverRaton(evento) {
     if (evento.pointerType && evento.pointerType !== 'mouse') return;
+    const x = evento.clientX; // el cursor es una esfera con el punto de clic en su centro: la estela nace ahí
+    const y = evento.clientY;
     if (ultimoX === null) {
-      ultimoX = evento.clientX;
-      ultimoY = evento.clientY;
+      ultimoX = x;
+      ultimoY = y;
       return;
     }
-    const dx = evento.clientX - ultimoX;
-    const dy = evento.clientY - ultimoY;
+    const dx = x - ultimoX;
+    const dy = y - ultimoY;
     const pasos = Math.min(MAX_POR_EVENTO, Math.floor(Math.hypot(dx, dy) / SEPARACION));
     if (pasos < 1) return;
     // si el ratón fue muy rápido, las partículas se reparten por el trayecto para que no queden saltos
     for (let i = 1; i <= pasos; i++) {
       crearParticula(ultimoX + (dx * i) / pasos, ultimoY + (dy * i) / pasos);
     }
-    ultimoX = evento.clientX;
-    ultimoY = evento.clientY;
+    ultimoX = x;
+    ultimoY = y;
     if (!fotograma) {
       ultimoTiempo = performance.now();
       fotograma = requestAnimationFrame(bucle);
