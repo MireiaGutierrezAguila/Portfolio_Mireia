@@ -403,6 +403,13 @@
   border-top: 1px solid var(--linea);
 }
 
+/* Botones de descarga (Feminist tiene dos: Google Play e itch.io); se parten en filas si no caben */
+.descarga__botones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
 .descarga__archivo {
   font-size: var(--t-pequeno);
   color: var(--texto-2);

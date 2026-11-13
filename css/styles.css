@@ -1106,6 +1106,14 @@ h3 {
   margin-top: auto;
 }
 
+/* Tarjeta con más de un botón (Feminist: «Ver más» y Google Play): quedan abajo y se parten en filas si no caben */
+.juego__botones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: auto;
+}
+
 /* Botón de pausa del vídeo (lo crea el JS) */
 .juego__pausa {
   position: absolute;
