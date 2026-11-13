@@ -999,6 +999,22 @@ h3 {
   --acento: var(--magenta-claro);
 }
 
+.juego--mujeres {
+  --acento: var(--turquesa);
+}
+
+/* La captura de la web es vertical: se ve entera (sin recortar) con la proporción de la imagen y,
+   si la tarjeta es más ancha que ella, los lados quedan en negro (el fondo de la propia captura) */
+.juego--mujeres .juego__video {
+  aspect-ratio: 576 / 661;
+  max-height: 30rem;
+  background: #000;
+}
+
+.juego--mujeres .juego__video img {
+  object-fit: contain;
+}
+
 /* Esquinas de HUD en el color del juego */
 .juego::before,
 .juego::after {
@@ -1039,7 +1055,9 @@ h3 {
   overflow: hidden;
 }
 
-.juego__video video {
+/* La tarjeta de un proyecto en curso puede llevar una imagen en lugar del vídeo */
+.juego__video video,
+.juego__video img {
   display: block;
   width: 100%;
   height: 100%;

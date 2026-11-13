@@ -49,7 +49,9 @@
   siguiente.addEventListener('click', () => ir(actual + 1));
 
   // ---------- Botón de pausa de cada vídeo (WCAG 2.2.2: todo movimiento largo se puede parar) ----------
+  // Las tarjetas sin vídeo (un proyecto en curso con solo una imagen) no llevan botón de pausa
   const botonesPausa = juegos.map((juego, i) => {
+    if (!videos[i]) return null;
     const boton = crear('button', 'juego__pausa');
     boton.type = 'button';
     boton.innerHTML =
@@ -98,6 +100,7 @@
       else punto.removeAttribute('aria-current');
     });
     botonesPausa.forEach((boton, i) => {
+      if (!boton) return;
       boton.dataset.pausado = String(pausadoPorUsuario[i]);
       boton.setAttribute('aria-label', t(pausadoPorUsuario[i] ? 'proy.reproducir' : 'proy.pausar'));
     });
@@ -108,6 +111,7 @@
 
   function sincronizarVideos() {
     videos.forEach((video, i) => {
+      if (!video) return; // tarjeta solo con imagen
       if (debeReproducir(i)) {
         const promesa = video.play();
         if (promesa) {
